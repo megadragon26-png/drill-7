@@ -249,10 +249,6 @@
                 <canvas id="hud-icon-audio" width="14" height="14" class="w-3.5 h-3.5"></canvas>
                 <span id="audio-status-label" class="hidden sm:inline">ЗВУК</span>
             </button>
-
-            <button id="btn-open-hangar" class="btn-game px-2.5 py-1 rounded text-[11px] font-extrabold text-amber-300 border-amber-500/50">
-                АНГАР
-            </button>
         </div>
     </header>
 
@@ -286,6 +282,228 @@
         <!-- РАДАР СТАНЦИИ И ЗОНЫ ВЫСОКОГО ДАВЛЕНИЯ -->
         <div id="station-proximity-banner" class="hidden pointer-events-none absolute bottom-12 left-1/2 -translate-x-1/2 z-20 px-4 py-1.5 rounded-lg bg-cyan-950/95 border-2 border-cyan-400 shadow-2xl text-center">
             <div id="station-proximity-text" class="text-xs font-extrabold text-cyan-200 animate-pulse">ВНИЗУ ГЕРМОШЛЮЗ СТАНЦИИ — ЗАЕЗЖАЙТЕ В СВЕТЯЩИЕСЯ ВОРОТА!</div>
+        </div>
+
+        <!-- МОБИЛЬНОЕ СЕНСОРНОЕ УПРАВЛЕНИЕ -->
+        <div class="sm:hidden absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
+            <button id="touch-left" class="btn-game w-14 h-12 rounded-xl font-extrabold text-lg text-white">◄</button>
+            <button id="touch-down" class="btn-amber w-16 h-12 rounded-xl font-extrabold text-lg text-white">▼</button>
+            <button id="touch-right" class="btn-game w-14 h-12 rounded-xl font-extrabold text-lg text-white">►</button>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- МОДАЛКА СПРАВОЧНИКА / ГИДА («КОДЕКС БУРИЛЬЩИКА» [H])                      -->
+        <!-- ========================================================================= -->
+        <div id="modal-guide" class="hidden absolute inset-0 z-50 bg-black/85 backdrop-blur-sm flex overflow-y-auto p-2 sm:p-3">
+            <div class="compact-modal rounded-xl p-3.5 border-2 border-emerald-400 flex flex-col max-h-[92vh]">
+                <div class="flex items-center justify-between pb-2 border-b border-slate-700 shrink-0">
+                    <div class="flex items-center gap-2">
+                        <canvas id="guide-modal-icon" width="28" height="28" class="w-7 h-7 rounded bg-[#080c14] p-1 border border-emerald-400/60"></canvas>
+                        <div>
+                            <div class="text-[9px] font-extrabold uppercase text-emerald-400">Внутриигровая энциклопедия</div>
+                            <h2 class="text-sm sm:text-base font-extrabold text-white">КОДЕКС БУРИЛЬЩИКА (ГИД)</h2>
+                        </div>
+                    </div>
+                    <button id="btn-guide-close" class="btn-game px-2.5 py-1 rounded text-[11px] font-extrabold text-rose-300 border-rose-500/50">
+                        ЗАКРЫТЬ [H / ESC]
+                    </button>
+                </div>
+
+                <!-- Вкладки справочника -->
+                <div class="grid grid-cols-3 gap-1.5 my-2 shrink-0">
+                    <button id="tab-btn-mech" class="btn-emerald py-1.5 px-2 rounded text-[10px] sm:text-xs font-extrabold uppercase">
+                        1. Механики и Угрозы
+                    </button>
+                    <button id="tab-btn-blocks" class="btn-game py-1.5 px-2 rounded text-[10px] sm:text-xs font-extrabold uppercase text-slate-200">
+                        2. Руды и Предметы
+                    </button>
+                    <button id="tab-btn-modules" class="btn-game py-1.5 px-2 rounded text-[10px] sm:text-xs font-extrabold uppercase text-slate-200">
+                        3. Модули и Синергии
+                    </button>
+                </div>
+
+                <!-- Контент выбранной вкладки -->
+                <div id="guide-tab-content" class="flex-1 overflow-y-auto space-y-2 pr-1"></div>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- МОДАЛКА 1: ТЕХНО-КАПСУЛА (СУНДУК МОДУЛЕЙ В ТОЛЩЕ ПОРОДЫ)                  -->
+        <!-- ========================================================================= -->
+        <div id="modal-pod" class="hidden absolute inset-0 z-50 bg-black/85 backdrop-blur-sm flex overflow-y-auto p-2 sm:p-3">
+            <div class="compact-modal rounded-xl p-3.5 border-2 border-cyan-400">
+                <div class="flex items-center justify-between pb-2 border-b border-slate-700">
+                    <div class="flex items-center gap-2">
+                        <canvas id="pod-modal-icon" width="28" height="28" class="w-7 h-7 rounded bg-[#080c14] p-0.5 border border-cyan-400/60"></canvas>
+                        <div>
+                            <div class="text-[9px] font-extrabold uppercase text-cyan-300">Найдена подземная капсула снабжения</div>
+                            <h2 class="text-sm sm:text-base font-extrabold text-white">ВЫБЕРИТЕ 1 ИЗ 3 НАГРАД</h2>
+                        </div>
+                    </div>
+                    <span id="pod-slots-status" class="text-[10px] font-extrabold bg-cyan-950 text-cyan-200 px-2 py-1 rounded border border-cyan-500/40">
+                        Слоты: 0/2
+                    </span>
+                </div>
+
+                <!-- Текущие установленные модули (можно снять, если нет свободного слота) -->
+                <div class="my-2">
+                    <div class="text-[9px] font-bold uppercase text-slate-400 mb-1">Ваши модули (можно снять любой за +50% Руды, чтобы освободить слот):</div>
+                    <div id="pod-installed-list" class="grid grid-cols-2 sm:grid-cols-5 gap-1.5"></div>
+                </div>
+
+                <!-- 3 варианта выбора из капсулы -->
+                <div id="pod-choices-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-2"></div>
+            </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- МОДАЛКА 2: ПОДЗЕМНАЯ СТАНЦИЯ МЕЖДУ СЛОЯМИ                                 -->
+        <!-- ========================================================================= -->
+        <div id="modal-station" class="hidden absolute inset-0 z-40 bg-black/90 backdrop-blur-md flex overflow-y-auto p-2 sm:p-3">
+            <div class="compact-modal rounded-xl p-3 sm:p-3.5 border-2 border-cyan-500">
+                <!-- Шапка станции -->
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-700">
+                    <div class="flex items-center gap-2">
+                        <canvas id="station-header-icon" width="28" height="28" class="w-7 h-7 rounded bg-[#080c14] p-0.5 border border-cyan-400/60"></canvas>
+                        <div>
+                            <div id="next-biome-preview" class="text-[9px] font-bold uppercase text-cyan-300">Следующий слой: Слой 2</div>
+                            <h2 id="station-title" class="text-sm sm:text-base font-extrabold text-white leading-tight">ПОДЗЕМНАЯ СТАНЦИЯ #1</h2>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs">
+                        <div class="bg-[#090d16] px-2.5 py-1 rounded border border-amber-500/60">
+                            <span class="text-[9px] text-slate-400 uppercase font-bold">В трюме:</span>
+                            <span id="station-cargo-ore" class="font-extrabold text-amber-300 ml-1">0 Руды</span>
+                        </div>
+                        <div class="bg-[#090d16] px-2.5 py-1 rounded border border-emerald-500/60">
+                            <span class="text-[9px] text-slate-400 uppercase font-bold">В Банке:</span>
+                            <span id="station-bank-ore" class="font-extrabold text-emerald-300 ml-1">0 Руды</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Блок 1: Установленные модули бура (прокачка Ур.1->3 или продажа) -->
+                <div class="my-2 bg-[#090d16] p-2 rounded-lg border border-slate-800">
+                    <div class="flex items-center justify-between gap-2 mb-1.5">
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-extrabold uppercase text-cyan-300">Установленные Модули Бура</span>
+                            <span id="station-slots-badge" class="text-[9px] font-extrabold bg-cyan-950 text-cyan-200 px-1.5 py-0.5 rounded border border-cyan-500/30">Слоты: 0/2</span>
+                        </div>
+                        <button id="btn-station-buy-slot" class="btn-cyan px-2 py-0.5 rounded text-[9px] font-extrabold">
+                            +1 Слот (140 Руды)
+                        </button>
+                    </div>
+                    <div id="station-installed-slots" class="grid grid-cols-2 sm:grid-cols-5 gap-1.5"></div>
+                    <div id="station-synergies-box" class="hidden mt-1.5 pt-1.5 border-t border-slate-800 space-y-1"></div>
+                </div>
+
+                <!-- Блок 2: Две колонки — Магазин Модулей слева и Сервис/Шасси/Банк справа -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 my-2">
+                    <!-- Левая колонка: Витрина модулей станции -->
+                    <div class="bg-[#090d16] p-2 rounded-lg border border-slate-800 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="text-[10px] font-extrabold uppercase text-amber-300">Магазин Модулей</span>
+                                <button id="btn-station-reroll" class="btn-game px-2 py-0.5 rounded text-[9px] font-extrabold text-amber-200">
+                                    Обновить (15 Руды)
+                                </button>
+                            </div>
+                            <div id="station-shop-offers" class="space-y-1.5"></div>
+                        </div>
+                    </div>
+
+                    <!-- Правая колонка: Заправка, Ремонт, Модернизация Шасси и Отправка в Банк -->
+                    <div class="space-y-2">
+                        <!-- Быстрый сервис: Заправка и Ремонт -->
+                        <div class="bg-[#090d16] p-2 rounded-lg border border-slate-800">
+                            <div class="text-[10px] font-extrabold uppercase text-emerald-300 mb-1">Ремонт и Заправка (+40 ед.)</div>
+                            <div class="grid grid-cols-2 gap-1.5">
+                                <button id="btn-station-refuel" class="btn-amber py-1.5 px-2 rounded text-[10px] font-extrabold flex items-center justify-between">
+                                    <span class="flex items-center gap-1">
+                                        <canvas id="st-icon-fuel" width="16" height="16" class="w-4 h-4"></canvas>
+                                        <span>+40 Топл.</span>
+                                    </span>
+                                    <span id="cost-refuel" class="text-[9px] text-amber-100">18 Руды</span>
+                                </button>
+                                <button id="btn-station-repair" class="btn-emerald py-1.5 px-2 rounded text-[10px] font-extrabold flex items-center justify-between">
+                                    <span class="flex items-center gap-1">
+                                        <canvas id="st-icon-hull" width="16" height="16" class="w-4 h-4"></canvas>
+                                        <span>+40 HP</span>
+                                    </span>
+                                    <span id="cost-repair" class="text-[9px] text-emerald-100">18 Руды</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Лимитированная модернизация шасси (Ур. 0..6) -->
+                        <div class="bg-[#090d16] p-2 rounded-lg border border-slate-800 space-y-1">
+                            <div class="text-[10px] font-extrabold uppercase text-cyan-300 mb-1">Модернизация Шасси (на текущий забег)</div>
+
+                            <div id="card-upg-torque" class="interactive-card px-2 py-1 rounded border flex items-center justify-between gap-1.5">
+                                <div class="flex items-center gap-1.5 min-w-0">
+                                    <canvas id="icon-upg-torque" width="20" height="20" class="w-5 h-5 shrink-0"></canvas>
+                                    <div class="min-w-0">
+                                        <div class="text-[10px] font-extrabold text-white">Привод Бура <span id="lvl-torque" class="text-cyan-300">[Ур.0/6]</span></div>
+                                        <div id="status-upg-torque" class="text-[9px] text-slate-400 truncate">+12% скорость</div>
+                                    </div>
+                                </div>
+                                <button id="btn-upg-torque" class="btn-cyan px-2 py-1 rounded text-[9px] font-extrabold shrink-0">90 Руды</button>
+                            </div>
+
+                            <div id="card-upg-tank" class="interactive-card px-2 py-1 rounded border flex items-center justify-between gap-1.5">
+                                <div class="flex items-center gap-1.5 min-w-0">
+                                    <canvas id="icon-upg-tank" width="20" height="20" class="w-5 h-5 shrink-0"></canvas>
+                                    <div class="min-w-0">
+                                        <div class="text-[10px] font-extrabold text-white">Топливный Бак <span id="lvl-tank" class="text-amber-300">[Ур.0/6]</span></div>
+                                        <div id="status-upg-tank" class="text-[9px] text-slate-400 truncate">+25 макс. топл.</div>
+                                    </div>
+                                </div>
+                                <button id="btn-upg-tank" class="btn-cyan px-2 py-1 rounded text-[9px] font-extrabold shrink-0">80 Руды</button>
+                            </div>
+
+                            <div id="card-upg-armor" class="interactive-card px-2 py-1 rounded border flex items-center justify-between gap-1.5">
+                                <div class="flex items-center gap-1.5 min-w-0">
+                                    <canvas id="icon-upg-armor" width="20" height="20" class="w-5 h-5 shrink-0"></canvas>
+                                    <div class="min-w-0">
+                                        <div class="text-[10px] font-extrabold text-white">Бронеплиты <span id="lvl-armor" class="text-rose-300">[Ур.0/6]</span></div>
+                                        <div id="status-upg-armor" class="text-[9px] text-slate-400 truncate">+25 макс. жизней</div>
+                                    </div>
+                                </div>
+                                <button id="btn-upg-armor" class="btn-cyan px-2 py-1 rounded text-[9px] font-extrabold shrink-0">80 Руды</button>
+                            </div>
+                        </div>
+
+                        <!-- Эвакуация руды наверх в Глобальный Банк -->
+                        <div class="bg-[#090d16] p-2 rounded-lg border border-emerald-500/40">
+                            <div class="text-[10px] font-extrabold uppercase text-emerald-300 mb-1">Пневмопочта: Сохранить Руду в Глобальный Банк</div>
+                            <div class="grid grid-cols-2 gap-1.5">
+                                <button id="btn-evac-half" class="btn-purple py-1 px-2 rounded text-[10px] font-extrabold">
+                                    Отправить 50% в Банк
+                                </button>
+                                <button id="btn-evac-all" class="btn-emerald py-1 px-2 rounded text-[10px] font-extrabold">
+                                    Отправить 100% в Банк
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Блок 3: ВЫБОР АЛЬТЕРНАТИВНОГО МАРШРУТА НА СЛЕДУЮЩИЙ СЛОЙ -->
+                <div class="my-2 bg-[#090d16] p-2 rounded-lg border border-amber-500/50">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[10px] font-extrabold uppercase text-amber-300">Развилка Недр: Выберите маршрут на следующий слой</span>
+                        <span id="station-route-hint" class="text-[9px] font-bold text-cyan-300">У каждого маршрута свои опасности и ресурсы</span>
+                    </div>
+                    <div id="station-route-choices" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
+                </div>
+
+                <!-- Кнопка перехода на следующий слой -->
+                <div class="pt-2 border-t border-slate-700">
+                    <button id="btn-station-descend" class="btn-amber w-full py-2 px-4 rounded-lg text-xs font-extrabold uppercase tracking-wider">
+                        ПРОДОЛЖИТЬ БУРЕНИЕ НА ВЫБРАННЫЙ СЛОЙ ▼
+                    </button>
+                </div>
+            </div>
         </div>
 
         <!-- ========================================================================= -->
@@ -326,241 +544,8 @@
                     <button id="btn-pause-guide" class="btn-game w-full py-2 px-3 rounded-lg text-[11px] font-extrabold uppercase text-emerald-300 border-emerald-500/50">
                         ОТКРЫТЬ ГИД ПО МЕХАНИКАМ, РУДАМ И МОДУЛЯМ [H]
                     </button>
-                    <div class="grid grid-cols-2 gap-2">
-                        <button id="btn-pause-restart" class="btn-amber py-2 px-3 rounded-lg text-[11px] font-extrabold uppercase">
-                            НАЧАТЬ СПУСК ЗАНОВО
-                        </button>
-                        <button id="btn-pause-hangar" class="btn-cyan py-2 px-3 rounded-lg text-[11px] font-extrabold uppercase">
-                            ВЫЙТИ В АНГАР
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ========================================================================= -->
-        <!-- МОДАЛКА СПРАВОЧНИКА: ВНУТРИИГРОВОЙ ГИД («КОДЕКС БУРИЛЬЩИКА»)              -->
-        <!-- ========================================================================= -->
-        <div id="modal-guide" class="hidden absolute inset-0 z-50 bg-black/88 backdrop-blur-md flex overflow-y-auto p-2 sm:p-3">
-            <div class="compact-modal rounded-xl p-3 sm:p-4 border-2 border-emerald-400">
-                <!-- Шапка Гида -->
-                <div class="flex flex-wrap items-center justify-between gap-2 pb-2.5 border-b border-slate-700">
-                    <div class="flex items-center gap-2.5">
-                        <canvas id="guide-modal-icon" width="28" height="28" class="w-7 h-7 rounded bg-[#080c14] p-1 border border-emerald-400/60"></canvas>
-                        <div>
-                            <div class="text-[9px] font-extrabold uppercase text-emerald-400 tracking-wider">Энциклопедия выживания в недрах (Время на паузе)</div>
-                            <h2 class="text-sm sm:text-base font-extrabold text-white">КОДЕКС БУРИЛЬЩИКА — ГИД ПО ИГРЕ</h2>
-                        </div>
-                    </div>
-                    <button id="btn-guide-close" class="btn-emerald px-3 py-1 rounded text-xs font-extrabold uppercase">
-                        ЗАКРЫТЬ [H / ESC]
-                    </button>
-                </div>
-
-                <!-- Переключатели вкладок Гида -->
-                <div class="grid grid-cols-3 gap-1.5 my-2.5">
-                    <button id="tab-btn-mech" class="btn-emerald py-1.5 px-2 rounded text-[10px] sm:text-xs font-extrabold uppercase">
-                        1. Механики и Угрозы
-                    </button>
-                    <button id="tab-btn-blocks" class="btn-game py-1.5 px-2 rounded text-[10px] sm:text-xs font-extrabold uppercase text-slate-200">
-                        2. Руды и Постройки
-                    </button>
-                    <button id="tab-btn-modules" class="btn-game py-1.5 px-2 rounded text-[10px] sm:text-xs font-extrabold uppercase text-slate-200">
-                        3. Модули и Синергии
-                    </button>
-                </div>
-
-                <!-- Контент выбранной вкладки -->
-                <div id="guide-tab-content" class="bg-[#090d16] p-2.5 rounded-lg border border-slate-800 max-h-[62vh] overflow-y-auto space-y-2 text-xs"></div>
-            </div>
-        </div>
-
-        <!-- Сенсорное управление для мобильных -->
-        <div id="touch-controls" class="lg:hidden absolute bottom-10 inset-x-0 z-20 flex justify-between items-end px-4 pointer-events-none">
-            <div class="flex gap-2 pointer-events-auto">
-                <button id="touch-left" class="btn-game w-14 h-14 rounded-lg flex items-center justify-center text-xs font-extrabold text-amber-300">ВЛЕВО</button>
-                <button id="touch-right" class="btn-game w-14 h-14 rounded-lg flex items-center justify-center text-xs font-extrabold text-amber-300">ВПРАВО</button>
-            </div>
-            <div class="pointer-events-auto">
-                <button id="touch-down" class="btn-amber w-16 h-16 rounded-lg flex flex-col items-center justify-center">
-                    <span class="text-[10px] font-bold">БУРИТЬ</span>
-                    <span class="text-xs font-black">ВНИЗ</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- ========================================================================= -->
-        <!-- МОДАЛКА 1: НАЙДЕНА ТЕХНО-КАПСУЛА ПРЯМО В СЛОЕ ПОРОДЫ (ВЫБОР 1 ИЗ 3)       -->
-        <!-- ========================================================================= -->
-        <div id="modal-pod" class="hidden absolute inset-0 z-40 bg-black/85 backdrop-blur-sm flex overflow-y-auto p-2 sm:p-3">
-            <div class="compact-modal rounded-xl p-3.5 border-2 border-cyan-400">
-                <div class="flex items-center justify-between gap-2 pb-2 border-b border-slate-700/80">
-                    <div class="flex items-center gap-2.5">
-                        <canvas id="pod-modal-icon" width="32" height="32" class="w-8 h-8 rounded bg-[#080c14] p-1 border border-cyan-400/60"></canvas>
-                        <div>
-                            <div class="text-[10px] font-extrabold uppercase text-cyan-400 tracking-wider">Находка в недрах породы</div>
-                            <h2 class="text-sm sm:text-base font-extrabold text-white">ТЕХНО-КАПСУЛА МОДУЛЕЙ</h2>
-                        </div>
-                    </div>
-                    <div id="pod-slots-status" class="text-[11px] font-bold bg-slate-900 px-2.5 py-1 rounded border border-slate-700 text-cyan-300">
-                        Слоты: 0/2
-                    </div>
-                </div>
-
-                <!-- Быстрое управление текущими модулями (можно продать старый, чтобы освободить слот прямо тут!) -->
-                <div class="mt-2 bg-[#090d16] p-2 rounded border border-slate-800">
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-[10px] font-bold uppercase text-slate-400">Ваши слоты (нажмите «Снять», чтобы освободить слот и получить +Руду):</span>
-                    </div>
-                    <div id="pod-installed-list" class="grid grid-cols-2 sm:grid-cols-3 gap-1.5"></div>
-                </div>
-
-                <div class="text-[11px] font-extrabold uppercase text-amber-300 mt-2.5 mb-1.5">
-                    Выберите 1 из 3 наград капсулы (нажмите на карточку):
-                </div>
-                <div id="pod-choices-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-2"></div>
-            </div>
-        </div>
-
-        <!-- ========================================================================= -->
-        <!-- МОДАЛКА 2: КОМПАКТНАЯ ПОДЗЕМНАЯ СТАНЦИЯ (БЕЗ ОБРЕЗАНИЯ ШАПКОЙ)             -->
-        <!-- ========================================================================= -->
-        <div id="modal-station" class="hidden absolute inset-0 z-30 bg-black/85 backdrop-blur-sm flex overflow-y-auto p-2 sm:p-3">
-            <div class="compact-modal rounded-xl p-3 sm:p-3.5 border-2 border-cyan-400">
-                <!-- Шапка станции -->
-                <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-700">
-                    <div class="flex items-center gap-2">
-                        <canvas id="station-header-icon" width="28" height="28" class="w-7 h-7 rounded bg-[#080c14] p-0.5 border border-cyan-400/60"></canvas>
-                        <div>
-                            <div class="text-[9px] font-extrabold uppercase text-cyan-400">Безопасный чекпойнт между слоями</div>
-                            <h2 id="station-title" class="text-sm sm:text-base font-extrabold text-white leading-tight">ПОДЗЕМНАЯ СТАНЦИЯ #1</h2>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <div class="bg-[#080b12] px-2.5 py-1 rounded border border-amber-500/60 text-xs font-extrabold flex items-center gap-1.5">
-                            <span class="text-slate-400 text-[10px]">В трюме:</span>
-                            <span id="station-cargo-ore" class="text-amber-300">0 Руды</span>
-                        </div>
-                        <div class="bg-[#080b12] px-2.5 py-1 rounded border border-emerald-500/60 text-xs font-extrabold flex items-center gap-1.5">
-                            <span class="text-slate-400 text-[10px]">В Банке:</span>
-                            <span id="station-bank-ore" class="text-emerald-300">0 Руды</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- БЛОК А: ВАШИ СЛОТЫ МОДУЛЕЙ (АПГРЕЙД ДО УР.3 ИЛИ ПРОДАЖА ЗА 50%) -->
-                <div class="mt-2 bg-[#090d16] p-2 rounded-lg border border-slate-700/80">
-                    <div class="flex flex-wrap items-center justify-between gap-1 mb-1.5">
-                        <span class="text-[10px] font-extrabold uppercase text-cyan-300">
-                            1. Ваши Модули (улучшайте до Ур.3 или продавайте для замены)
-                        </span>
-                        <div class="flex items-center gap-2">
-                            <span id="station-slots-badge" class="text-[10px] font-extrabold text-white bg-slate-800 px-2 py-0.5 rounded">Слоты: 0/2</span>
-                            <button id="btn-station-buy-slot" class="btn-purple px-2 py-0.5 rounded text-[10px] font-extrabold">
-                            +1 Слот (90 Руды)
-                        </button>
-                    </div>
-                </div>
-                <div id="station-installed-slots" class="grid grid-cols-2 sm:grid-cols-5 gap-1.5"></div>
-                <div id="station-synergies-box" class="hidden mt-1.5 pt-1.5 border-t border-slate-800 flex flex-wrap items-center gap-1.5"></div>
-            </div>
-
-            <!-- ДВЕ КОЛОНКИ: ВИТРИНА МОДУЛЕЙ (СЛЕВА) + МОДЕРНИЗАЦИЯ ШАССИ И БАНК (СПРАВА) -->
-                <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 mt-2">
-                    <!-- Левая колонка (7/12): Магазин Боевых Модулей + Реролл -->
-                    <div class="sm:col-span-7 bg-[#090d16] p-2 rounded-lg border border-slate-700/80 flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-1.5">
-                                <span class="text-[10px] font-extrabold uppercase text-amber-300">2. Витрина Модулей</span>
-                                <button id="btn-station-reroll" class="btn-game px-2 py-0.5 rounded text-[10px] font-extrabold text-cyan-300">
-                                    Обновить (15 Руды)
-                                </button>
-                            </div>
-                            <div id="station-shop-offers" class="space-y-1.5"></div>
-                        </div>
-                    </div>
-
-                    <!-- Правая колонка (5/12): Сбалансированная Модернизация Шасси (Макс Ур.6) + Сервис -->
-                    <div class="sm:col-span-5 bg-[#090d16] p-2 rounded-lg border border-slate-700/80 flex flex-col justify-between gap-1.5">
-                        <div>
-                            <div class="text-[10px] font-extrabold uppercase text-emerald-300 mb-1">
-                                3. Шасси (Лимит Ур.6) и Сервис
-                            </div>
-
-                            <!-- Быстрая заправка и ремонт -->
-                            <div class="grid grid-cols-2 gap-1.5 mb-1.5">
-                                <button id="btn-station-refuel" class="btn-amber py-1 px-1.5 rounded text-[10px] font-extrabold leading-tight flex items-center justify-center gap-1">
-                                    <canvas id="st-icon-fuel" width="16" height="16" class="w-4 h-4 shrink-0"></canvas>
-                                    <span>+40 Топл.<br><span id="cost-refuel" class="text-yellow-100 text-[9px]">18 Руды</span></span>
-                                </button>
-                                <button id="btn-station-repair" class="btn-amber py-1 px-1.5 rounded text-[10px] font-extrabold leading-tight flex items-center justify-center gap-1">
-                                    <canvas id="st-icon-hull" width="16" height="16" class="w-4 h-4 shrink-0"></canvas>
-                                    <span>+40 Жизней<br><span id="cost-repair" class="text-yellow-100 text-[9px]">18 Руды</span></span>
-                                </button>
-                            </div>
-
-                            <!-- 3 Лимитированных апгрейда шасси (Ур. 0..6) с иконками и подсветкой доступности -->
-                            <div class="space-y-1">
-                                <!-- Привод Бура -->
-                                <div id="card-upg-torque" class="interactive-card bg-[#131a2c] px-2 py-1 rounded border border-slate-700 flex items-center justify-between gap-1.5">
-                                    <div class="flex items-center gap-1.5 min-w-0">
-                                        <canvas id="icon-upg-torque" width="22" height="22" class="w-5 h-5 shrink-0 rounded bg-[#080c14] p-0.5 border border-slate-700"></canvas>
-                                        <div class="min-w-0">
-                                            <div class="text-[10px] font-extrabold text-cyan-300 truncate">Привод <span id="lvl-torque" class="text-white">[Ур.0/6]</span></div>
-                                            <div id="status-upg-torque" class="text-[9px] text-slate-400 truncate">+12% скорость бура</div>
-                                        </div>
-                                    </div>
-                                    <button id="btn-upg-torque" class="btn-cyan px-2 py-1 rounded text-[10px] font-extrabold shrink-0">85 Руды</button>
-                                </div>
-
-                                <!-- Топливный Бак -->
-                                <div id="card-upg-tank" class="interactive-card bg-[#131a2c] px-2 py-1 rounded border border-slate-700 flex items-center justify-between gap-1.5">
-                                    <div class="flex items-center gap-1.5 min-w-0">
-                                        <canvas id="icon-upg-tank" width="22" height="22" class="w-5 h-5 shrink-0 rounded bg-[#080c14] p-0.5 border border-slate-700"></canvas>
-                                        <div class="min-w-0">
-                                            <div class="text-[10px] font-extrabold text-amber-300 truncate">Бак <span id="lvl-tank" class="text-white">[Ур.0/6]</span></div>
-                                            <div id="status-upg-tank" class="text-[9px] text-slate-400 truncate">+25 макс. топлива</div>
-                                        </div>
-                                    </div>
-                                    <button id="btn-upg-tank" class="btn-cyan px-2 py-1 rounded text-[10px] font-extrabold shrink-0">75 Руды</button>
-                                </div>
-
-                                <!-- Бронеплиты -->
-                                <div id="card-upg-armor" class="interactive-card bg-[#131a2c] px-2 py-1 rounded border border-slate-700 flex items-center justify-between gap-1.5">
-                                    <div class="flex items-center gap-1.5 min-w-0">
-                                        <canvas id="icon-upg-armor" width="22" height="22" class="w-5 h-5 shrink-0 rounded bg-[#080c14] p-0.5 border border-slate-700"></canvas>
-                                        <div class="min-w-0">
-                                            <div class="text-[10px] font-extrabold text-rose-300 truncate">Броня <span id="lvl-armor" class="text-white">[Ур.0/6]</span></div>
-                                            <div id="status-upg-armor" class="text-[9px] text-slate-400 truncate">+25 макс. жизней</div>
-                                        </div>
-                                    </div>
-                                    <button id="btn-upg-armor" class="btn-cyan px-2 py-1 rounded text-[10px] font-extrabold shrink-0">75 Руды</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Отправка руды в Глобальный Банк -->
-                        <div class="pt-1 border-t border-slate-800">
-                            <div class="text-[9px] text-slate-400 mb-1">Эвакуация руды в Банк (сохраняется навсегда):</div>
-                            <div class="grid grid-cols-2 gap-1.5">
-                                <button id="btn-evac-half" class="btn-game py-1 px-2 rounded text-[10px] font-extrabold text-emerald-300">
-                                    50% в Банк
-                                </button>
-                                <button id="btn-evac-all" class="btn-emerald py-1 px-2 rounded text-[10px] font-extrabold">
-                                    100% в Банк
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Нижняя кнопка спуска -->
-                <div class="mt-2.5 pt-2 border-t border-slate-700 flex items-center justify-between gap-3">
-                    <div id="next-biome-preview" class="text-[11px] font-bold text-cyan-300">
-                        Следующий слой: Слой 2 — Кристальные Пещеры
-                    </div>
-                    <button id="btn-station-descend" class="btn-amber py-1.5 px-4 rounded-lg text-xs font-extrabold uppercase tracking-wider shrink-0">
-                        БУРИТЬ НА СЛЕДУЮЩИЙ СЛОЙ
+                    <button id="btn-pause-restart" class="btn-amber w-full py-2 px-3 rounded-lg text-[11px] font-extrabold uppercase">
+                        НАЧАТЬ СПУСК ЗАНОВО
                     </button>
                 </div>
             </div>
@@ -678,10 +663,21 @@
                         <button id="btn-hub-upgrade-slot" class="btn-cyan w-full py-1 px-2 rounded text-[10px] font-extrabold"></button>
                     </div>
 
-                    <!-- 2. Стартовый слой (с иконками биомов и статусом доступности) -->
+                    <!-- 2. Информация о разветвленной кампании (старт всегда с 1-го слоя) -->
                     <div class="bg-[#090d16] p-2 rounded-lg border border-amber-500/40 flex flex-col justify-between">
-                        <div class="text-[10px] font-extrabold text-amber-300 uppercase mb-1">Выбор Слоя Высадки (6 Слоев)</div>
-                        <div id="hub-biomes-list" class="space-y-1 max-h-28 overflow-y-auto pr-1"></div>
+                        <div>
+                            <div class="flex items-center justify-between mb-0.5">
+                                <span class="text-[10px] font-extrabold text-amber-300 uppercase">Маршрут Экспедиции</span>
+                                <span class="text-[8px] font-extrabold bg-amber-950 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/40">СТАРТ СО СЛОЯ 1</span>
+                            </div>
+                            <div class="text-[9px] text-slate-300 leading-snug">
+                                Высадка всегда начинается с <strong>Земной Коры (Слой 1)</strong>, чтобы вы успели собрать модули. На станциях вы сами выбираете <strong>альтернативные биомы</strong> (Слои 2А/2Б, 3А/3Б, 4А/4Б, 5А/5Б)!
+                            </div>
+                        </div>
+                        <div class="mt-1 pt-1 border-t border-slate-800 flex items-center justify-between text-[9px] font-bold text-cyan-300">
+                            <span>Всего биомов в недрах: 10</span>
+                            <span>Глубина до Ядра: 875 м</span>
+                        </div>
                     </div>
 
                     <!-- 3. Памятка по редкости и постройкам -->
@@ -872,6 +868,9 @@
             SPORE_ROCK: { id: 28, name: 'Споровый Известняк', hp: 58, fuelCost: 1.15, heatGen: 2.8, solid: true, color: '#3f6212' },
             ABYSS_STONE: { id: 29, name: 'Абиссальный Базальт', hp: 130, fuelCost: 2.05, heatGen: 6.4, solid: true, isHard: true, color: '#1e3a8a' },
             NEUTRONIUM: { id: 30, name: 'Сверхплотный Нейтрониум', hp: 210, fuelCost: 2.75, heatGen: 12.5, solid: true, isHard: true, color: '#3b0764' },
+            PERMAFROST_ICE: { id: 35, name: 'Вечная Мерзлота', hp: 62, fuelCost: 1.10, heatGen: -3.5, solid: true, color: '#0284c7' },
+            MAGNETITE_ROCK: { id: 36, name: 'Магнетитовый Сланец', hp: 96, fuelCost: 1.65, heatGen: 4.5, solid: true, isHard: true, color: '#312e81' },
+            RUSTED_HULL: { id: 37, name: 'Ржавая Обшивка Титана', hp: 138, fuelCost: 1.95, heatGen: 5.5, solid: true, isHard: true, oreValue: 6, color: '#7c2d12' },
 
             // Топливо (снижено для более напряженного менеджмента)
             OIL_VEIN: { id: 7, name: 'Нефтяная Жила', hp: 30, fuelCost: 0.50, heatGen: 0, solid: true, fuelGain: 20, glowColor: '251, 191, 36', color: '#fbbf24' },
@@ -889,12 +888,15 @@
             OBSIDIAN: { id: 19, name: 'Застывший Обсидиан', hp: 52, fuelCost: 0.90, heatGen: -10, solid: true, oreValue: 28, glowColor: '129, 140, 248', color: '#818cf8' },
             ORE_VITALIUM: { id: 21, name: 'Виталиум (Живая Руда)', hp: 48, fuelCost: 0.75, heatGen: -10, solid: true, hullGain: 22, oreValue: 18, glowColor: '251, 113, 133', color: '#fb7185' },
 
-            // Опасности
+            // Опасности (включая уникальные ловушки альтернативных слоев)
             GAS_POCKET: { id: 15, name: 'Газ под давлением', hp: 26, fuelCost: 0.65, heatGen: 2.5, solid: true, hazard: 'gas', damage: 30, glowColor: '163, 230, 53', color: '#84cc16' },
             UNSTABLE_ROCK: { id: 16, name: 'Падающий Валун', hp: 72, fuelCost: 1.50, heatGen: 3.2, solid: true, fallingHazard: true, damage: 32, color: '#94a3b8' },
             THERMAL_POCKET: { id: 17, name: 'Карман Лавы', hp: 56, fuelCost: 1.35, heatGen: 38.0, solid: true, hazard: 'lava', damage: 29, glowColor: '239, 68, 68', color: '#ef4444' },
             ACID_POCKET: { id: 33, name: 'Кислотный Карман', hp: 38, fuelCost: 0.95, heatGen: 8.0, solid: true, hazard: 'acid', damage: 24, fuelDrain: 10, glowColor: '74, 222, 128', color: '#22c55e' },
             VOID_POCKET: { id: 34, name: 'Аномалия Пустоты', hp: 78, fuelCost: 1.65, heatGen: 26.0, solid: true, hazard: 'void', damage: 36, glowColor: '192, 132, 252', color: '#9333ea' },
+            CRYO_TRAP: { id: 38, name: 'Крио-Осколок Холода', hp: 42, fuelCost: 0.90, heatGen: -30.0, solid: true, hazard: 'cryo', damage: 20, glowColor: '56, 189, 248', color: '#38bdf8' },
+            ELECTRO_NODE: { id: 39, name: 'Электро-Конденсатор', hp: 52, fuelCost: 1.15, heatGen: 14.0, solid: true, hazard: 'electro', damage: 26, glowColor: '250, 204, 21', color: '#eab308' },
+            ARC_MINE: { id: 40, name: 'Реакторная Мина Древних', hp: 64, fuelCost: 1.35, heatGen: 22.0, solid: true, hazard: 'mine', damage: 35, glowColor: '249, 115, 22', color: '#ea580c' },
 
             // Интерактивные объекты и блоки подземных построек
             STATION_GATE: { id: 18, name: 'Шлюз Станции', hp: 10, fuelCost: 0, heatGen: 0, solid: false, isStation: true, color: '#06b6d4' },
@@ -909,13 +911,18 @@
             STAR_RELIC: { id: 27, name: 'Звёздная Реликвия Предтеч', hp: 44, fuelCost: 0.40, heatGen: -30, solid: true, isStarRelic: true, oreValue: 90, bankBonus: 35, glowColor: '250, 204, 21', color: '#facc15' }
         };
 
-        // 6 ПОЛНОЦЕННЫХ БИОМОВ КАМПАНИИ (Слои 1–6, суммарно 875 метров бурения!)
+        // РАЗВЕТВЛЕННАЯ КАМПАНИЯ ИЗ 6 ЯРУСОВ ГЛУБИНЫ С АЛЬТЕРНАТИВНЫМИ УРОВНЯМИ (2А/2Б, 3А/3Б, 4А/4Б, 5А/5Б)
         const BIOMES = [
+            // === ЯРУС 1 (СТАРТОВЫЙ, ВСЕГДА ПЕРВЫЙ) ===
             {
                 index: 0,
+                depthTier: 1,
                 id: 'crust',
                 name: 'Слой 1: Земная Кора',
                 shortName: 'Слой 1 (Кора)',
+                iconTex: 'DIRT',
+                hazardSummary: 'Падающие валуны, редкие газовые карманы',
+                featureSummary: 'Мягкая порода, Уголь (+Руда/+Топл) и Железо',
                 rows: 95,
                 bgTop: '#2c1d18',
                 bgBottom: '#18121e',
@@ -924,7 +931,6 @@
                 ambientColor: '#fde047',
                 ambientHeatRate: 0.55,
                 hazardInterval: [11.5, 15.0],
-                unlockCost: 0,
                 weights: [
                     { type: 'DIRT', weight: 40 },
                     { type: 'CLAY', weight: 28 },
@@ -939,11 +945,17 @@
                     { type: 'THERMAL_POCKET', weight: 1.8 }
                 ]
             },
+
+            // === ЯРУС 2: ДВА АЛЬТЕРНАТИВНЫХ УРОВНЯ (2А и 2Б) ===
             {
                 index: 1,
-                id: 'fungal',
-                name: 'Слой 2: Споровые Токси-Гроты',
-                shortName: 'Слой 2 (Токси-Гроты)',
+                depthTier: 2,
+                id: 'fungal_2a',
+                name: 'Слой 2А: Споровые Токси-Гроты',
+                shortName: '2А: Токси-Гроты',
+                iconTex: 'ACID_POCKET',
+                hazardSummary: 'Кислотные карманы (-HP и -Топливо) и едкий Газ',
+                featureSummary: 'Много целебного Виталиума (+HP) и Кобальта',
                 rows: 115,
                 bgTop: '#162e21',
                 bgBottom: '#0b1c17',
@@ -952,26 +964,61 @@
                 ambientColor: '#4ade80',
                 ambientHeatRate: 1.15,
                 hazardInterval: [10.0, 13.5],
-                unlockCost: 140,
                 weights: [
-                    { type: 'CLAY', weight: 18 },
-                    { type: 'SPORE_ROCK', weight: 34 },
-                    { type: 'LIMESTONE', weight: 20 },
+                    { type: 'CLAY', weight: 16 },
+                    { type: 'SPORE_ROCK', weight: 35 },
+                    { type: 'LIMESTONE', weight: 18 },
                     { type: 'OIL_VEIN', weight: 3.0 },
                     { type: 'ENERGY_BLOCK', weight: 1.4 },
-                    { type: 'ORE_VITALIUM', weight: 1.6 },
+                    { type: 'ORE_VITALIUM', weight: 2.3 },
                     { type: 'ORE_IRON', weight: 3.5 },
-                    { type: 'ORE_COBALT', weight: 4.8 },
+                    { type: 'ORE_COBALT', weight: 5.2 },
                     { type: 'GAS_POCKET', weight: 8.5 },
-                    { type: 'ACID_POCKET', weight: 6.8 },
-                    { type: 'UNSTABLE_ROCK', weight: 7.2 }
+                    { type: 'ACID_POCKET', weight: 7.4 },
+                    { type: 'UNSTABLE_ROCK', weight: 6.5 }
                 ]
             },
             {
                 index: 2,
-                id: 'crystals',
-                name: 'Слой 3: Кристальные Пещеры',
-                shortName: 'Слой 3 (Кристаллы)',
+                depthTier: 2,
+                id: 'permafrost_2b',
+                name: 'Слой 2Б: Мерзлотные Крио-Шахты',
+                shortName: '2Б: Крио-Шахты',
+                iconTex: 'CRYO_TRAP',
+                hazardSummary: 'Крио-Осколки (замораживают привод бура) и частые обвалы льда',
+                featureSummary: 'Нет перегрева (-Жар!), богатые жилы Кварца и Нефти',
+                rows: 115,
+                bgTop: '#0c2d48',
+                bgBottom: '#07192b',
+                shaftWall: '#0a2238',
+                shaftBeam: '#163e63',
+                ambientColor: '#7dd3fc',
+                ambientHeatRate: -3.2,
+                hazardInterval: [9.8, 13.0],
+                weights: [
+                    { type: 'PERMAFROST_ICE', weight: 38 },
+                    { type: 'LIMESTONE', weight: 22 },
+                    { type: 'OIL_VEIN', weight: 3.8 },
+                    { type: 'ENERGY_BLOCK', weight: 1.5 },
+                    { type: 'ORE_VITALIUM', weight: 1.4 },
+                    { type: 'ORE_IRON', weight: 3.2 },
+                    { type: 'ORE_COBALT', weight: 3.5 },
+                    { type: 'ORE_QUARTZ', weight: 4.8 },
+                    { type: 'CRYO_TRAP', weight: 8.2 },
+                    { type: 'UNSTABLE_ROCK', weight: 9.8 }
+                ]
+            },
+
+            // === ЯРУС 3: ДВА АЛЬТЕРНАТИВНЫХ УРОВНЯ (3А и 3Б) ===
+            {
+                index: 3,
+                depthTier: 3,
+                id: 'crystals_3a',
+                name: 'Слой 3А: Кристальные Пещеры',
+                shortName: '3А: Кристаллы',
+                iconTex: 'ORE_AMETHYST',
+                hazardSummary: 'Твердый сапфировый сланец, обвалы и газ под давлением',
+                featureSummary: 'Высокая плотность Кварца и дорогих Аметистов',
                 rows: 135,
                 bgTop: '#102847',
                 bgBottom: '#0b1830',
@@ -980,26 +1027,63 @@
                 ambientColor: '#38bdf8',
                 ambientHeatRate: 1.85,
                 hazardInterval: [9.0, 12.2],
-                unlockCost: 260,
                 weights: [
-                    { type: 'LIMESTONE', weight: 26 },
+                    { type: 'LIMESTONE', weight: 24 },
                     { type: 'CRYSTAL_SHALE', weight: 34 },
                     { type: 'OIL_VEIN', weight: 2.7 },
                     { type: 'ENERGY_BLOCK', weight: 1.6 },
                     { type: 'ORE_VITALIUM', weight: 1.7 },
                     { type: 'ORE_COBALT', weight: 3.0 },
-                    { type: 'ORE_QUARTZ', weight: 4.8 },
-                    { type: 'ORE_AMETHYST', weight: 3.4 },
+                    { type: 'ORE_QUARTZ', weight: 5.2 },
+                    { type: 'ORE_AMETHYST', weight: 4.2 },
                     { type: 'GAS_POCKET', weight: 8.2 },
                     { type: 'UNSTABLE_ROCK', weight: 9.0 },
-                    { type: 'THERMAL_POCKET', weight: 4.4 }
+                    { type: 'THERMAL_POCKET', weight: 4.2 }
                 ]
             },
             {
-                index: 3,
-                id: 'abyss',
-                name: 'Слой 4: Абиссальный Разлом',
-                shortName: 'Слой 4 (Разлом)',
+                index: 4,
+                depthTier: 3,
+                id: 'magnetic_3b',
+                name: 'Слой 3Б: Магнитные Шторм-Разломы',
+                shortName: '3Б: Магнитный Шторм',
+                iconTex: 'ELECTRO_NODE',
+                hazardSummary: 'Электро-Конденсаторы (бьют током и сбрасывают таймеры модулей)',
+                featureSummary: 'Ионное поле (+20% скорость перезарядки модулей) и много Энергоблоков',
+                rows: 135,
+                bgTop: '#1e1b4b',
+                bgBottom: '#0f0e29',
+                shaftWall: '#17153b',
+                shaftBeam: '#2e2a6e',
+                ambientColor: '#facc15',
+                ambientHeatRate: 2.2,
+                cdrBiomeBonus: 0.20,
+                hazardInterval: [8.8, 11.8],
+                weights: [
+                    { type: 'MAGNETITE_ROCK', weight: 36 },
+                    { type: 'CRYSTAL_SHALE', weight: 22 },
+                    { type: 'OIL_VEIN', weight: 2.4 },
+                    { type: 'ENERGY_BLOCK', weight: 2.8 },
+                    { type: 'ORE_VITALIUM', weight: 1.5 },
+                    { type: 'ORE_COBALT', weight: 4.5 },
+                    { type: 'ORE_QUARTZ', weight: 4.2 },
+                    { type: 'ORE_AMETHYST', weight: 3.6 },
+                    { type: 'ELECTRO_NODE', weight: 8.6 },
+                    { type: 'UNSTABLE_ROCK', weight: 7.5 },
+                    { type: 'GAS_POCKET', weight: 5.5 }
+                ]
+            },
+
+            // === ЯРУС 4: ДВА АЛЬТЕРНАТИВНЫХ УРОВНЯ (4А и 4Б) ===
+            {
+                index: 5,
+                depthTier: 4,
+                id: 'abyss_4a',
+                name: 'Слой 4А: Абиссальный Разлом',
+                shortName: '4А: Абиссальный Разлом',
+                iconTex: 'ABYSS_STONE',
+                hazardSummary: 'Экстремальное давление, кислотные гейзеры и лавовые разломы',
+                featureSummary: 'Богатые жилы Магматического Титанита (+62 Руды) и Аметиста',
                 rows: 155,
                 bgTop: '#0c1f3d',
                 bgBottom: '#071124',
@@ -1008,15 +1092,14 @@
                 ambientColor: '#818cf8',
                 ambientHeatRate: 2.65,
                 hazardInterval: [8.2, 11.2],
-                unlockCost: 420,
                 weights: [
                     { type: 'CRYSTAL_SHALE', weight: 22 },
                     { type: 'ABYSS_STONE', weight: 36 },
                     { type: 'OIL_VEIN', weight: 2.5 },
                     { type: 'ENERGY_BLOCK', weight: 1.8 },
                     { type: 'ORE_VITALIUM', weight: 1.8 },
-                    { type: 'ORE_AMETHYST', weight: 3.6 },
-                    { type: 'ORE_TITANITE', weight: 4.4 },
+                    { type: 'ORE_AMETHYST', weight: 3.8 },
+                    { type: 'ORE_TITANITE', weight: 4.6 },
                     { type: 'GAS_POCKET', weight: 7.5 },
                     { type: 'ACID_POCKET', weight: 6.2 },
                     { type: 'UNSTABLE_ROCK', weight: 9.5 },
@@ -1024,10 +1107,47 @@
                 ]
             },
             {
-                index: 4,
-                id: 'mantle',
-                name: 'Слой 5: Магматическая Мантия',
-                shortName: 'Слой 5 (Мантия)',
+                index: 6,
+                depthTier: 4,
+                id: 'scrapyard_4b',
+                name: 'Слой 4Б: Кладбище Древних Машин',
+                shortName: '4Б: Кладбище Машин',
+                iconTex: 'ARC_MINE',
+                hazardSummary: 'Реакторные Мины Древних (взрыв 3x3 при контакте) и стальные преграды',
+                featureSummary: 'Обилие Ящиков Снабжения, Титанита и руды в самой обшивке',
+                rows: 155,
+                bgTop: '#2e1912',
+                bgBottom: '#170c09',
+                shaftWall: '#24130e',
+                shaftBeam: '#4a281d',
+                ambientColor: '#fb923c',
+                ambientHeatRate: 2.9,
+                hazardInterval: [8.0, 11.0],
+                weights: [
+                    { type: 'RUSTED_HULL', weight: 34 },
+                    { type: 'STEEL_BEAM', weight: 14 },
+                    { type: 'ABYSS_STONE', weight: 16 },
+                    { type: 'SUPPLY_CRATE', weight: 2.2 },
+                    { type: 'OIL_VEIN', weight: 2.5 },
+                    { type: 'ENERGY_BLOCK', weight: 2.0 },
+                    { type: 'ORE_VITALIUM', weight: 1.6 },
+                    { type: 'ORE_TITANITE', weight: 5.0 },
+                    { type: 'ARC_MINE', weight: 8.5 },
+                    { type: 'UNSTABLE_ROCK', weight: 7.8 },
+                    { type: 'THERMAL_POCKET', weight: 5.2 }
+                ]
+            },
+
+            // === ЯРУС 5: ДВА АЛЬТЕРНАТИВНЫХ УРОВНЯ (5А и 5Б) ===
+            {
+                index: 7,
+                depthTier: 5,
+                id: 'mantle_5a',
+                name: 'Слой 5А: Магматическая Мантия',
+                shortName: '5А: Магма-Мантия',
+                iconTex: 'THERMAL_POCKET',
+                hazardSummary: 'Сильный фоновый нагрев и огромные озера раскаленной Лавы',
+                featureSummary: 'Крупные залежи Ядро-Кристаллов (+90 Руды) и Титанита',
                 rows: 175,
                 bgTop: '#3d1322',
                 bgBottom: '#1f0913',
@@ -1036,7 +1156,6 @@
                 ambientColor: '#fb923c',
                 ambientHeatRate: 4.6,
                 hazardInterval: [7.2, 10.0],
-                unlockCost: 620,
                 weights: [
                     { type: 'ABYSS_STONE', weight: 18 },
                     { type: 'MAGMA_BASALT', weight: 38 },
@@ -1044,17 +1163,54 @@
                     { type: 'ENERGY_BLOCK', weight: 2.0 },
                     { type: 'ORE_VITALIUM', weight: 1.9 },
                     { type: 'ORE_TITANITE', weight: 4.8 },
-                    { type: 'ORE_CORE', weight: 3.4 },
+                    { type: 'ORE_CORE', weight: 3.6 },
                     { type: 'GAS_POCKET', weight: 7.5 },
                     { type: 'UNSTABLE_ROCK', weight: 8.8 },
                     { type: 'THERMAL_POCKET', weight: 12.2 }
                 ]
             },
             {
-                index: 5,
+                index: 8,
+                depthTier: 5,
+                id: 'sulfur_5b',
+                name: 'Слой 5Б: Серный Инферно-Котел',
+                shortName: '5Б: Серный Котел',
+                iconTex: 'GAS_POCKET',
+                hazardSummary: 'Гремучая смесь Газа под давлением, Кислоты и Реакторных Мин',
+                featureSummary: 'Рекордные запасы Нефти, Энергоблоков и Ядро-Кристаллов (рай для Газ-Фильтра)',
+                rows: 175,
+                bgTop: '#36280d',
+                bgBottom: '#1c1406',
+                shaftWall: '#2b200a',
+                shaftBeam: '#523d14',
+                ambientColor: '#fde047',
+                ambientHeatRate: 3.6,
+                hazardInterval: [7.0, 9.8],
+                weights: [
+                    { type: 'SPORE_ROCK', weight: 18 },
+                    { type: 'MAGMA_BASALT', weight: 30 },
+                    { type: 'OIL_VEIN', weight: 3.8 },
+                    { type: 'ENERGY_BLOCK', weight: 2.6 },
+                    { type: 'ORE_VITALIUM', weight: 2.1 },
+                    { type: 'ORE_TITANITE', weight: 4.4 },
+                    { type: 'ORE_CORE', weight: 4.2 },
+                    { type: 'GAS_POCKET', weight: 11.5 },
+                    { type: 'ACID_POCKET', weight: 7.5 },
+                    { type: 'ARC_MINE', weight: 5.5 },
+                    { type: 'THERMAL_POCKET', weight: 7.5 }
+                ]
+            },
+
+            // === ЯРУС 6 (ФИНАЛ КАМПАНИИ) ===
+            {
+                index: 9,
+                depthTier: 6,
                 id: 'core',
                 name: 'Слой 6: Сингулярное Ядро',
                 shortName: 'Слой 6 (Ядро)',
+                iconTex: 'ORE_AETHERIUM',
+                hazardSummary: 'Сверхплотный Нейтрониум, Аномалии Пустоты и Лава',
+                featureSummary: 'Реликтовый Эфириум (+135 Руды) и награда +150 Руды в Банк за прорыв!',
                 rows: 200,
                 bgTop: '#290d3d',
                 bgBottom: '#12051f',
@@ -1063,7 +1219,6 @@
                 ambientColor: '#f0abfc',
                 ambientHeatRate: 5.8,
                 hazardInterval: [6.4, 9.0],
-                unlockCost: 880,
                 weights: [
                     { type: 'MAGMA_BASALT', weight: 22 },
                     { type: 'NEUTRONIUM', weight: 36 },
@@ -1782,6 +1937,9 @@
                 this.textures.SPORE_ROCK = this.generateTileTexture('#365314', '#1a2e05', '#4d7c0f', null, 'moss_rock');
                 this.textures.ABYSS_STONE = this.generateTileTexture('#1e3a8a', '#172554', '#2563eb');
                 this.textures.NEUTRONIUM = this.generateTileTexture('#3b0764', '#1e0338', '#581c87', null, 'magma_rock');
+                this.textures.PERMAFROST_ICE = this.generateTileTexture('#0284c7', '#0369a1', '#38bdf8', '#e0f2fe', 'crystal');
+                this.textures.MAGNETITE_ROCK = this.generateTileTexture('#312e81', '#1e1b4b', '#4f46e5', '#facc15', 'ore');
+                this.textures.RUSTED_HULL = this.generateTileTexture('#7c2d12', '#431407', '#9a3412', null, 'steel');
 
                 this.textures.OIL_VEIN = this.generateTileTexture('#61442b', '#3d2817', '#805b3b', '#fde047', 'ore');
                 this.textures.ENERGY_BLOCK = this.generateTileTexture('#1e3a5f', '#0f233d', '#2d5485', '#10b981', 'energy');
@@ -1802,6 +1960,9 @@
                 this.textures.THERMAL_POCKET = this.generateTileTexture('#7f1d1d', '#450a0a', '#b91c1c', null, 'lava');
                 this.textures.ACID_POCKET = this.generateTileTexture('#14532d', '#052e16', '#22c55e', null, 'gas');
                 this.textures.VOID_POCKET = this.generateTileTexture('#3b0764', '#1e0238', '#9333ea', null, 'lava');
+                this.textures.CRYO_TRAP = this.generateTileTexture('#0369a1', '#0c4a6e', '#38bdf8', '#ffffff', 'crystal');
+                this.textures.ELECTRO_NODE = this.generateTileTexture('#1e1b4b', '#0f172a', '#eab308', '#fef08a', 'energy');
+                this.textures.ARC_MINE = this.generateTileTexture('#7c2d12', '#431407', '#ea580c', '#fde047', 'boulder');
                 this.textures.STATION_GATE = this.generateTileTexture('#0891b2', '#164e63', '#22d3ee', null, 'station');
                 this.textures.TECH_POD = this.generateTileTexture('#0284c7', '#0369a1', '#38bdf8', null, 'pod');
                 this.textures.STEEL_BEAM = this.generateTileTexture('#475569', '#1e293b', '#94a3b8', null, 'steel');
@@ -3410,6 +3571,8 @@
                 this.bastionWaveCooldown = 0;
                 // Таймер баффа Хроно-Сферы (останавливает расход топлива и ускоряет системы)
                 this.chronoBuffTimer = 0;
+                // Таймер обледенения привода от Крио-Осколков в Мерзлотных Крио-Шахтах (Слой 2Б)
+                this.cryoSlowTimer = 0;
 
                 // Статистика урона (включая тектонические катаклизмы)
                 this.damageHistory = { gas: 0, rock: 0, lava: 0, tectonic: 0 };
@@ -3552,6 +3715,7 @@
                 const torqueBonus = 1 + this.chassisLevels.torque * CHASSIS_UPGRADES.torque.speedBonusPerLevel;
                 let power = this.baseDrillPower * torqueBonus;
                 if (this.chronoBuffTimer > 0) power *= 1.40;
+                if (this.cryoSlowTimer > 0) power *= 0.62;
                 if (this.isOverheated()) power *= 0.55;
                 return power;
             }
@@ -3627,6 +3791,7 @@
                 this.activeGuideTab = 'mech';
                 this.currentBiomeIndex = 0;
                 this.currentLayerNumber = 1;
+                this.selectedNextBiomeIndex = 1;
 
                 this.grid = [];
                 this.drill = null;
@@ -3660,7 +3825,14 @@
 
                 this.bindEvents();
                 this.resizeCanvas();
-                this.startNewRun(this.meta.state.selectedBiome);
+                this.startNewRun();
+            }
+
+            // Возвращает список альтернативных биомов для заданного яруса глубины (depthTier 1..6)
+            getBiomesForTier(tier) {
+                const clampedTier = Math.max(1, Math.min(6, tier));
+                const matches = BIOMES.filter(b => b.depthTier === clampedTier);
+                return matches.length ? matches : [BIOMES[BIOMES.length - 1]];
             }
 
             bindEvents() {
@@ -3731,25 +3903,15 @@
                 });
                 document.getElementById('btn-pause-restart').addEventListener('click', () => {
                     document.getElementById('modal-pause').classList.add('hidden');
-                    this.startNewRun(this.meta.state.selectedBiome);
-                });
-                document.getElementById('btn-pause-hangar').addEventListener('click', () => {
-                    document.getElementById('modal-pause').classList.add('hidden');
-                    this.openHubModal('Вы вернулись в Ангар из меню паузы.');
+                    this.startNewRun();
                 });
 
                 document.getElementById('btn-audio-toggle').addEventListener('click', () => this.sound.toggle());
-                document.getElementById('btn-open-hangar').addEventListener('click', () => {
-                    if (this.state === 'PLAYING' || this.state === 'PAUSED') {
-                        document.getElementById('modal-pause').classList.add('hidden');
-                        this.openHubModal('Вы вернулись в Ангар. Выберите стартовый слой и начните новый спуск!');
-                    }
-                });
 
                 // Экран поражения
                 document.getElementById('btn-death-retry').addEventListener('click', () => {
                     document.getElementById('modal-death').classList.add('hidden');
-                    this.startNewRun(this.meta.state.selectedBiome);
+                    this.startNewRun();
                 });
                 document.getElementById('btn-death-hangar').addEventListener('click', () => {
                     document.getElementById('modal-death').classList.add('hidden');
@@ -3772,7 +3934,7 @@
                 document.getElementById('btn-hub-upgrade-slot').addEventListener('click', () => this.hubUpgradeBaseSlots());
                 document.getElementById('btn-start-run').addEventListener('click', () => {
                     document.getElementById('modal-hub').classList.add('hidden');
-                    this.startNewRun(this.meta.state.selectedBiome);
+                    this.startNewRun();
                 });
             }
 
@@ -3869,10 +4031,10 @@
                         },
                         {
                             icon: this.art.textures.STATION_GATE,
-                            title: '4. Подземные Станции и Глобальный Банк',
-                            badge: 'РИСК / НАГРАДА',
+                            title: '4. Подземные Станции, Развилки Слоев и Глобальный Банк',
+                            badge: 'МАРШРУТ И ЭКОНОМИКА',
                             badgeColor: 'text-cyan-300 border-cyan-400/50 bg-cyan-950/60',
-                            desc: 'На дне каждого слоя расположен освещенный Бункер Станции. Там вы делаете ключевой выбор: потратить добытую в трюме руду прямо сейчас (ремонт, заправка, покупка и прокачка модулей до Ур.3, улучшение шасси до Ур.4) ИЛИ отправить руду наверх в Глобальный Банк для открытия новых слотов и чертежей навсегда.'
+                            desc: 'Забег всегда начинается со Слоя 1 (Земная Кора). На каждой Подземной Станции вы не только чинитесь и прокачиваете модули, но и выбираете АЛЬТЕРНАТИВНЫЙ МАРШРУТ на следующий ярус (например: Споровые Токси-Гроты 2А или Мерзлотные Крио-Шахты 2Б; Абиссальный Разлом 4А или Кладбище Древних Машин 4Б), подстраиваясь под собранные модули!'
                         }
                     ];
 
@@ -3914,6 +4076,9 @@
                         { tex: 'ACID_POCKET', name: 'Кислотный Карман', tag: 'ОПАСНОСТЬ: -24 HP и -10 Топлива', tagCol: 'text-green-400', desc: 'Встречается в Токси-Гротах и Разломе. При контактном бурении разъедает корпус и топлиропровод (-10 Топлива). Уничтожайте оружием или «Фильтром Газа»!' },
                         { tex: 'UNSTABLE_ROCK', name: 'Падающий Валун', tag: 'ОПАСНОСТЬ: Обвал -32 HP', tagCol: 'text-slate-300', desc: 'Если выкопать блок под валуном, он начнет дрожать и рухнет вниз. Не стойте под дрожащим камнем!' },
                         { tex: 'THERMAL_POCKET', name: 'Карман Лавы', tag: 'ОПАСНОСТЬ: -29 HP и +38% Жара', tagCol: 'text-red-400', desc: 'Обжигает корпус и перегревает бур. Замораживается модулем «Крио-Импульс Буран» в ценный Обсидиан (+28 Руды).' },
+                        { tex: 'CRYO_TRAP', name: 'Крио-Осколок Холода', tag: 'Слой 2Б: -20 HP и Обледенение', tagCol: 'text-sky-300', desc: 'Встречается в Мерзлотных Крио-Шахтах (2Б). При контактном бурении замораживает привод (-38% скорости на 4с). При подрыве оружием дает +24 Руды!' },
+                        { tex: 'ELECTRO_NODE', name: 'Электро-Конденсатор', tag: 'Слой 3Б: -26 HP или Заряд оружия', tagCol: 'text-yellow-300', desc: 'Встречается в Магнитных Разломах (3Б). При контактном бурении бьет током и сбрасывает таймеры модулей, но при взрыве оружием дает +20 Топлива и заряжает все оружие!' },
+                        { tex: 'ARC_MINE', name: 'Реакторная Мина Древних', tag: 'Слой 4Б/5Б: Взрыв -35 HP или +40 Руды', tagCol: 'text-orange-400', desc: 'Встречается на Кладбище Машин (4Б). Детонирует при бурении вплотную, но при расстреле оружием издалека оставляет +40 Руды!' },
                         { tex: 'VOID_POCKET', name: 'Аномалия Пустоты', tag: 'ОПАСНОСТЬ: -36 HP и +26% Жара', tagCol: 'text-purple-400', desc: 'Встречается в Сингулярном Ядре (Слой 6). При контактном бурении детонирует грави-взрывом. Расстреливайте оружием издалека!' }
                     ];
 
@@ -3999,9 +4164,11 @@
                 this.canvas.height = parent.clientHeight;
             }
 
-            startNewRun(biomeIdx = 0) {
-                this.currentBiomeIndex = biomeIdx;
-                this.currentLayerNumber = biomeIdx + 1;
+            startNewRun() {
+                // Забег всегда стартует со Слоя 1 (Земная Кора, index = 0)
+                this.currentBiomeIndex = 0;
+                this.currentLayerNumber = 1;
+                this.selectedNextBiomeIndex = 1;
                 // Старт строго с 0 установленных модулей
                 this.drill = new DrillMachine(
                     Math.floor(CONFIG.GRID_COLS / 2),
@@ -4034,8 +4201,11 @@
                     this.spawnFloatingText(this.drill.visualX, this.drill.visualY - 0.5, 'ЯДРО ПРОБИТО! БОНУС +150 РУДЫ В БАНК!', '#fde047', true);
                 }
                 this.currentLayerNumber++;
-                if (this.currentBiomeIndex < BIOMES.length - 1) {
-                    this.currentBiomeIndex++;
+                if (typeof this.selectedNextBiomeIndex === 'number' && BIOMES[this.selectedNextBiomeIndex]) {
+                    this.currentBiomeIndex = this.selectedNextBiomeIndex;
+                } else {
+                    const nextOptions = this.getBiomesForTier(this.currentLayerNumber);
+                    this.currentBiomeIndex = nextOptions[0].index;
                 }
                 this.drill.gridX = Math.floor(CONFIG.GRID_COLS / 2);
                 this.drill.gridY = 1;
@@ -4051,9 +4221,9 @@
                 this.lightningArcs = [];
                 this.shockwaveRings = [];
                 this.state = 'PLAYING';
-                const layerTitle = this.currentLayerNumber <= BIOMES.length
+                const layerTitle = this.currentLayerNumber <= 6
                     ? `${BIOMES[this.currentBiomeIndex].name} (${CONFIG.LAYER_ROWS}м)`
-                    : `Слой ${this.currentLayerNumber}: Бесконечная Бездна (${CONFIG.LAYER_ROWS}м)`;
+                    : `Бездна Ур.${this.currentLayerNumber}: ${BIOMES[this.currentBiomeIndex].shortName} (${CONFIG.LAYER_ROWS}м)`;
                 this.spawnFloatingText(this.drill.visualX, this.drill.visualY, layerTitle, '#fbbf24', true);
                 this.updateHUD();
             }
@@ -4419,6 +4589,101 @@
                     return;
                 }
 
+                // 7. Крио-Осколок Холода (Слой 2Б — Мерзлотные Крио-Шахты)
+                if (proto.hazard === 'cryo') {
+                    const hasFrost = this.drill.hasModule('FROST_NOVA') || this.drill.hasModule('THERMAL_AEGIS');
+                    if (byWeapon || hasFrost) {
+                        const bonusOre = this.drill.addOre(24);
+                        this.drill.addHeat(-25);
+                        this.sound.playBlockBreak(true);
+                        this.spawnParticles(tx, ty, '#38bdf8', 16, 120);
+                        this.spawnFloatingText(tx, ty, `КРИО: +${bonusOre} РУДЫ`, '#38bdf8', true);
+                    } else {
+                        this.sound.playHazardExplosion();
+                        this.spawnParticles(tx, ty, '#7dd3fc', 22, 160);
+                        this.drill.cryoSlowTimer = 4.0;
+                        this.drill.addHeat(-30);
+                        const dmg = this.drill.takeDamage(proto.damage, 'rock');
+                        if (dmg > 0) {
+                            this.spawnFloatingText(tx, ty, `ОБЛЕДЕНЕНИЕ! -${dmg} HP`, '#38bdf8', true);
+                        }
+                        this.triggerDamageFeedback(
+                            tx, ty, dmg,
+                            'Крио-Осколок заморозил привод бура (-38% скорости на 4с)!',
+                            'Взрывайте Крио-Осколки оружием или используйте «Буран» / «Саламандру» для добычи +24 Руды.',
+                            'rock'
+                        );
+                    }
+                    return;
+                }
+
+                // 8. Электро-Конденсатор (Слой 3Б — Магнитные Шторм-Разломы)
+                if (proto.hazard === 'electro') {
+                    const hasTesla = this.drill.hasModule('TESLA_COIL');
+                    if (byWeapon || hasTesla) {
+                        const gainedFuel = this.drill.addFuel(20);
+                        this.drill.modules.forEach((m) => { m.timer = Math.max(0, m.timer * 0.25); });
+                        this.sound.playTeslaZap();
+                        this.spawnParticles(tx, ty, '#fde047', 18, 135);
+                        this.spawnFloatingText(tx, ty, `ЗАРЯД: +${gainedFuel} ТОПЛ!`, '#fde047', true);
+                    } else {
+                        this.sound.playTeslaZap();
+                        this.spawnParticles(tx, ty, '#facc15', 24, 175);
+                        // Сбрасывает таймеры перезарядки модулей при контактном замыкании!
+                        this.drill.modules.forEach((m) => {
+                            const spec = MODULES_CATALOG[m.id];
+                            if (spec && spec.isActiveTimer) m.timer = spec.cooldowns[m.level - 1];
+                        });
+                        const dmg = this.drill.takeDamage(proto.damage, 'tectonic');
+                        if (dmg > 0) {
+                            this.spawnFloatingText(tx, ty, `ЭЛЕКТРО-ШОК! -${dmg} HP`, '#fde047', true);
+                        }
+                        this.triggerDamageFeedback(
+                            tx, ty, dmg,
+                            'Короткое замыкание от Электро-Конденсатора!',
+                            'Взрывайте конденсаторы оружием или «Тесла-Катушкой», чтобы получать +20 Топлива!',
+                            'jet'
+                        );
+                    }
+                    return;
+                }
+
+                // 9. Реакторная Мина Древних (Слой 4Б / 5Б — Кладбище Машин и Серный Котел)
+                if (proto.hazard === 'mine') {
+                    if (byWeapon) {
+                        const gainedOre = this.drill.addOre(40);
+                        this.sound.playBlockBreak(true);
+                        this.spawnParticles(tx, ty, '#fb923c', 18, 140);
+                        this.spawnFloatingText(tx, ty, `РАЗМИНИРОВАНО: +${gainedOre} РУДЫ`, '#fbbf24', true);
+                    } else {
+                        this.sound.playHazardExplosion();
+                        this.spawnParticles(tx, ty, '#ea580c', 26, 200);
+                        const dmg = this.drill.takeDamage(proto.damage, 'gas');
+                        for (let dy = -1; dy <= 1; dy++) {
+                            for (let dx = -1; dx <= 1; dx++) {
+                                if (dx === 0 && dy === 0) continue;
+                                const nx = tx + dx, ny = ty + dy;
+                                if (ny > 0 && ny < CONFIG.LAYER_ROWS - 2 && nx > 0 && nx < CONFIG.GRID_COLS - 1) {
+                                    const nb = this.grid[ny][nx];
+                                    if (nb && !nb.isEmpty() && !nb.proto.indestructible && !nb.proto.isTechPod) {
+                                        this.grid[ny][nx] = new BlockTile(nx, ny, TILE_TYPES.EMPTY);
+                                    }
+                                }
+                            }
+                        }
+                        if (dmg > 0) {
+                            this.spawnFloatingText(tx, ty, `МИНА! -${dmg} HP`, '#f87171', true);
+                        }
+                        this.triggerDamageFeedback(
+                            tx, ty, dmg,
+                            'Подрыв на Реакторной Мине Древних!',
+                            'Расстреливайте мины ракетами, лазерами или пилами издалека ради +40 Руды!',
+                            'gas'
+                        );
+                    }
+                    return;
+                }
+
                 if (!proto.fuelGain && !proto.oreValue) {
                     this.sound.playBlockBreak(false);
                 }
@@ -4433,8 +4698,12 @@
                 if (this.drill.chronoBuffTimer > 0) {
                     this.drill.chronoBuffTimer = Math.max(0, this.drill.chronoBuffTimer - dt);
                 }
+                if (this.drill.cryoSlowTimer > 0) {
+                    this.drill.cryoSlowTimer = Math.max(0, this.drill.cryoSlowTimer - dt);
+                }
 
-                const cdrHaste = this.drill.getCooldownHasteMultiplier();
+                const curBiome = BIOMES[this.currentBiomeIndex] || BIOMES[0];
+                const cdrHaste = this.drill.getCooldownHasteMultiplier() + (curBiome.cdrBiomeBonus || 0);
 
                 this.drill.modules.forEach((m) => {
                     const spec = MODULES_CATALOG[m.id];
@@ -5670,6 +5939,7 @@
                 this.state = 'STATION';
                 this.keys = { left: false, right: false, down: false };
                 this.drill.heat = 0;
+                this.drill.cryoSlowTimer = 0;
                 this.stationRerollCount = 0;
                 this.stationServiceCount = 0;
 
@@ -5679,9 +5949,17 @@
                 document.getElementById('modal-station').classList.remove('hidden');
                 document.getElementById('station-title').textContent = `ПОДЗЕМНАЯ СТАНЦИЯ #${this.currentLayerNumber}`;
 
-                const nextBiomeIdx = Math.min(this.currentBiomeIndex + 1, BIOMES.length - 1);
-                document.getElementById('next-biome-preview').textContent =
-                    `Следующий слой: ${BIOMES[nextBiomeIdx].name}`;
+                // Подготовка альтернативных вариантов следующего слоя (развилки на Слоях 2, 3, 4, 5 и в Бездне)
+                const nextTier = this.currentLayerNumber + 1;
+                if (nextTier <= 6) {
+                    this.nextRouteOptions = this.getBiomesForTier(nextTier);
+                } else {
+                    // В Бесконечной Бездне после 6-го слоя даем выбор между 2 случайными высокоуровневыми биомами
+                    const deepPool = BIOMES.filter(b => b.depthTier >= 3);
+                    const shuffled = [...deepPool].sort(() => Math.random() - 0.5);
+                    this.nextRouteOptions = shuffled.slice(0, 2);
+                }
+                this.selectedNextBiomeIndex = this.nextRouteOptions[0].index;
 
                 this.rollStationShop();
                 this.renderStationUI();
@@ -5962,6 +6240,53 @@
 
                 document.getElementById('btn-evac-half').disabled = this.drill.ore <= 0;
                 document.getElementById('btn-evac-all').disabled = this.drill.ore <= 0;
+
+                // 4. Отрисовка выбора альтернативного маршрута на следующий слой
+                const routeChoicesEl = document.getElementById('station-route-choices');
+                if (routeChoicesEl && this.nextRouteOptions) {
+                    routeChoicesEl.innerHTML = '';
+                    const selectedBiomeObj = BIOMES[this.selectedNextBiomeIndex] || this.nextRouteOptions[0];
+                    document.getElementById('next-biome-preview').textContent =
+                        `Выбран маршрут: ${selectedBiomeObj.name}`;
+
+                    const descendBtn = document.getElementById('btn-station-descend');
+                    if (descendBtn) {
+                        descendBtn.textContent = `ОТПРАВИТЬСЯ В «${selectedBiomeObj.shortName.toUpperCase()}» (${selectedBiomeObj.rows} М) ▼`;
+                    }
+
+                    this.nextRouteOptions.forEach((b) => {
+                        const isPicked = b.index === this.selectedNextBiomeIndex;
+                        const card = document.createElement('div');
+                        card.className = `interactive-card p-2 rounded-lg border cursor-pointer flex items-start gap-2 ${
+                            isPicked ? 'card-affordable' : 'bg-[#101726] border-slate-700/80 hover:border-cyan-400/60'
+                        }`;
+
+                        const iconTex = this.art.textures[b.iconTex || 'DIRT'] || this.art.textures.DIRT;
+                        card.appendChild(this.art.createIconCanvasElement(iconTex, 28, 'w-7 h-7 mt-0.5'));
+
+                        const info = document.createElement('div');
+                        info.className = 'min-w-0 flex-1';
+                        info.innerHTML = `
+                            <div class="flex items-center justify-between gap-1">
+                                <span class="text-[11px] font-extrabold ${isPicked ? 'text-amber-300' : 'text-white'} truncate">${b.name}</span>
+                                <span class="text-[8px] font-extrabold px-1.5 py-0.5 rounded shrink-0 ${
+                                    isPicked ? 'bg-amber-500 text-slate-950' : 'bg-slate-800 text-slate-300'
+                                }">${isPicked ? 'ВЫБРАН' : 'ВЫБРАТЬ'}</span>
+                            </div>
+                            <div class="text-[9px] text-rose-300 mt-0.5 leading-tight"><strong>Опасности:</strong> ${b.hazardSummary || 'Высокая плотность ловушек'}</div>
+                            <div class="text-[9px] text-emerald-300 mt-0.5 leading-tight"><strong>Особенности:</strong> ${b.featureSummary || 'Редкие ресурсы глубины'}</div>
+                        `;
+                        card.appendChild(info);
+
+                        card.addEventListener('click', () => {
+                            this.selectedNextBiomeIndex = b.index;
+                            this.sound.playBlockBreak(false);
+                            this.renderStationUI();
+                        });
+
+                        routeChoicesEl.appendChild(card);
+                    });
+                }
             }
 
             stationBuyRefuel() {
@@ -6282,71 +6607,6 @@
                     bottomWrap.appendChild(btn);
                     card.appendChild(bottomWrap);
                     unlocksGrid.appendChild(card);
-                });
-
-                // 3. Выбор стартового слоя с иконками породы и индикацией доступности
-                const biomesList = document.getElementById('hub-biomes-list');
-                biomesList.innerHTML = '';
-                const biomeTexKeys = ['DIRT', 'SPORE_ROCK', 'ORE_QUARTZ', 'ABYSS_STONE', 'MAGMA_BASALT', 'NEUTRONIUM'];
-
-                BIOMES.forEach((b, idx) => {
-                    const isUnlocked = this.meta.state.unlockedBiomes.includes(b.index);
-                    const isSelected = this.meta.state.selectedBiome === b.index;
-                    const canAffordBiome = !isUnlocked && bank >= b.unlockCost;
-                    if (canAffordBiome) affordableCount++;
-
-                    const btn = document.createElement('button');
-                    const iconCanvas = this.art.createIconCanvasElement(this.art.textures[biomeTexKeys[idx] || 'DIRT'], 16, 'w-4 h-4');
-
-                    if (isUnlocked) {
-                        btn.className = isSelected
-                            ? 'btn-amber w-full py-1 px-2 rounded text-[10px] font-extrabold flex items-center justify-between gap-1.5'
-                            : 'btn-game w-full py-1 px-2 rounded text-[10px] font-bold text-slate-200 flex items-center justify-between gap-1.5';
-                        const leftSpan = document.createElement('span');
-                        leftSpan.className = 'flex items-center gap-1.5 truncate';
-                        leftSpan.appendChild(iconCanvas);
-                        leftSpan.insertAdjacentHTML('beforeend', `<span class="truncate">${b.shortName}</span>`);
-
-                        const rightSpan = document.createElement('span');
-                        rightSpan.className = 'text-[9px] font-extrabold shrink-0';
-                        rightSpan.textContent = isSelected ? 'ВЫБРАН' : 'Выбрать';
-
-                        btn.appendChild(leftSpan);
-                        btn.appendChild(rightSpan);
-                        btn.addEventListener('click', () => {
-                            this.meta.state.selectedBiome = b.index;
-                            this.meta.save();
-                            this.sound.playBlockBreak(false);
-                            this.renderHubUI();
-                        });
-                    } else {
-                        btn.className = canAffordBiome
-                            ? 'btn-cyan w-full py-1 px-2 rounded text-[10px] font-extrabold flex items-center justify-between gap-1.5 card-affordable'
-                            : 'btn-game w-full py-1 px-2 rounded text-[10px] font-bold text-slate-400 flex items-center justify-between gap-1.5';
-                        btn.disabled = !canAffordBiome;
-
-                        const leftSpan = document.createElement('span');
-                        leftSpan.className = 'flex items-center gap-1.5 truncate';
-                        leftSpan.appendChild(iconCanvas);
-                        leftSpan.insertAdjacentHTML('beforeend', `<span class="truncate">${b.shortName}</span>`);
-
-                        const rightSpan = document.createElement('span');
-                        rightSpan.className = `text-[9px] font-extrabold shrink-0 ${canAffordBiome ? 'text-amber-200' : 'text-rose-300'}`;
-                        rightSpan.textContent = canAffordBiome ? `Открыть (${b.unlockCost})` : `Нужно ${b.unlockCost}`;
-
-                        btn.appendChild(leftSpan);
-                        btn.appendChild(rightSpan);
-                        btn.addEventListener('click', () => {
-                            if (this.meta.spendOre(b.unlockCost)) {
-                                this.meta.state.unlockedBiomes.push(b.index);
-                                this.meta.state.selectedBiome = b.index;
-                                this.meta.save();
-                                this.sound.playStationDock();
-                                this.renderHubUI();
-                            }
-                        });
-                    }
-                    biomesList.appendChild(btn);
                 });
 
                 // Индикатор доступных покупок в шапке Ангара
