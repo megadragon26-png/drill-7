@@ -480,37 +480,37 @@
                         </div>
                     </div>
 
-                    <!-- Правая колонка (5/12): Сбалансированная Модернизация Шасси (Макс Ур.4) + Сервис -->
+                    <!-- Правая колонка (5/12): Сбалансированная Модернизация Шасси (Макс Ур.6) + Сервис -->
                     <div class="sm:col-span-5 bg-[#090d16] p-2 rounded-lg border border-slate-700/80 flex flex-col justify-between gap-1.5">
                         <div>
                             <div class="text-[10px] font-extrabold uppercase text-emerald-300 mb-1">
-                                3. Шасси (Лимит Ур.4) и Сервис
+                                3. Шасси (Лимит Ур.6) и Сервис
                             </div>
 
                             <!-- Быстрая заправка и ремонт -->
                             <div class="grid grid-cols-2 gap-1.5 mb-1.5">
                                 <button id="btn-station-refuel" class="btn-amber py-1 px-1.5 rounded text-[10px] font-extrabold leading-tight flex items-center justify-center gap-1">
                                     <canvas id="st-icon-fuel" width="16" height="16" class="w-4 h-4 shrink-0"></canvas>
-                                    <span>+45 Топл.<br><span id="cost-refuel" class="text-yellow-100 text-[9px]">15 Руды</span></span>
+                                    <span>+40 Топл.<br><span id="cost-refuel" class="text-yellow-100 text-[9px]">18 Руды</span></span>
                                 </button>
                                 <button id="btn-station-repair" class="btn-amber py-1 px-1.5 rounded text-[10px] font-extrabold leading-tight flex items-center justify-center gap-1">
                                     <canvas id="st-icon-hull" width="16" height="16" class="w-4 h-4 shrink-0"></canvas>
-                                    <span>+45 Жизней<br><span id="cost-repair" class="text-yellow-100 text-[9px]">15 Руды</span></span>
+                                    <span>+40 Жизней<br><span id="cost-repair" class="text-yellow-100 text-[9px]">18 Руды</span></span>
                                 </button>
                             </div>
 
-                            <!-- 3 Лимитированных апгрейда шасси (Ур. 0..4) с иконками и подсветкой доступности -->
+                            <!-- 3 Лимитированных апгрейда шасси (Ур. 0..6) с иконками и подсветкой доступности -->
                             <div class="space-y-1">
                                 <!-- Привод Бура -->
                                 <div id="card-upg-torque" class="interactive-card bg-[#131a2c] px-2 py-1 rounded border border-slate-700 flex items-center justify-between gap-1.5">
                                     <div class="flex items-center gap-1.5 min-w-0">
                                         <canvas id="icon-upg-torque" width="22" height="22" class="w-5 h-5 shrink-0 rounded bg-[#080c14] p-0.5 border border-slate-700"></canvas>
                                         <div class="min-w-0">
-                                            <div class="text-[10px] font-extrabold text-cyan-300 truncate">Привод <span id="lvl-torque" class="text-white">[Ур.0/4]</span></div>
+                                            <div class="text-[10px] font-extrabold text-cyan-300 truncate">Привод <span id="lvl-torque" class="text-white">[Ур.0/6]</span></div>
                                             <div id="status-upg-torque" class="text-[9px] text-slate-400 truncate">+12% скорость бура</div>
                                         </div>
                                     </div>
-                                    <button id="btn-upg-torque" class="btn-cyan px-2 py-1 rounded text-[10px] font-extrabold shrink-0">50 Руды</button>
+                                    <button id="btn-upg-torque" class="btn-cyan px-2 py-1 rounded text-[10px] font-extrabold shrink-0">85 Руды</button>
                                 </div>
 
                                 <!-- Топливный Бак -->
@@ -518,11 +518,11 @@
                                     <div class="flex items-center gap-1.5 min-w-0">
                                         <canvas id="icon-upg-tank" width="22" height="22" class="w-5 h-5 shrink-0 rounded bg-[#080c14] p-0.5 border border-slate-700"></canvas>
                                         <div class="min-w-0">
-                                            <div class="text-[10px] font-extrabold text-amber-300 truncate">Бак <span id="lvl-tank" class="text-white">[Ур.0/4]</span></div>
+                                            <div class="text-[10px] font-extrabold text-amber-300 truncate">Бак <span id="lvl-tank" class="text-white">[Ур.0/6]</span></div>
                                             <div id="status-upg-tank" class="text-[9px] text-slate-400 truncate">+25 макс. топлива</div>
                                         </div>
                                     </div>
-                                    <button id="btn-upg-tank" class="btn-cyan px-2 py-1 rounded text-[10px] font-extrabold shrink-0">45 Руды</button>
+                                    <button id="btn-upg-tank" class="btn-cyan px-2 py-1 rounded text-[10px] font-extrabold shrink-0">75 Руды</button>
                                 </div>
 
                                 <!-- Бронеплиты -->
@@ -530,11 +530,11 @@
                                     <div class="flex items-center gap-1.5 min-w-0">
                                         <canvas id="icon-upg-armor" width="22" height="22" class="w-5 h-5 shrink-0 rounded bg-[#080c14] p-0.5 border border-slate-700"></canvas>
                                         <div class="min-w-0">
-                                            <div class="text-[10px] font-extrabold text-rose-300 truncate">Броня <span id="lvl-armor" class="text-white">[Ур.0/4]</span></div>
+                                            <div class="text-[10px] font-extrabold text-rose-300 truncate">Броня <span id="lvl-armor" class="text-white">[Ур.0/6]</span></div>
                                             <div id="status-upg-armor" class="text-[9px] text-slate-400 truncate">+25 макс. жизней</div>
                                         </div>
                                     </div>
-                                    <button id="btn-upg-armor" class="btn-cyan px-2 py-1 rounded text-[10px] font-extrabold shrink-0">45 Руды</button>
+                                    <button id="btn-upg-armor" class="btn-cyan px-2 py-1 rounded text-[10px] font-extrabold shrink-0">75 Руды</button>
                                 </div>
                             </div>
                         </div>
@@ -680,8 +680,8 @@
 
                     <!-- 2. Стартовый слой (с иконками биомов и статусом доступности) -->
                     <div class="bg-[#090d16] p-2 rounded-lg border border-amber-500/40 flex flex-col justify-between">
-                        <div class="text-[10px] font-extrabold text-amber-300 uppercase mb-1">Выбор Слоя Высадки</div>
-                        <div id="hub-biomes-list" class="space-y-1"></div>
+                        <div class="text-[10px] font-extrabold text-amber-300 uppercase mb-1">Выбор Слоя Высадки (6 Слоев)</div>
+                        <div id="hub-biomes-list" class="space-y-1 max-h-28 overflow-y-auto pr-1"></div>
                     </div>
 
                     <!-- 3. Памятка по редкости и постройкам -->
@@ -728,263 +728,354 @@
         const CONFIG = {
             TILE_SIZE: 44,
             GRID_COLS: 15,
-            LAYER_ROWS: 85, // Динамически перезаписывается длиной текущего слоя (85 / 110 / 135)
-            GRAVITY_SPEED: 7.8,
-            MOVE_COOLDOWN: 0.10,
-            FUEL_DRAIN_PER_SEC: 2.0, // Посекундный расход топлива реактора на уровне (зависит от глубины и перегрева, а не от действий!)
+            LAYER_ROWS: 95, // Динамически перезаписывается длиной текущего слоя (95..200 м)
+            GRAVITY_SPEED: 7.5,
+            MOVE_COOLDOWN: 0.11,
+            FUEL_DRAIN_PER_SEC: 2.38, // Повышенный посекундный расход топлива реактора на уровне для напряженного выживания
             BASE_MAX_FUEL: 100,
             BASE_MAX_HULL: 100,
-            BASE_DRILL_POWER: 42,
+            BASE_DRILL_POWER: 37,
             START_MODULE_SLOTS: 2,
             MAX_MODULE_SLOTS: 5,
-            OVERHEAT_THRESHOLD: 75,
-            PASSIVE_COOL_RATE: 11.0,
-            LIGHT_RADIUS: 8.8,
-            GAS_PRESSURE_LIMIT: 3.6 // Увеличено время до самоподрыва газа рядом с буром
+            OVERHEAT_THRESHOLD: 72,
+            PASSIVE_COOL_RATE: 9.8,
+            LIGHT_RADIUS: 8.5,
+            GAS_PRESSURE_LIMIT: 2.9 // Газ под давлением детонирует быстрее, если стоять вплотную без фильтра
         };
 
-        // Сбалансированная прогрессия апгрейдов шасси на станции (строгий лимит Ур. 4, ощутимая стоимость)
+        // Расширенная прогрессия апгрейдов шасси на станции (6 уровней для длинной кампании из 6 биомов)
         const CHASSIS_UPGRADES = {
             torque: {
-                maxLevel: 4,
-                costs: [85, 175, 310, 480],
-                speedBonusPerLevel: 0.12 // +12% за уровень (макс +48%)
+                maxLevel: 6,
+                costs: [90, 185, 310, 460, 640, 860],
+                speedBonusPerLevel: 0.12 // +12% за уровень (макс +72%)
             },
             tank: {
-                maxLevel: 4,
-                costs: [75, 155, 275, 430],
+                maxLevel: 6,
+                costs: [80, 165, 280, 420, 590, 800],
                 fuelBonusPerLevel: 25
             },
             armor: {
-                maxLevel: 4,
-                costs: [75, 155, 275, 430],
+                maxLevel: 6,
+                costs: [80, 165, 280, 420, 590, 800],
                 hullBonusPerLevel: 25
             }
         };
 
         // Стоимость постоянных слотов в Ангаре
         const META_SLOT_COSTS = {
-            3: 190,
-            4: 420,
-            5: 750
+            3: 220,
+            4: 480,
+            5: 860
         };
 
-        // ДОРОГИЕ ПРОЕКТЫ МЕТАПРОГРЕССИИ В АНГАРЕ (Новые Постройки, Позитивные События и Положительные Предметы)
-        const META_PROJECTS_CATALOG = {
-            POS_EVENTS_I: {
-                id: 'POS_EVENTS_I',
-                category: 'Позитивные События',
-                name: 'Сканер Благодатных Аномалий',
-                cost: 240,
-                iconKey: 'ENERGY_BLOCK',
-                desc: 'Во время спуска происходят позитивные события: «Энерго-Гейзер Изобилия» и «Золотой Кристаллопад»!'
-            },
-            POS_ITEMS_PACK: {
-                id: 'POS_ITEMS_PACK',
-                category: 'Новые Предметы',
-                name: 'Контракт: Хроно-Сферы и Аптечки',
-                cost: 360,
-                iconKey: 'CHRONO_SPHERE',
-                desc: 'В недрах появляются Хроно-Сферы (0 расхода топлива на 7с + ускорение) и Нано-Капсулы «Абсолют» (+45 HP).'
-            },
-            STRUCT_OASIS: {
-                id: 'STRUCT_OASIS',
-                category: 'Новая Постройка',
-                name: 'Чертёж: Крио-Заправка «Оазис»',
-                cost: 460,
-                iconKey: 'OMEGA_MEDKIT',
-                desc: 'На слоях генерируется станция «Оазис» с запасом Энергоблоков, Нано-Капсулой и целебным Виталиумом.'
-            },
-            POS_EVENTS_II: {
-                id: 'POS_EVENTS_II',
-                category: 'Позитивные События',
-                name: 'Орбитальный Луч Снабжения',
-                cost: 580,
-                iconKey: 'SUPPLY_CRATE',
-                desc: 'Открывает мощные события: «Сброс Орбитальной Капсулы» и «Алхимическое Сияние» (порода вокруг становится рудой)!'
-            },
-            STRUCT_MIDAS_VAULT: {
-                id: 'STRUCT_MIDAS_VAULT',
-                category: 'Новая Постройка',
-                name: 'Чертёж: Сокровищница Мидаса',
-                cost: 740,
-                iconKey: 'STAR_RELIC',
-                desc: 'Открывает генерацию Золотой Сокровищницы с Ядро-Кристаллами и Звёздной Реликвией (+90 Руды и +35 сразу в Банк!).'
-            },
-            STRUCT_OMEGA_LAB: {
-                id: 'STRUCT_OMEGA_LAB',
-                category: 'Вершина Меты',
-                name: 'Чертёж: Лаборатория «Омега»',
-                cost: 960,
-                iconKey: 'TECH_POD',
-                desc: 'Грандиозный комплекс Предтеч в недрах: содержит сразу 2 Сундука-Капсулы, Звёздную Реликвию и Хроно-Сферу!'
-            }
-        };
-
-        // СИСТЕМА РЕДКОСТИ МОДУЛЕЙ (определяет шанс выпадения в сундуках-капсулах и на станциях, а также цветовую индикацию)
+        // Система редкости модулей (влияет на шанс выпадения в сундуках/магазине и цвета карточек)
         const RARITY_TIERS = {
             COMMON: {
                 id: 'COMMON',
-                name: 'ОБЫЧНЫЙ',
+                name: 'Обычный',
                 dropWeight: 56,
-                textColor: 'text-slate-200',
-                badgeBg: 'bg-slate-800 text-slate-200 border-slate-500/60',
+                textColor: 'text-slate-100',
+                badgeBg: 'bg-slate-800 text-slate-300 border-slate-600',
                 glowColor: 'rgba(148, 163, 184, 0.15)'
             },
             RARE: {
                 id: 'RARE',
-                name: 'РЕДКИЙ',
+                name: 'Редкий',
                 dropWeight: 30,
-                textColor: 'text-sky-300',
-                badgeBg: 'bg-sky-950 text-sky-300 border-sky-400/70',
-                glowColor: 'rgba(56, 189, 248, 0.22)'
+                textColor: 'text-cyan-300',
+                badgeBg: 'bg-cyan-950 text-cyan-300 border-cyan-500/60',
+                glowColor: 'rgba(34, 211, 238, 0.22)'
             },
             EPIC: {
                 id: 'EPIC',
-                name: 'ЭПИЧЕСКИЙ',
+                name: 'Эпический',
                 dropWeight: 14,
                 textColor: 'text-purple-300',
-                badgeBg: 'bg-purple-950 text-purple-200 border-purple-400/80',
+                badgeBg: 'bg-purple-950 text-purple-300 border-purple-500/60',
                 glowColor: 'rgba(192, 132, 252, 0.28)'
             },
             LEGENDARY: {
                 id: 'LEGENDARY',
-                name: 'ЛЕГЕНДАРНЫЙ',
+                name: 'Легендарный',
                 dropWeight: 6,
                 textColor: 'text-amber-300',
-                badgeBg: 'bg-amber-950 text-amber-200 border-amber-400',
-                glowColor: 'rgba(251, 191, 36, 0.36)'
+                badgeBg: 'bg-amber-950 text-amber-300 border-amber-400/80',
+                glowColor: 'rgba(251, 191, 36, 0.35)'
             }
         };
 
-        // Справочник тайлов (включая блоки подземных построек, древних руин и ящиков снабжения)
+        // Каталог Глобальных Проектов Недр в Ангаре (постройки, позитивные события и артефакты)
+        const META_PROJECTS_CATALOG = {
+            POS_EVENTS_I: {
+                id: 'POS_EVENTS_I',
+                category: 'События Недр',
+                name: 'Сканер Благодатных Аномалий',
+                cost: 240,
+                iconKey: 'ENERGY_BLOCK',
+                desc: 'Открывает позитивные события во время спуска: «Энерго-Гейзер Изобилия» и «Золотой Кристаллопад»!'
+            },
+            RELIC_ITEMS_I: {
+                id: 'RELIC_ITEMS_I',
+                category: 'Артефакты',
+                name: 'Контракт: Хроно-Сферы и Аптечки',
+                cost: 360,
+                iconKey: 'CHRONO_SPHERE',
+                desc: 'В породе начинают встречаться Хроно-Сферы (7с без траты топлива) и Нано-Капсулы «Абсолют» (+42 HP, +20 Топл.)!'
+            },
+            STRUCT_CRYO_OASIS: {
+                id: 'STRUCT_CRYO_OASIS',
+                category: 'Постройка',
+                name: 'Чертёж: Крио-Заправка «Оазис»',
+                cost: 460,
+                iconKey: 'OMEGA_MEDKIT',
+                desc: 'На слоях генерируется подземная база «Оазис» с Энергоблоками, Виталиумом и Нано-Капсулой!'
+            },
+            POS_EVENTS_II: {
+                id: 'POS_EVENTS_II',
+                category: 'Орбита',
+                name: 'Орбитальный Луч Снабжения',
+                cost: 580,
+                iconKey: 'TECH_POD',
+                desc: 'Включает события «Сброс Капсулы с Орбиты» и «Алхимическое Сияние» (превращает породу вокруг в самоцветы)!'
+            },
+            STRUCT_MIDAS_VAULT: {
+                id: 'STRUCT_MIDAS_VAULT',
+                category: 'Сокровищница',
+                name: 'Чертёж: Сокровищница Мидаса',
+                cost: 740,
+                iconKey: 'STAR_RELIC',
+                desc: 'Генерирует золотой свод с Звёздной Реликвией Предтеч (+90 Руды в трюм и +35 Руды сразу в Банк)!'
+            },
+            STRUCT_OMEGA_LAB: {
+                id: 'STRUCT_OMEGA_LAB',
+                category: 'Мега-Объект',
+                name: 'Чертёж: Лаборатория «Омега»',
+                cost: 960,
+                iconKey: 'ANCIENT_BRICK',
+                desc: 'Секретный комплекс Предтеч на глубоких слоях: 2 Сундука-Капсулы, Звёздная Реликвия и Хроно-Сфера внутри!'
+            }
+        };
+
+        // Справочник тайлов (включая породы 6 биомов, новые опасности и редкие руды)
         const TILE_TYPES = {
             EMPTY: { id: 0, name: 'Пустота', hp: 0, fuelCost: 0, heatGen: 0, solid: false },
 
-            DIRT: { id: 1, name: 'Терракотовый Грунт', hp: 24, fuelCost: 0.58, heatGen: 1.2, solid: true, color: '#b4693e' },
-            CLAY: { id: 2, name: 'Янтарная Глина', hp: 38, fuelCost: 0.88, heatGen: 2.0, solid: true, color: '#c97a3e' },
-            LIMESTONE: { id: 3, name: 'Голубой Известняк', hp: 60, fuelCost: 1.30, heatGen: 3.4, solid: true, isHard: true, color: '#52799c' },
-            CRYSTAL_SHALE: { id: 4, name: 'Сапфировый Сланец', hp: 92, fuelCost: 1.75, heatGen: 5.2, solid: true, isHard: true, color: '#2b5b8c' },
-            MAGMA_BASALT: { id: 5, name: 'Вулканический Базальт', hp: 132, fuelCost: 2.25, heatGen: 9.2, solid: true, isHard: true, color: '#7a2338' },
+            DIRT: { id: 1, name: 'Терракотовый Грунт', hp: 28, fuelCost: 0.65, heatGen: 1.4, solid: true, color: '#b4693e' },
+            CLAY: { id: 2, name: 'Янтарная Глина', hp: 44, fuelCost: 0.95, heatGen: 2.2, solid: true, color: '#c97a3e' },
+            LIMESTONE: { id: 3, name: 'Голубой Известняк', hp: 68, fuelCost: 1.35, heatGen: 3.8, solid: true, isHard: true, color: '#52799c' },
+            CRYSTAL_SHALE: { id: 4, name: 'Сапфировый Сланец', hp: 105, fuelCost: 1.85, heatGen: 5.8, solid: true, isHard: true, color: '#2b5b8c' },
+            MAGMA_BASALT: { id: 5, name: 'Вулканический Базальт', hp: 155, fuelCost: 2.35, heatGen: 10.2, solid: true, isHard: true, color: '#7a2338' },
             BEDROCK: { id: 6, name: 'Обшивка Шахты', hp: 999999, fuelCost: 0, heatGen: 0, solid: true, indestructible: true, color: '#334155' },
 
-            // Топливо
-            OIL_VEIN: { id: 7, name: 'Нефтяная Жила', hp: 26, fuelCost: 0.45, heatGen: 0, solid: true, fuelGain: 24, glowColor: '251, 191, 36', color: '#fbbf24' },
-            ENERGY_BLOCK: { id: 8, name: 'Энергоблок', hp: 36, fuelCost: 0.55, heatGen: -20, solid: true, fuelGain: 36, glowColor: '16, 185, 129', color: '#10b981' },
+            // Новые породы для расширенной кампании (Слои 2, 4 и 6)
+            SPORE_ROCK: { id: 28, name: 'Споровый Известняк', hp: 58, fuelCost: 1.15, heatGen: 2.8, solid: true, color: '#3f6212' },
+            ABYSS_STONE: { id: 29, name: 'Абиссальный Базальт', hp: 130, fuelCost: 2.05, heatGen: 6.4, solid: true, isHard: true, color: '#1e3a8a' },
+            NEUTRONIUM: { id: 30, name: 'Сверхплотный Нейтрониум', hp: 210, fuelCost: 2.75, heatGen: 12.5, solid: true, isHard: true, color: '#3b0764' },
+
+            // Топливо (снижено для более напряженного менеджмента)
+            OIL_VEIN: { id: 7, name: 'Нефтяная Жила', hp: 30, fuelCost: 0.50, heatGen: 0, solid: true, fuelGain: 20, glowColor: '251, 191, 36', color: '#fbbf24' },
+            ENERGY_BLOCK: { id: 8, name: 'Энергоблок', hp: 42, fuelCost: 0.60, heatGen: -18, solid: true, fuelGain: 30, glowColor: '16, 185, 129', color: '#10b981' },
 
             // Руды
-            ORE_COAL: { id: 9, name: 'Уголь', hp: 32, fuelCost: 0.70, heatGen: 1.5, solid: true, oreValue: 9, fuelGain: 9, glowColor: '251, 146, 60', color: '#fb923c' },
-            ORE_IRON: { id: 10, name: 'Железная Руда', hp: 48, fuelCost: 1.05, heatGen: 2.4, solid: true, oreValue: 16, glowColor: '249, 115, 22', color: '#f97316' },
-            ORE_QUARTZ: { id: 11, name: 'Кварц', hp: 74, fuelCost: 1.45, heatGen: 4.0, solid: true, isHard: true, oreValue: 26, glowColor: '34, 211, 238', color: '#22d3ee' },
-            ORE_AMETHYST: { id: 12, name: 'Аметист', hp: 96, fuelCost: 1.80, heatGen: 4.8, solid: true, isHard: true, oreValue: 40, glowColor: '192, 132, 252', color: '#c084fc' },
-            ORE_TITANITE: { id: 13, name: 'Титанит', hp: 122, fuelCost: 2.15, heatGen: 7.0, solid: true, isHard: true, oreValue: 58, glowColor: '244, 114, 182', color: '#f472b6' },
-            ORE_CORE: { id: 14, name: 'Ядро-Кристалл', hp: 150, fuelCost: 2.55, heatGen: 8.8, solid: true, isHard: true, oreValue: 85, glowColor: '251, 113, 133', color: '#fb7185' },
-            OBSIDIAN: { id: 19, name: 'Застывший Обсидиан', hp: 46, fuelCost: 0.85, heatGen: -10, solid: true, oreValue: 28, glowColor: '129, 140, 248', color: '#818cf8' },
-            ORE_VITALIUM: { id: 21, name: 'Виталиум (Живая Руда)', hp: 42, fuelCost: 0.65, heatGen: -12, solid: true, hullGain: 28, oreValue: 18, glowColor: '251, 113, 133', color: '#fb7185' },
+            ORE_COAL: { id: 9, name: 'Уголь', hp: 36, fuelCost: 0.75, heatGen: 1.6, solid: true, oreValue: 9, fuelGain: 7, glowColor: '251, 146, 60', color: '#fb923c' },
+            ORE_IRON: { id: 10, name: 'Железная Руда', hp: 54, fuelCost: 1.10, heatGen: 2.6, solid: true, oreValue: 15, glowColor: '249, 115, 22', color: '#f97316' },
+            ORE_COBALT: { id: 31, name: 'Кобальтовая Жила', hp: 72, fuelCost: 1.35, heatGen: 3.4, solid: true, isHard: true, oreValue: 22, glowColor: '52, 211, 153', color: '#10b981' },
+            ORE_QUARTZ: { id: 11, name: 'Кварц', hp: 86, fuelCost: 1.55, heatGen: 4.4, solid: true, isHard: true, oreValue: 28, glowColor: '34, 211, 238', color: '#22d3ee' },
+            ORE_AMETHYST: { id: 12, name: 'Аметист', hp: 110, fuelCost: 1.90, heatGen: 5.2, solid: true, isHard: true, oreValue: 42, glowColor: '192, 132, 252', color: '#c084fc' },
+            ORE_TITANITE: { id: 13, name: 'Титанит', hp: 145, fuelCost: 2.25, heatGen: 7.5, solid: true, isHard: true, oreValue: 62, glowColor: '244, 114, 182', color: '#f472b6' },
+            ORE_CORE: { id: 14, name: 'Ядро-Кристалл', hp: 180, fuelCost: 2.65, heatGen: 9.5, solid: true, isHard: true, oreValue: 90, glowColor: '251, 113, 133', color: '#fb7185' },
+            ORE_AETHERIUM: { id: 32, name: 'Реликтовый Эфириум', hp: 230, fuelCost: 3.00, heatGen: 11.5, solid: true, isHard: true, oreValue: 135, glowColor: '250, 204, 21', color: '#fde047' },
+            OBSIDIAN: { id: 19, name: 'Застывший Обсидиан', hp: 52, fuelCost: 0.90, heatGen: -10, solid: true, oreValue: 28, glowColor: '129, 140, 248', color: '#818cf8' },
+            ORE_VITALIUM: { id: 21, name: 'Виталиум (Живая Руда)', hp: 48, fuelCost: 0.75, heatGen: -10, solid: true, hullGain: 22, oreValue: 18, glowColor: '251, 113, 133', color: '#fb7185' },
 
             // Опасности
-            GAS_POCKET: { id: 15, name: 'Газ под давлением', hp: 24, fuelCost: 0.65, heatGen: 2.2, solid: true, hazard: 'gas', damage: 26, glowColor: '163, 230, 53', color: '#84cc16' },
-            UNSTABLE_ROCK: { id: 16, name: 'Падающий Валун', hp: 64, fuelCost: 1.45, heatGen: 3.0, solid: true, fallingHazard: true, damage: 28, color: '#94a3b8' },
-            THERMAL_POCKET: { id: 17, name: 'Карман Лавы', hp: 48, fuelCost: 1.25, heatGen: 34.0, solid: true, hazard: 'lava', damage: 25, glowColor: '239, 68, 68', color: '#ef4444' },
+            GAS_POCKET: { id: 15, name: 'Газ под давлением', hp: 26, fuelCost: 0.65, heatGen: 2.5, solid: true, hazard: 'gas', damage: 30, glowColor: '163, 230, 53', color: '#84cc16' },
+            UNSTABLE_ROCK: { id: 16, name: 'Падающий Валун', hp: 72, fuelCost: 1.50, heatGen: 3.2, solid: true, fallingHazard: true, damage: 32, color: '#94a3b8' },
+            THERMAL_POCKET: { id: 17, name: 'Карман Лавы', hp: 56, fuelCost: 1.35, heatGen: 38.0, solid: true, hazard: 'lava', damage: 29, glowColor: '239, 68, 68', color: '#ef4444' },
+            ACID_POCKET: { id: 33, name: 'Кислотный Карман', hp: 38, fuelCost: 0.95, heatGen: 8.0, solid: true, hazard: 'acid', damage: 24, fuelDrain: 10, glowColor: '74, 222, 128', color: '#22c55e' },
+            VOID_POCKET: { id: 34, name: 'Аномалия Пустоты', hp: 78, fuelCost: 1.65, heatGen: 26.0, solid: true, hazard: 'void', damage: 36, glowColor: '192, 132, 252', color: '#9333ea' },
 
             // Интерактивные объекты и блоки подземных построек
             STATION_GATE: { id: 18, name: 'Шлюз Станции', hp: 10, fuelCost: 0, heatGen: 0, solid: false, isStation: true, color: '#06b6d4' },
-            TECH_POD: { id: 20, name: 'Сундук-Капсула Модулей', hp: 30, fuelCost: 0.45, heatGen: 0, solid: true, isTechPod: true, glowColor: '56, 189, 248', color: '#38bdf8' },
-            STEEL_BEAM: { id: 22, name: 'Стальная Опора Бункера', hp: 135, fuelCost: 1.65, heatGen: 3.8, solid: true, isHard: true, oreValue: 8, color: '#64748b' },
-            ANCIENT_BRICK: { id: 23, name: 'Плита Древних Руин', hp: 165, fuelCost: 1.95, heatGen: 4.5, solid: true, isHard: true, oreValue: 14, glowColor: '129, 140, 248', color: '#4f46e5' },
-            SUPPLY_CRATE: { id: 24, name: 'Ящик Снабжения', hp: 22, fuelCost: 0.35, heatGen: -8, solid: true, isSupplyCrate: true, fuelGain: 20, hullGain: 14, oreValue: 32, glowColor: '245, 158, 11', color: '#f59e0b' },
+            TECH_POD: { id: 20, name: 'Сундук-Капсула Модулей', hp: 34, fuelCost: 0.45, heatGen: 0, solid: true, isTechPod: true, glowColor: '56, 189, 248', color: '#38bdf8' },
+            STEEL_BEAM: { id: 22, name: 'Стальная Опора Бункера', hp: 160, fuelCost: 1.75, heatGen: 4.2, solid: true, isHard: true, oreValue: 8, color: '#64748b' },
+            ANCIENT_BRICK: { id: 23, name: 'Плита Древних Руин', hp: 195, fuelCost: 2.05, heatGen: 5.0, solid: true, isHard: true, oreValue: 14, glowColor: '129, 140, 248', color: '#4f46e5' },
+            SUPPLY_CRATE: { id: 24, name: 'Ящик Снабжения', hp: 26, fuelCost: 0.35, heatGen: -8, solid: true, isSupplyCrate: true, fuelGain: 16, hullGain: 12, oreValue: 28, glowColor: '245, 158, 11', color: '#f59e0b' },
 
             // НОВЫЕ ПОЛОЖИТЕЛЬНЫЕ ПРЕДМЕТЫ И АРТЕФАКТЫ
-            CHRONO_SPHERE: { id: 25, name: 'Хроно-Сфера «Эфир»', hp: 24, fuelCost: 0.25, heatGen: -25, solid: true, isChronoSphere: true, chronoDuration: 7.0, oreValue: 22, glowColor: '56, 189, 248', color: '#38bdf8' },
-            OMEGA_MEDKIT: { id: 26, name: 'Нано-Капсула «Абсолют»', hp: 24, fuelCost: 0.25, heatGen: -100, solid: true, isOmegaMedkit: true, hullGain: 45, fuelGain: 22, glowColor: '52, 211, 153', color: '#10b981' },
-            STAR_RELIC: { id: 27, name: 'Звёздная Реликвия Предтеч', hp: 38, fuelCost: 0.40, heatGen: -30, solid: true, isStarRelic: true, oreValue: 90, bankBonus: 35, glowColor: '250, 204, 21', color: '#facc15' }
+            CHRONO_SPHERE: { id: 25, name: 'Хроно-Сфера «Эфир»', hp: 28, fuelCost: 0.25, heatGen: -25, solid: true, isChronoSphere: true, chronoDuration: 7.0, oreValue: 22, glowColor: '56, 189, 248', color: '#38bdf8' },
+            OMEGA_MEDKIT: { id: 26, name: 'Нано-Капсула «Абсолют»', hp: 28, fuelCost: 0.25, heatGen: -100, solid: true, isOmegaMedkit: true, hullGain: 42, fuelGain: 20, glowColor: '52, 211, 153', color: '#10b981' },
+            STAR_RELIC: { id: 27, name: 'Звёздная Реликвия Предтеч', hp: 44, fuelCost: 0.40, heatGen: -30, solid: true, isStarRelic: true, oreValue: 90, bankBonus: 35, glowColor: '250, 204, 21', color: '#facc15' }
         };
 
-        // Слои планеты с яркими, живописными палитрами окружения и атмосферными частицами
+        // 6 ПОЛНОЦЕННЫХ БИОМОВ КАМПАНИИ (Слои 1–6, суммарно 875 метров бурения!)
         const BIOMES = [
             {
                 index: 0,
                 id: 'crust',
                 name: 'Слой 1: Земная Кора',
                 shortName: 'Слой 1 (Кора)',
-                rows: 85,
+                rows: 95,
                 bgTop: '#2c1d18',
                 bgBottom: '#18121e',
                 shaftWall: '#231715',
                 shaftBeam: '#3d2820',
                 ambientColor: '#fde047',
-                ambientHeatRate: 0.35,
-                hazardInterval: [13.5, 17.5],
+                ambientHeatRate: 0.55,
+                hazardInterval: [11.5, 15.0],
                 unlockCost: 0,
                 weights: [
-                    { type: 'DIRT', weight: 42 },
-                    { type: 'CLAY', weight: 27 },
-                    { type: 'LIMESTONE', weight: 15 },
-                    { type: 'OIL_VEIN', weight: 4.1 },
-                    { type: 'ENERGY_BLOCK', weight: 1.6 },
-                    { type: 'ORE_VITALIUM', weight: 1.8 },
-                    { type: 'ORE_COAL', weight: 5.2 },
-                    { type: 'ORE_IRON', weight: 4.4 },
-                    { type: 'GAS_POCKET', weight: 4.5 },
-                    { type: 'UNSTABLE_ROCK', weight: 4.8 },
-                    { type: 'THERMAL_POCKET', weight: 1.3 }
+                    { type: 'DIRT', weight: 40 },
+                    { type: 'CLAY', weight: 28 },
+                    { type: 'LIMESTONE', weight: 16 },
+                    { type: 'OIL_VEIN', weight: 3.3 },
+                    { type: 'ENERGY_BLOCK', weight: 1.2 },
+                    { type: 'ORE_VITALIUM', weight: 1.4 },
+                    { type: 'ORE_COAL', weight: 4.5 },
+                    { type: 'ORE_IRON', weight: 4.0 },
+                    { type: 'GAS_POCKET', weight: 5.8 },
+                    { type: 'UNSTABLE_ROCK', weight: 6.2 },
+                    { type: 'THERMAL_POCKET', weight: 1.8 }
                 ]
             },
             {
                 index: 1,
+                id: 'fungal',
+                name: 'Слой 2: Споровые Токси-Гроты',
+                shortName: 'Слой 2 (Токси-Гроты)',
+                rows: 115,
+                bgTop: '#162e21',
+                bgBottom: '#0b1c17',
+                shaftWall: '#12261c',
+                shaftBeam: '#1f4231',
+                ambientColor: '#4ade80',
+                ambientHeatRate: 1.15,
+                hazardInterval: [10.0, 13.5],
+                unlockCost: 140,
+                weights: [
+                    { type: 'CLAY', weight: 18 },
+                    { type: 'SPORE_ROCK', weight: 34 },
+                    { type: 'LIMESTONE', weight: 20 },
+                    { type: 'OIL_VEIN', weight: 3.0 },
+                    { type: 'ENERGY_BLOCK', weight: 1.4 },
+                    { type: 'ORE_VITALIUM', weight: 1.6 },
+                    { type: 'ORE_IRON', weight: 3.5 },
+                    { type: 'ORE_COBALT', weight: 4.8 },
+                    { type: 'GAS_POCKET', weight: 8.5 },
+                    { type: 'ACID_POCKET', weight: 6.8 },
+                    { type: 'UNSTABLE_ROCK', weight: 7.2 }
+                ]
+            },
+            {
+                index: 2,
                 id: 'crystals',
-                name: 'Слой 2: Кристальные Пещеры',
-                shortName: 'Слой 2 (Кристаллы)',
-                rows: 110,
+                name: 'Слой 3: Кристальные Пещеры',
+                shortName: 'Слой 3 (Кристаллы)',
+                rows: 135,
                 bgTop: '#102847',
                 bgBottom: '#0b1830',
                 shaftWall: '#0f223d',
                 shaftBeam: '#1d3b66',
                 ambientColor: '#38bdf8',
-                ambientHeatRate: 1.45,
-                hazardInterval: [11.0, 14.5],
-                unlockCost: 130,
+                ambientHeatRate: 1.85,
+                hazardInterval: [9.0, 12.2],
+                unlockCost: 260,
                 weights: [
-                    { type: 'CLAY', weight: 15 },
-                    { type: 'LIMESTONE', weight: 30 },
-                    { type: 'CRYSTAL_SHALE', weight: 26 },
-                    { type: 'OIL_VEIN', weight: 3.4 },
-                    { type: 'ENERGY_BLOCK', weight: 2.0 },
-                    { type: 'ORE_VITALIUM', weight: 2.2 },
-                    { type: 'ORE_IRON', weight: 3.4 },
-                    { type: 'ORE_QUARTZ', weight: 5.0 },
-                    { type: 'ORE_AMETHYST', weight: 3.1 },
-                    { type: 'GAS_POCKET', weight: 7.8 },
-                    { type: 'UNSTABLE_ROCK', weight: 7.5 },
-                    { type: 'THERMAL_POCKET', weight: 3.2 }
+                    { type: 'LIMESTONE', weight: 26 },
+                    { type: 'CRYSTAL_SHALE', weight: 34 },
+                    { type: 'OIL_VEIN', weight: 2.7 },
+                    { type: 'ENERGY_BLOCK', weight: 1.6 },
+                    { type: 'ORE_VITALIUM', weight: 1.7 },
+                    { type: 'ORE_COBALT', weight: 3.0 },
+                    { type: 'ORE_QUARTZ', weight: 4.8 },
+                    { type: 'ORE_AMETHYST', weight: 3.4 },
+                    { type: 'GAS_POCKET', weight: 8.2 },
+                    { type: 'UNSTABLE_ROCK', weight: 9.0 },
+                    { type: 'THERMAL_POCKET', weight: 4.4 }
                 ]
             },
             {
-                index: 2,
+                index: 3,
+                id: 'abyss',
+                name: 'Слой 4: Абиссальный Разлом',
+                shortName: 'Слой 4 (Разлом)',
+                rows: 155,
+                bgTop: '#0c1f3d',
+                bgBottom: '#071124',
+                shaftWall: '#0a1930',
+                shaftBeam: '#17325c',
+                ambientColor: '#818cf8',
+                ambientHeatRate: 2.65,
+                hazardInterval: [8.2, 11.2],
+                unlockCost: 420,
+                weights: [
+                    { type: 'CRYSTAL_SHALE', weight: 22 },
+                    { type: 'ABYSS_STONE', weight: 36 },
+                    { type: 'OIL_VEIN', weight: 2.5 },
+                    { type: 'ENERGY_BLOCK', weight: 1.8 },
+                    { type: 'ORE_VITALIUM', weight: 1.8 },
+                    { type: 'ORE_AMETHYST', weight: 3.6 },
+                    { type: 'ORE_TITANITE', weight: 4.4 },
+                    { type: 'GAS_POCKET', weight: 7.5 },
+                    { type: 'ACID_POCKET', weight: 6.2 },
+                    { type: 'UNSTABLE_ROCK', weight: 9.5 },
+                    { type: 'THERMAL_POCKET', weight: 6.5 }
+                ]
+            },
+            {
+                index: 4,
                 id: 'mantle',
-                name: 'Слой 3: Мантийный Разлом',
-                shortName: 'Слой 3 (Мантия)',
-                rows: 135,
+                name: 'Слой 5: Магматическая Мантия',
+                shortName: 'Слой 5 (Мантия)',
+                rows: 175,
                 bgTop: '#3d1322',
                 bgBottom: '#1f0913',
                 shaftWall: '#30101c',
                 shaftBeam: '#571c2e',
                 ambientColor: '#fb923c',
-                ambientHeatRate: 4.2,
-                hazardInterval: [9.0, 12.5],
-                unlockCost: 290,
+                ambientHeatRate: 4.6,
+                hazardInterval: [7.2, 10.0],
+                unlockCost: 620,
                 weights: [
-                    { type: 'CRYSTAL_SHALE', weight: 22 },
-                    { type: 'MAGMA_BASALT', weight: 35 },
-                    { type: 'OIL_VEIN', weight: 2.9 },
-                    { type: 'ENERGY_BLOCK', weight: 2.4 },
-                    { type: 'ORE_VITALIUM', weight: 2.6 },
-                    { type: 'ORE_QUARTZ', weight: 2.8 },
-                    { type: 'ORE_TITANITE', weight: 5.2 },
-                    { type: 'ORE_CORE', weight: 3.2 },
-                    { type: 'GAS_POCKET', weight: 7.2 },
-                    { type: 'UNSTABLE_ROCK', weight: 7.8 },
-                    { type: 'THERMAL_POCKET', weight: 10.2 }
+                    { type: 'ABYSS_STONE', weight: 18 },
+                    { type: 'MAGMA_BASALT', weight: 38 },
+                    { type: 'OIL_VEIN', weight: 2.3 },
+                    { type: 'ENERGY_BLOCK', weight: 2.0 },
+                    { type: 'ORE_VITALIUM', weight: 1.9 },
+                    { type: 'ORE_TITANITE', weight: 4.8 },
+                    { type: 'ORE_CORE', weight: 3.4 },
+                    { type: 'GAS_POCKET', weight: 7.5 },
+                    { type: 'UNSTABLE_ROCK', weight: 8.8 },
+                    { type: 'THERMAL_POCKET', weight: 12.2 }
+                ]
+            },
+            {
+                index: 5,
+                id: 'core',
+                name: 'Слой 6: Сингулярное Ядро',
+                shortName: 'Слой 6 (Ядро)',
+                rows: 200,
+                bgTop: '#290d3d',
+                bgBottom: '#12051f',
+                shaftWall: '#200930',
+                shaftBeam: '#431466',
+                ambientColor: '#f0abfc',
+                ambientHeatRate: 5.8,
+                hazardInterval: [6.4, 9.0],
+                unlockCost: 880,
+                weights: [
+                    { type: 'MAGMA_BASALT', weight: 22 },
+                    { type: 'NEUTRONIUM', weight: 36 },
+                    { type: 'OIL_VEIN', weight: 2.1 },
+                    { type: 'ENERGY_BLOCK', weight: 2.2 },
+                    { type: 'ORE_VITALIUM', weight: 2.0 },
+                    { type: 'ORE_CORE', weight: 4.0 },
+                    { type: 'ORE_AETHERIUM', weight: 3.2 },
+                    { type: 'GAS_POCKET', weight: 6.5 },
+                    { type: 'VOID_POCKET', weight: 8.5 },
+                    { type: 'UNSTABLE_ROCK', weight: 8.8 },
+                    { type: 'THERMAL_POCKET', weight: 10.5 }
                 ]
             }
         ];
@@ -1687,21 +1778,30 @@
                 this.textures.MAGMA_BASALT = this.generateTileTexture('#631d30', '#3d0e1b', '#872c44', null, 'magma_rock');
                 this.textures.BEDROCK = this.generateTileTexture('#334155', '#1e293b', '#64748b', null, 'bedrock_wall');
 
+                // Новые породы для 6-слойной кампании
+                this.textures.SPORE_ROCK = this.generateTileTexture('#365314', '#1a2e05', '#4d7c0f', null, 'moss_rock');
+                this.textures.ABYSS_STONE = this.generateTileTexture('#1e3a8a', '#172554', '#2563eb');
+                this.textures.NEUTRONIUM = this.generateTileTexture('#3b0764', '#1e0338', '#581c87', null, 'magma_rock');
+
                 this.textures.OIL_VEIN = this.generateTileTexture('#61442b', '#3d2817', '#805b3b', '#fde047', 'ore');
                 this.textures.ENERGY_BLOCK = this.generateTileTexture('#1e3a5f', '#0f233d', '#2d5485', '#10b981', 'energy');
 
                 this.textures.ORE_COAL = this.generateTileTexture('#784c33', '#4d2e1d', '#966244', '#fb923c', 'ore');
                 this.textures.ORE_IRON = this.generateTileTexture('#4b647d', '#2f4254', '#6684a1', '#fb923c', 'ore');
+                this.textures.ORE_COBALT = this.generateTileTexture('#134e4a', '#042f2e', '#0f766e', '#34d399', 'ore');
                 this.textures.ORE_QUARTZ = this.generateTileTexture('#274e78', '#163252', '#3a6ea6', '#22d3ee', 'crystal');
                 this.textures.ORE_AMETHYST = this.generateTileTexture('#442c75', '#29184d', '#5f419e', '#e879f9', 'crystal');
                 this.textures.ORE_TITANITE = this.generateTileTexture('#662249', '#40112b', '#8a3264', '#f472b6', 'ore');
                 this.textures.ORE_CORE = this.generateTileTexture('#6e1b2e', '#450d1a', '#942942', '#fda4af', 'crystal');
+                this.textures.ORE_AETHERIUM = this.generateTileTexture('#4c1d95', '#2e1065', '#6d28d9', '#fde047', 'crystal');
                 this.textures.OBSIDIAN = this.generateTileTexture('#312e81', '#1e1b4b', '#4f46e5', '#a5b4fc', 'crystal');
                 this.textures.ORE_VITALIUM = this.generateTileTexture('#4a2040', '#2b1024', '#6e325f', '#fb7185', 'vitalium');
 
                 this.textures.GAS_POCKET = this.generateTileTexture('#4d6b26', '#314714', '#698f37', null, 'gas');
                 this.textures.UNSTABLE_ROCK = this.generateTileTexture('#64748b', '#475569', '#94a3b8', null, 'boulder');
                 this.textures.THERMAL_POCKET = this.generateTileTexture('#7f1d1d', '#450a0a', '#b91c1c', null, 'lava');
+                this.textures.ACID_POCKET = this.generateTileTexture('#14532d', '#052e16', '#22c55e', null, 'gas');
+                this.textures.VOID_POCKET = this.generateTileTexture('#3b0764', '#1e0238', '#9333ea', null, 'lava');
                 this.textures.STATION_GATE = this.generateTileTexture('#0891b2', '#164e63', '#22d3ee', null, 'station');
                 this.textures.TECH_POD = this.generateTileTexture('#0284c7', '#0369a1', '#38bdf8', null, 'pod');
                 this.textures.STEEL_BEAM = this.generateTileTexture('#475569', '#1e293b', '#94a3b8', null, 'steel');
@@ -2343,14 +2443,14 @@
             static generateLayer(biomeIndex, layerNumber, unlockedProjects = []) {
                 const biome = BIOMES[Math.min(biomeIndex, BIOMES.length - 1)];
                 const cols = CONFIG.GRID_COLS;
-                const rows = biome.rows || 85;
+                const rows = biome.rows || 95;
                 CONFIG.LAYER_ROWS = rows;
                 const grid = [];
                 const landmarks = [];
                 const hasProj = (id) => Array.isArray(unlockedProjects) && unlockedProjects.includes(id);
 
-                // Базовый множитель прочности слоя
-                const baseLayerScale = 1 + (layerNumber - 1) * 0.28;
+                // Повышенный множитель прочности породы с каждым новым слоем
+                const baseLayerScale = 1 + (layerNumber - 1) * 0.38;
 
                 // Вспомогательная функция выбора тайла с ростом опасности к концу слоя
                 const pickWeightedTile = (depthRatio) => {
@@ -2358,10 +2458,10 @@
                         let w = item.weight;
                         const proto = TILE_TYPES[item.type];
                         if (proto && (proto.hazard || proto.fallingHazard)) {
-                            w *= (1 + depthRatio * 1.5);
+                            w *= (1 + depthRatio * 1.85);
                         }
                         if (proto && proto.isHard) {
-                            w *= (1 + depthRatio * 0.75);
+                            w *= (1 + depthRatio * 0.95);
                         }
                         return { type: item.type, weight: w };
                     });
@@ -2379,7 +2479,7 @@
                 for (let y = 0; y < rows; y++) {
                     const row = [];
                     const depthRatio = y / Math.max(1, rows);
-                    const rowHpScale = baseLayerScale * (1 + depthRatio * 0.65);
+                    const rowHpScale = baseLayerScale * (1 + depthRatio * 0.85);
 
                     for (let x = 0; x < cols; x++) {
                         if (x === 0 || x === cols - 1) {
@@ -2414,16 +2514,16 @@
                     if (gy <= 2 || gy >= rows - 3 || gx <= 0 || gx >= cols - 1) return;
                     if (!grid[gy] || !grid[gy][gx]) return;
                     const depthRatio = gy / Math.max(1, rows);
-                    const cellScale = baseLayerScale * (1 + depthRatio * 0.65);
+                    const cellScale = baseLayerScale * (1 + depthRatio * 0.85);
                     const cell = new BlockTile(gx, gy, proto, cellScale);
                     if (bgType) cell.bgType = bgType;
                     grid[gy][gx] = cell;
                 };
 
-                // 2. Генерация естественных карстовых пещер и воздушных гротов
-                const caveCount = 3 + Math.floor(rows / 30);
+                // 2. Генерация естественных карстовых пещер и гротов
+                const caveCount = 3 + Math.floor(rows / 35);
                 for (let c = 0; c < caveCount; c++) {
-                    const cy = 7 + Math.floor(((c + 0.5) / caveCount) * (rows - 16));
+                    const cy = 10 + Math.floor((c / caveCount) * (rows - 24)) + Math.floor(Math.random() * 6);
                     const cx = 3 + Math.floor(Math.random() * (cols - 6));
                     const rx = 2 + Math.floor(Math.random() * 2);
                     const ry = 1 + Math.floor(Math.random() * 2);
@@ -2435,278 +2535,93 @@
                             }
                         }
                     }
-                    // Сталактиты на своде пещеры и жила руды на дне
+                    // Сталактиты на своде пещеры и жилы на дне
                     setCell(cx, cy - ry, TILE_TYPES.UNSTABLE_ROCK, 'cave');
-                    setCell(cx, cy + ry, biomeIndex === 0 ? TILE_TYPES.ORE_IRON : TILE_TYPES.ORE_QUARTZ, 'cave');
+                    setCell(cx - 1, cy + ry, layerNumber >= 3 ? TILE_TYPES.ORE_QUARTZ : TILE_TYPES.ORE_COAL, 'cave');
                 }
 
-                // Гарантированные Техно-Капсулы в толще породы (на флангах шахты)
-                const podRows = [Math.floor(rows * 0.34), Math.floor(rows * 0.64)];
-                podRows.forEach((py, idx) => {
-                    const px = (idx % 2 === 0)
-                        ? (2 + Math.floor(Math.random() * 3))
-                        : (cols - 3 - Math.floor(Math.random() * 3));
-                    setCell(px, py, TILE_TYPES.TECH_POD);
-                });
-
-                // 3. Генерация УНИКАЛЬНЫХ ПОДЗЕМНЫХ ПОСТРОЕК И ЛОКАЦИЙ (включая новые открываемые в Ангаре!)
-                const zoneFractions = [0.22, 0.46, 0.70, 0.84];
-                const midPool = ['CRYSTAL_GEODE', 'CHASM_BRIDGE'];
-                if (hasProj('STRUCT_OASIS')) midPool.push('CRYO_OASIS', 'CRYO_OASIS');
-                if (hasProj('STRUCT_MIDAS_VAULT')) midPool.push('MIDAS_VAULT', 'MIDAS_VAULT');
-
-                const deepPool = ['ANCIENT_VAULT'];
-                if (hasProj('STRUCT_OMEGA_LAB')) deepPool.push('OMEGA_LAB', 'OMEGA_LAB');
-                if (hasProj('STRUCT_MIDAS_VAULT')) deepPool.push('MIDAS_VAULT');
-
-                const chosenStructures = [
-                    'MINER_BUNKER',
-                    midPool[Math.floor(Math.random() * midPool.length)],
-                    deepPool[Math.floor(Math.random() * deepPool.length)]
-                ];
-
-                // Если открыта хотя бы одна дополнительная постройка в Ангаре — генерируем 4-ю бонусную структуру на слое!
-                if (hasProj('STRUCT_OASIS') || hasProj('STRUCT_MIDAS_VAULT') || hasProj('STRUCT_OMEGA_LAB')) {
-                    const bonusPool = [];
-                    if (hasProj('STRUCT_OASIS')) bonusPool.push('CRYO_OASIS');
-                    if (hasProj('STRUCT_MIDAS_VAULT')) bonusPool.push('MIDAS_VAULT');
-                    if (hasProj('STRUCT_OMEGA_LAB')) bonusPool.push('OMEGA_LAB');
-                    chosenStructures.push(bonusPool[Math.floor(Math.random() * bonusPool.length)]);
-                }
-
-                chosenStructures.forEach((stType, idx) => {
-                    const sy = Math.max(10, Math.min(rows - 10, Math.floor(rows * zoneFractions[idx]) + Math.floor((Math.random() - 0.5) * 4)));
-
-                    if (stType === 'MINER_BUNKER') {
-                        // ПОСТРОЙКА 1: Заброшенный Бункер Шахтеров (Стальные балки, техно-сундук и ящики снабжения)
-                        const placeLeft = Math.random() < 0.5;
-                        const bx = placeLeft ? 2 : cols - 8;
-                        const bw = 6;
-                        const bh = 4;
-
-                        for (let dy = 0; dy < bh; dy++) {
-                            for (let dx = 0; dx < bw; dx++) {
-                                const gx = bx + dx;
-                                const gy = sy + dy;
-                                const isWall = dy === 0 || dy === bh - 1 || dx === 0 || dx === bw - 1;
-                                const isDoor = (dy === 0 && (dx === 2 || dx === 3)) || (placeLeft && dx === bw - 1 && dy === 2) || (!placeLeft && dx === 0 && dy === 2);
-
-                                if (isDoor) {
-                                    setCell(gx, gy, TILE_TYPES.DIRT, 'bunker');
-                                } else if (isWall) {
-                                    setCell(gx, gy, TILE_TYPES.STEEL_BEAM, 'bunker');
-                                } else {
-                                    setCell(gx, gy, TILE_TYPES.EMPTY, 'bunker');
-                                }
-                            }
+                // 3. Генерация подземных построек (Бункер Шахтёров, Жеода Виталиума, Древний Свод)
+                const bunkerY = Math.floor(rows * 0.28);
+                const bunkerX = 3 + Math.floor(Math.random() * (cols - 7));
+                for (let dy = -1; dy <= 1; dy++) {
+                    for (let dx = -2; dx <= 2; dx++) {
+                        if (dy === -1 || dy === 1) {
+                            setCell(bunkerX + dx, bunkerY + dy, dx === 0 ? TILE_TYPES.DIRT : TILE_TYPES.STEEL_BEAM, 'bunker');
+                        } else {
+                            setCell(bunkerX + dx, bunkerY + dy, TILE_TYPES.EMPTY, 'bunker');
                         }
-                        setCell(bx + 2, sy + 2, TILE_TYPES.TECH_POD, 'bunker');
-                        setCell(bx + 3, sy + 2, TILE_TYPES.SUPPLY_CRATE, 'bunker');
-                        setCell(bx + 1, sy + 2, TILE_TYPES.ENERGY_BLOCK, 'bunker');
-                        setCell(bx + 4, sy + 2, TILE_TYPES.SUPPLY_CRATE, 'bunker');
-
-                        landmarks.push({
-                            y: sy,
-                            x: bx + 3,
-                            title: 'ЛОКАЦИЯ: ЗАБРОШЕННЫЙ БУНКЕР ШАХТЁРОВ',
-                            color: '#38bdf8',
-                            discovered: false
-                        });
-                    } else if (stType === 'CRYSTAL_GEODE') {
-                        // ПОСТРОЙКА 2: Кристальная Жеода Виталиума
-                        const gxCenter = 4 + Math.floor(Math.random() * (cols - 8));
-                        for (let dy = -3; dy <= 3; dy++) {
-                            for (let dx = -3; dx <= 3; dx++) {
-                                const dist = Math.hypot(dx, dy);
-                                const gx = gxCenter + dx;
-                                const gy = sy + dy;
-                                if (dist <= 1.6) {
-                                    setCell(gx, gy, TILE_TYPES.EMPTY, 'geode');
-                                } else if (dist <= 2.8) {
-                                    const shellType = (dx + dy) % 2 === 0 ? TILE_TYPES.ORE_AMETHYST : TILE_TYPES.ORE_QUARTZ;
-                                    setCell(gx, gy, shellType, 'geode');
-                                }
-                            }
-                        }
-                        setCell(gxCenter, sy, TILE_TYPES.ORE_VITALIUM, 'geode');
-                        setCell(gxCenter - 1, sy + 1, TILE_TYPES.ORE_VITALIUM, 'geode');
-                        setCell(gxCenter + 1, sy + 1, TILE_TYPES.ORE_CORE, 'geode');
-
-                        landmarks.push({
-                            y: sy,
-                            x: gxCenter,
-                            title: 'ЛОКАЦИЯ: КРИСТАЛЬНАЯ ЖЕОДА ВИТАЛИУМА',
-                            color: '#fb7185',
-                            discovered: false
-                        });
-                    } else if (stType === 'CHASM_BRIDGE') {
-                        // ПОСТРОЙКА 3: Подземный Разлом и Инженерный Мост
-                        for (let dy = -1; dy <= 2; dy++) {
-                            for (let gx = 1; gx < cols - 1; gx++) {
-                                setCell(gx, sy + dy, TILE_TYPES.EMPTY, 'cave');
-                            }
-                        }
-                        for (let gx = 2; gx < cols - 2; gx++) {
-                            if (gx !== 7) {
-                                setCell(gx, sy + 1, TILE_TYPES.STEEL_BEAM, 'bunker');
-                            }
-                        }
-                        setCell(3, sy, TILE_TYPES.SUPPLY_CRATE, 'bunker');
-                        setCell(cols - 4, sy, TILE_TYPES.SUPPLY_CRATE, 'bunker');
-                        setCell(5, sy, TILE_TYPES.OIL_VEIN, 'bunker');
-                        setCell(cols - 6, sy, TILE_TYPES.ORE_VITALIUM, 'bunker');
-
-                        landmarks.push({
-                            y: sy,
-                            x: Math.floor(cols / 2),
-                            title: 'ЛОКАЦИЯ: ИНЖЕНЕРНЫЙ МОСТ НАД РАЗЛОМОМ',
-                            color: '#fbbf24',
-                            discovered: false
-                        });
-                    } else if (stType === 'ANCIENT_VAULT') {
-                        // ПОСТРОЙКА 4: Древний Свод Предтеч
-                        const vx = Math.floor(cols / 2) - 3;
-                        const vw = 7;
-                        const vh = 5;
-
-                        for (let dy = 0; dy < vh; dy++) {
-                            for (let dx = 0; dx < vw; dx++) {
-                                const gx = vx + dx;
-                                const gy = sy + dy;
-                                const isOuter = dy === 0 || dy === vh - 1 || dx === 0 || dx === vw - 1;
-                                const isGate = (dy === 0 && dx === 3);
-
-                                if (isGate) {
-                                    setCell(gx, gy, TILE_TYPES.SUPPLY_CRATE, 'ruins');
-                                } else if (isOuter) {
-                                    setCell(gx, gy, TILE_TYPES.ANCIENT_BRICK, 'ruins');
-                                } else {
-                                    setCell(gx, gy, TILE_TYPES.EMPTY, 'ruins');
-                                }
-                            }
-                        }
-                        setCell(vx + 3, sy + 2, TILE_TYPES.TECH_POD, 'ruins');
-                        setCell(vx + 2, sy + 3, TILE_TYPES.ORE_CORE, 'ruins');
-                        setCell(vx + 4, sy + 3, TILE_TYPES.ORE_TITANITE, 'ruins');
-                        setCell(vx + 1, sy + 3, TILE_TYPES.GAS_POCKET, 'ruins');
-                        setCell(vx + 5, sy + 3, TILE_TYPES.GAS_POCKET, 'ruins');
-
-                        landmarks.push({
-                            y: sy,
-                            x: vx + 3,
-                            title: 'ЛОКАЦИЯ: ДРЕВНИЙ СВОД ПРЕДТЕЧ',
-                            color: '#c084fc',
-                            discovered: false
-                        });
-                    } else if (stType === 'CRYO_OASIS') {
-                        // НОВАЯ ПОСТРОЙКА 5 (Мета-проект): Крио-Заправка «Оазис»
-                        const ox = 3 + Math.floor(Math.random() * (cols - 11));
-                        const ow = 5;
-                        const oh = 4;
-                        for (let dy = 0; dy < oh; dy++) {
-                            for (let dx = 0; dx < ow; dx++) {
-                                const gx = ox + dx;
-                                const gy = sy + dy;
-                                const isWall = dy === 0 || dy === oh - 1 || dx === 0 || dx === ow - 1;
-                                const isDoor = (dy === 0 && dx === 2) || (dy === oh - 1 && dx === 2);
-                                if (isDoor) {
-                                    setCell(gx, gy, TILE_TYPES.OBSIDIAN, 'bunker');
-                                } else if (isWall) {
-                                    setCell(gx, gy, TILE_TYPES.STEEL_BEAM, 'bunker');
-                                } else {
-                                    setCell(gx, gy, TILE_TYPES.EMPTY, 'bunker');
-                                }
-                            }
-                        }
-                        setCell(ox + 1, sy + 2, TILE_TYPES.ENERGY_BLOCK, 'bunker');
-                        setCell(ox + 2, sy + 2, TILE_TYPES.OMEGA_MEDKIT, 'bunker');
-                        setCell(ox + 3, sy + 2, TILE_TYPES.CHRONO_SPHERE, 'bunker');
-                        setCell(ox + 2, sy + 1, TILE_TYPES.ORE_VITALIUM, 'bunker');
-
-                        landmarks.push({
-                            y: sy,
-                            x: ox + 2,
-                            title: 'ЛОКАЦИЯ: КРИО-ЗАПРАВКА «ОАЗИС»',
-                            color: '#34d399',
-                            discovered: false
-                        });
-                    } else if (stType === 'MIDAS_VAULT') {
-                        // НОВАЯ ПОСТРОЙКА 6 (Мета-проект): Золотая Сокровищница Мидаса
-                        const mx = Math.floor(cols / 2) - 3;
-                        const mw = 7;
-                        const mh = 4;
-                        for (let dy = 0; dy < mh; dy++) {
-                            for (let dx = 0; dx < mw; dx++) {
-                                const gx = mx + dx;
-                                const gy = sy + dy;
-                                const isWall = dy === 0 || dy === mh - 1 || dx === 0 || dx === mw - 1;
-                                const isEntry = (dy === 0 && (dx === 3));
-                                if (isEntry) {
-                                    setCell(gx, gy, TILE_TYPES.SUPPLY_CRATE, 'ruins');
-                                } else if (isWall) {
-                                    setCell(gx, gy, TILE_TYPES.ANCIENT_BRICK, 'ruins');
-                                } else {
-                                    setCell(gx, gy, TILE_TYPES.EMPTY, 'ruins');
-                                }
-                            }
-                        }
-                        setCell(mx + 3, sy + 2, TILE_TYPES.STAR_RELIC, 'ruins');
-                        setCell(mx + 2, sy + 2, TILE_TYPES.ORE_CORE, 'ruins');
-                        setCell(mx + 4, sy + 2, TILE_TYPES.ORE_CORE, 'ruins');
-                        setCell(mx + 1, sy + 2, TILE_TYPES.SUPPLY_CRATE, 'ruins');
-                        setCell(mx + 5, sy + 2, TILE_TYPES.SUPPLY_CRATE, 'ruins');
-
-                        landmarks.push({
-                            y: sy,
-                            x: mx + 3,
-                            title: 'ЛОКАЦИЯ: ЗОЛОТАЯ СОКРОВИЩНИЦА МИДАСА',
-                            color: '#fde047',
-                            discovered: false
-                        });
-                    } else if (stType === 'OMEGA_LAB') {
-                        // НОВАЯ ПОСТРОЙКА 7 (Вершина Метапрогрессии): Лаборатория Предтеч «Омега»
-                        const lx = Math.floor(cols / 2) - 4;
-                        const lw = 9;
-                        const lh = 5;
-                        for (let dy = 0; dy < lh; dy++) {
-                            for (let dx = 0; dx < lw; dx++) {
-                                const gx = lx + dx;
-                                const gy = sy + dy;
-                                const isWall = dy === 0 || dy === lh - 1 || dx === 0 || dx === lw - 1;
-                                const isDoor = (dy === 0 && (dx === 4)) || (dy === lh - 1 && dx === 4);
-                                if (isDoor) {
-                                    setCell(gx, gy, TILE_TYPES.ENERGY_BLOCK, 'ruins');
-                                } else if (isWall) {
-                                    setCell(gx, gy, TILE_TYPES.ANCIENT_BRICK, 'ruins');
-                                } else {
-                                    setCell(gx, gy, TILE_TYPES.EMPTY, 'ruins');
-                                }
-                            }
-                        }
-                        setCell(lx + 2, sy + 2, TILE_TYPES.TECH_POD, 'ruins');
-                        setCell(lx + 4, sy + 2, TILE_TYPES.STAR_RELIC, 'ruins');
-                        setCell(lx + 6, sy + 2, TILE_TYPES.TECH_POD, 'ruins');
-                        setCell(lx + 3, sy + 3, TILE_TYPES.CHRONO_SPHERE, 'ruins');
-                        setCell(lx + 5, sy + 3, TILE_TYPES.OMEGA_MEDKIT, 'ruins');
-
-                        landmarks.push({
-                            y: sy,
-                            x: lx + 4,
-                            title: 'ЛОКАЦИЯ: ЛАБОРАТОРИЯ ПРЕДТЕЧ «ОМЕГА»',
-                            color: '#38bdf8',
-                            discovered: false
-                        });
                     }
-                });
+                }
+                setCell(bunkerX - 1, bunkerY, TILE_TYPES.SUPPLY_CRATE, 'bunker');
+                setCell(bunkerX + 1, bunkerY, TILE_TYPES.TECH_POD, 'bunker');
+                landmarks.push({ x: bunkerX, y: bunkerY, title: 'ЗАБРОШЕННЫЙ БУНКЕР ШАХТЁРОВ', color: '#38bdf8', discovered: false });
 
-                // 4. Генерация новых положительных предметов в породе (если разблокирован контракт в Ангаре)
-                if (hasProj('POS_ITEMS_PACK')) {
-                    for (let y = 9; y < rows - 7; y += 16) {
-                        const rx = 2 + Math.floor(Math.random() * (cols - 4));
-                        if (grid[y][rx] && !grid[y][rx].bgType && !grid[y][rx].proto.isTechPod) {
-                            const itemProto = (y / 16) % 2 === 0 ? TILE_TYPES.CHRONO_SPHERE : TILE_TYPES.OMEGA_MEDKIT;
-                            grid[y][rx] = new BlockTile(rx, y, itemProto, baseLayerScale);
+                const geodeY = Math.floor(rows * 0.52);
+                const geodeX = 3 + Math.floor(Math.random() * (cols - 6));
+                for (let dy = -2; dy <= 2; dy++) {
+                    for (let dx = -2; dx <= 2; dx++) {
+                        const dist = Math.hypot(dx, dy);
+                        if (dist <= 1.2) {
+                            setCell(geodeX + dx, geodeY + dy, (dx === 0 && dy === 0) ? TILE_TYPES.ORE_VITALIUM : TILE_TYPES.EMPTY, 'geode');
+                        } else if (dist <= 2.2) {
+                            setCell(geodeX + dx, geodeY + dy, layerNumber >= 3 ? TILE_TYPES.ORE_AMETHYST : TILE_TYPES.ORE_QUARTZ, 'geode');
                         }
+                    }
+                }
+                landmarks.push({ x: geodeX, y: geodeY, title: 'КРИСТАЛЬНАЯ ЖЕОДА ВИТАЛИУМА', color: '#f472b6', discovered: false });
+
+                // Дополнительные постройки из Метапрогрессии (Крио-Оазис, Сокровищница Мидаса, Лаборатория Омега)
+                if (hasProj('STRUCT_CRYO_OASIS')) {
+                    const oy = Math.floor(rows * 0.40);
+                    const ox = 4 + Math.floor(Math.random() * (cols - 8));
+                    for (let dx = -2; dx <= 2; dx++) {
+                        setCell(ox + dx, oy - 1, TILE_TYPES.STEEL_BEAM, 'bunker');
+                        setCell(ox + dx, oy, TILE_TYPES.EMPTY, 'bunker');
+                        setCell(ox + dx, oy + 1, TILE_TYPES.STEEL_BEAM, 'bunker');
+                    }
+                    setCell(ox - 1, oy, TILE_TYPES.ENERGY_BLOCK, 'bunker');
+                    setCell(ox, oy, TILE_TYPES.OMEGA_MEDKIT, 'bunker');
+                    setCell(ox + 1, oy, TILE_TYPES.ORE_VITALIUM, 'bunker');
+                    landmarks.push({ x: ox, y: oy, title: 'КРИО-ЗАПРАВКА «ОАЗИС»', color: '#34d399', discovered: false });
+                }
+
+                if (hasProj('STRUCT_OMEGA_LAB') && layerNumber >= 2) {
+                    const ly = Math.floor(rows * 0.74);
+                    const lx = Math.floor(cols / 2);
+                    for (let dy = -1; dy <= 1; dy++) {
+                        for (let dx = -3; dx <= 3; dx++) {
+                            if (dy === -1 || dy === 1) {
+                                setCell(lx + dx, ly + dy, Math.abs(dx) <= 1 ? TILE_TYPES.CRYSTAL_SHALE : TILE_TYPES.ANCIENT_BRICK, 'ruins');
+                            } else {
+                                setCell(lx + dx, ly + dy, TILE_TYPES.EMPTY, 'ruins');
+                            }
+                        }
+                    }
+                    setCell(lx - 2, ly, TILE_TYPES.TECH_POD, 'ruins');
+                    setCell(lx, ly, TILE_TYPES.STAR_RELIC, 'ruins');
+                    setCell(lx + 2, ly, TILE_TYPES.CHRONO_SPHERE, 'ruins');
+                    landmarks.push({ x: lx, y: ly, title: 'ЛАБОРАТОРИЯ ПРЕДТЕЧ «ОМЕГА»', color: '#c084fc', discovered: false });
+                }
+
+                if (hasProj('RELIC_ITEMS_I')) {
+                    const itemY1 = Math.floor(rows * 0.35);
+                    const itemY2 = Math.floor(rows * 0.68);
+                    setCell(2 + Math.floor(Math.random() * (cols - 4)), itemY1, TILE_TYPES.CHRONO_SPHERE);
+                    setCell(2 + Math.floor(Math.random() * (cols - 4)), itemY2, TILE_TYPES.OMEGA_MEDKIT);
+                }
+
+                // 4. Техно-Капсулы (Сундуки модулей) в толще слоя
+                const podRow2 = Math.floor(rows * 0.64);
+                const podX2 = Math.random() < 0.5 ? 2 : cols - 3;
+                setCell(podX2, podRow2, TILE_TYPES.TECH_POD, 'bunker');
+
+                // 1.5. БРОНИРОВАННЫЙ ПЕРИМЕТР ПЕРЕД ВЫХОДОМ НА СТАНЦИЮ (защитный барьер на глубине rows - 6)
+                const sealY = rows - 6;
+                for (let gx = 1; gx < cols - 1; gx++) {
+                    if (gx % 3 === 0) {
+                        setCell(gx, sealY, layerNumber >= 4 ? TILE_TYPES.THERMAL_POCKET : TILE_TYPES.GAS_POCKET, 'bunker');
+                    } else {
+                        setCell(gx, sealY, layerNumber >= 5 ? TILE_TYPES.ANCIENT_BRICK : TILE_TYPES.STEEL_BEAM, 'bunker');
                     }
                 }
                 if (hasProj('STRUCT_MIDAS_VAULT')) {
@@ -2717,11 +2632,11 @@
                     }
                 }
 
-                // 5. Редкие страховочные жилы топлива в породе (если клетка не занята постройкой)
-                for (let y = 10; y < rows - 5; y += 12) {
+                // 5. Редкие страховочные жилы топлива в породе (сделаны реже для более сложного выживания)
+                for (let y = 14; y < rows - 7; y += 16) {
                     const side = Math.random() < 0.5 ? 2 + Math.floor(Math.random() * 3) : cols - 3 - Math.floor(Math.random() * 3);
                     if (grid[y][side] && !grid[y][side].bgType) {
-                        grid[y][side] = new BlockTile(side, y, y % 24 === 0 ? TILE_TYPES.ENERGY_BLOCK : TILE_TYPES.OIL_VEIN, baseLayerScale);
+                        grid[y][side] = new BlockTile(side, y, y % 32 === 0 ? TILE_TYPES.ENERGY_BLOCK : TILE_TYPES.OIL_VEIN, baseLayerScale);
                     }
                 }
 
@@ -3033,7 +2948,7 @@
                     // Проверка попадания по буру
                     if (Math.abs(gx - this.game.drill.visualX) < 0.75 && Math.abs((d.y / ts) - (this.game.drill.visualY + 0.4)) < 0.75) {
                         this.game.sound.playHazardExplosion();
-                        const dmg = this.game.drill.takeDamage(22, 'tectonic');
+                        const dmg = this.game.drill.takeDamage(28, 'tectonic');
                         this.game.spawnParticles(gx, this.game.drill.gridY, '#a8a29e', 18, 160);
                         if (dmg > 0) {
                             this.game.spawnFloatingText(gx, this.game.drill.gridY, `КАМНЕПАД! -${dmg} HP`, '#f87171', true);
@@ -3150,8 +3065,8 @@
                     });
 
                     if (hitPlayer) {
-                        drill.addHeat(30);
-                        const dmg = drill.takeDamage(26, 'tectonic');
+                        drill.addHeat(34);
+                        const dmg = drill.takeDamage(32, 'tectonic');
                         if (dmg > 0) {
                             this.game.spawnFloatingText(drill.gridX, drill.gridY, `ИЗВЕРЖЕНИЕ! -${dmg} HP`, '#f87171', true);
                         }
@@ -3185,8 +3100,8 @@
                     });
 
                     if (ev.rows.includes(drill.gridY)) {
-                        drill.addHeat(28);
-                        const dmg = drill.takeDamage(24, 'tectonic');
+                        drill.addHeat(32);
+                        const dmg = drill.takeDamage(30, 'tectonic');
                         if (dmg > 0) {
                             this.game.spawnFloatingText(drill.gridX, drill.gridY, `ОГНЕННЫЙ ПОТОК! -${dmg} HP`, '#f87171', true);
                         }
@@ -3979,25 +3894,27 @@
                     });
                 } else if (tab === 'blocks') {
                     const blocksCatalog = [
-                        { tex: 'OIL_VEIN', name: 'Нефтяная Жила', tag: '+24 Топлива', tagCol: 'text-amber-300', desc: 'Главный источник топлива в недрах. Всегда корректируйте маршрут ради нефтеносных жил.' },
-                        { tex: 'ENERGY_BLOCK', name: 'Энергоблок', tag: '+36 Топлива и -20% Жара', tagCol: 'text-emerald-300', desc: 'Высокотехнологичная батарея: мощно заправляет бак и мгновенно охлаждает реактор бура.' },
-                        { tex: 'ORE_VITALIUM', name: 'Виталиум (Живая Руда)', tag: '+28 Жизней и +18 Руды', tagCol: 'text-rose-300', desc: 'Редкий целебный био-кристалл. Восстанавливает обшивку корпуса, охлаждает бур и дает руду. Часто встречается в Кристальных Жеодах.' },
+                        { tex: 'OIL_VEIN', name: 'Нефтяная Жила', tag: '+20 Топлива', tagCol: 'text-amber-300', desc: 'Главный источник топлива в недрах. Всегда корректируйте маршрут ради нефтеносных жил.' },
+                        { tex: 'ENERGY_BLOCK', name: 'Энергоблок', tag: '+30 Топлива и -18% Жара', tagCol: 'text-emerald-300', desc: 'Высокотехнологичная батарея: мощно заправляет бак и мгновенно охлаждает реактор бура.' },
+                        { tex: 'ORE_VITALIUM', name: 'Виталиум (Живая Руда)', tag: '+22 Жизней и +18 Руды', tagCol: 'text-rose-300', desc: 'Редкий целебный био-кристалл. Восстанавливает обшивку корпуса, охлаждает бур и дает руду. Часто встречается в Кристальных Жеодах.' },
                         { tex: 'CHRONO_SPHERE', name: 'Хроно-Сфера «Эфир»', tag: '7с 0 расхода топлива + Ускорение', tagCol: 'text-sky-300', desc: 'Положительный артефакт (открывается в Ангаре): останавливает расход топлива на 7 секунд, ускоряет бурение на +40% и удваивает перезарядку оружия!' },
-                        { tex: 'OMEGA_MEDKIT', name: 'Нано-Капсула «Абсолют»', tag: '+45 Жизней, +22 Топл., 0% Жара', tagCol: 'text-emerald-300', desc: 'Положительный предмет (открывается в Ангаре): мощно чинит обшивку, заправляет бак и полностью охлаждает реактор.' },
+                        { tex: 'OMEGA_MEDKIT', name: 'Нано-Капсула «Абсолют»', tag: '+42 Жизней, +20 Топл., 0% Жара', tagCol: 'text-emerald-300', desc: 'Положительный предмет (открывается в Ангаре): мощно чинит обшивку, заправляет бак и полностью охлаждает реактор.' },
                         { tex: 'STAR_RELIC', name: 'Звёздная Реликвия Предтеч', tag: '+90 Руды и +35 сразу в Банк!', tagCol: 'text-yellow-300', desc: 'Древнее сокровище (встречается в Сокровищнице Мидаса и Лаборатории «Омега»): дает +90 Руды в трюм, мгновенно отправляет +35 Руды в Глобальный Банк и перезаряжает все модули!' },
-                        { tex: 'TECH_POD', name: 'Сундук-Капсула Модулей', tag: 'Выбор 1 из 3 наград', tagCol: 'text-cyan-300', desc: 'Позволяет прямо во время спуска бесплатно установить новый модуль (по системе редкости), улучшить имеющийся или разобрать капсулу на +35 Топлива, +35 HP и +45 Руды.' },
-                        { tex: 'SUPPLY_CRATE', name: 'Ящик Снабжения Бункера', tag: '+20 Топл., +14 HP, +32 Руды', tagCol: 'text-yellow-300', desc: 'Встречается в Заброшенных Бункерах Шахтеров, Древних Сводах и на Инженерных Мостах над разломами.' },
-                        { tex: 'ORE_COAL', name: 'Каменный Уголь', tag: '+9 Руды и +9 Топлива', tagCol: 'text-orange-300', desc: 'Базовая жила Земной Коры — одновременно пополняет трюм рудой и немного подзаряжает топливный бак.' },
-                        { tex: 'ORE_IRON', name: 'Железная Руда', tag: '+16 Руды (Прочн. 48)', tagCol: 'text-orange-400', desc: 'Распространенная промышленная руда первого и второго слоев планеты.' },
-                        { tex: 'ORE_QUARTZ', name: 'Голубой Кварц', tag: '+26 Руды (Прочн. 74)', tagCol: 'text-cyan-300', desc: 'Твердый кристалл второго слоя. Отличная цель для ракет и боковых лазеров.' },
-                        { tex: 'ORE_AMETHYST', name: 'Друза Аметиста', tag: '+40 Руды (Прочн. 96)', tagCol: 'text-purple-300', desc: 'Богатый самоцвет Кристальных Пещер и оболочки подземных Жеод.' },
-                        { tex: 'ORE_TITANITE', name: 'Магматический Титанит', tag: '+58 Руды (Прочн. 122)', tagCol: 'text-pink-300', desc: 'Сверхпрочный редкий металл глубокого мантийного слоя.' },
-                        { tex: 'ORE_CORE', name: 'Ядро-Кристалл', tag: '+85 Руды (Прочн. 150)', tagCol: 'text-rose-400', desc: 'Самый дорогой минерал планеты. Встречается на большой глубине и в сокровищницах Древних Руин.' },
-                        { tex: 'OBSIDIAN', name: 'Застывший Обсидиан', tag: '+28 Руды и -10% Жара', tagCol: 'text-indigo-300', desc: 'Образуется, когда модуль «Крио-Импульс Буран» замораживает опасный Карман Лавы!' },
-                        { tex: 'GAS_POCKET', name: 'Газ под давлением', tag: 'ОПАСНОСТЬ: Взрыв -26 HP', tagCol: 'text-lime-300', desc: 'Взрывается при бурении ИЛИ через 3.6 сек, если стоять рядом, уничтожая руду вокруг! С модулем «Фильтр-Реактор Газа» или при подрыве оружием издалека дает +Топливо и пускает ракеты.' },
-                        { tex: 'UNSTABLE_ROCK', name: 'Падающий Валун', tag: 'ОПАСНОСТЬ: Обвал -28 HP', tagCol: 'text-slate-300', desc: 'Если выкопать блок под валуном, он начнет дрожать и через 0.55 сек рухнет вниз. Не стойте под дрожащим камнем!' },
-                        { tex: 'THERMAL_POCKET', name: 'Карман Лавы', tag: 'ОПАСНОСТЬ: -25 HP и +34% Жара', tagCol: 'text-red-400', desc: 'При контактном бурении обжигает корпус и резко перегревает бур. Безопасно уничтожается дистанционным оружием или замораживается «Бураном».' },
-                        { tex: 'ANCIENT_BRICK', name: 'Постройки: Бункеры и Руины', tag: 'Локации с сокровищами', tagCol: 'text-indigo-300', desc: 'На каждом слое генерируются Карстовые Пещеры, Заброшенные Бункеры (стальные балки), Кристальные Жеоды и Древние Своды Предтеч с капсулами и ящиками внутри.' }
+                        { tex: 'TECH_POD', name: 'Сундук-Капсула Модулей', tag: 'Выбор 1 из 3 наград', tagCol: 'text-cyan-300', desc: 'Позволяет прямо во время спуска бесплатно установить новый модуль (кроме уже прокачанных на максимум), улучшить имеющийся или разобрать капсулу.' },
+                        { tex: 'SUPPLY_CRATE', name: 'Ящик Снабжения Бункера', tag: '+16 Топл., +12 HP, +28 Руды', tagCol: 'text-yellow-300', desc: 'Встречается в Заброшенных Бункерах Шахтеров, Древних Сводах и на Инженерных Мостах над разломами.' },
+                        { tex: 'ORE_COAL', name: 'Каменный Уголь', tag: '+9 Руды и +7 Топлива', tagCol: 'text-orange-300', desc: 'Базовая жила Земной Коры — одновременно пополняет трюм рудой и немного подзаряжает топливный бак.' },
+                        { tex: 'ORE_IRON', name: 'Железная Руда', tag: '+15 Руды (Слои 1-2)', tagCol: 'text-orange-400', desc: 'Распространенная промышленная руда верхних слоев планеты.' },
+                        { tex: 'ORE_COBALT', name: 'Кобальтовая Жила', tag: '+22 Руды (Слои 2-3)', tagCol: 'text-emerald-300', desc: 'Плотная изумрудно-синяя руда Споровых Токси-Гротов и Кристальных Пещер.' },
+                        { tex: 'ORE_QUARTZ', name: 'Голубой Кварц', tag: '+28 Руды (Слой 3)', tagCol: 'text-cyan-300', desc: 'Твердый кристалл третьего слоя. Отличная цель для ракет и боковых лазеров.' },
+                        { tex: 'ORE_AMETHYST', name: 'Друза Аметиста', tag: '+42 Руды (Слои 3-4)', tagCol: 'text-purple-300', desc: 'Богатый самоцвет Кристальных Пещер и Абиссального Разлома.' },
+                        { tex: 'ORE_TITANITE', name: 'Магматический Титанит', tag: '+62 Руды (Слои 4-5)', tagCol: 'text-pink-300', desc: 'Сверхпрочный редкий металл глубоких разломов и мантии.' },
+                        { tex: 'ORE_CORE', name: 'Ядро-Кристалл', tag: '+90 Руды (Слои 5-6)', tagCol: 'text-rose-400', desc: 'Редкий минерал Магматической Мантии и сокровищниц Древних Руин.' },
+                        { tex: 'ORE_AETHERIUM', name: 'Реликтовый Эфириум', tag: '+135 Руды (Слой 6 — Ядро)', tagCol: 'text-yellow-300', desc: 'Самый ценный минерал во Вселенной, залегающий только в Сингулярном Ядре на 6-м слое!' },
+                        { tex: 'GAS_POCKET', name: 'Газ под давлением', tag: 'ОПАСНОСТЬ: Взрыв -30 HP', tagCol: 'text-lime-300', desc: 'Взрывается при бурении ИЛИ через 2.9 сек, если стоять рядом! С модулем «Фильтр-Реактор Газа» или при подрыве оружием дает +Топливо.' },
+                        { tex: 'ACID_POCKET', name: 'Кислотный Карман', tag: 'ОПАСНОСТЬ: -24 HP и -10 Топлива', tagCol: 'text-green-400', desc: 'Встречается в Токси-Гротах и Разломе. При контактном бурении разъедает корпус и топлиропровод (-10 Топлива). Уничтожайте оружием или «Фильтром Газа»!' },
+                        { tex: 'UNSTABLE_ROCK', name: 'Падающий Валун', tag: 'ОПАСНОСТЬ: Обвал -32 HP', tagCol: 'text-slate-300', desc: 'Если выкопать блок под валуном, он начнет дрожать и рухнет вниз. Не стойте под дрожащим камнем!' },
+                        { tex: 'THERMAL_POCKET', name: 'Карман Лавы', tag: 'ОПАСНОСТЬ: -29 HP и +38% Жара', tagCol: 'text-red-400', desc: 'Обжигает корпус и перегревает бур. Замораживается модулем «Крио-Импульс Буран» в ценный Обсидиан (+28 Руды).' },
+                        { tex: 'VOID_POCKET', name: 'Аномалия Пустоты', tag: 'ОПАСНОСТЬ: -36 HP и +26% Жара', tagCol: 'text-purple-400', desc: 'Встречается в Сингулярном Ядре (Слой 6). При контактном бурении детонирует грави-взрывом. Расстреливайте оружием издалека!' }
                     ];
 
                     const gridEl = document.createElement('div');
@@ -4111,6 +4028,11 @@
 
             descendToNextLayer() {
                 document.getElementById('modal-station').classList.add('hidden');
+                // Особая награда за прохождение всех 6 слоев кампании (Прорыв Сингулярного Ядра!)
+                if (this.currentLayerNumber === 6) {
+                    this.meta.depositOre(150);
+                    this.spawnFloatingText(this.drill.visualX, this.drill.visualY - 0.5, 'ЯДРО ПРОБИТО! БОНУС +150 РУДЫ В БАНК!', '#fde047', true);
+                }
                 this.currentLayerNumber++;
                 if (this.currentBiomeIndex < BIOMES.length - 1) {
                     this.currentBiomeIndex++;
@@ -4129,9 +4051,9 @@
                 this.lightningArcs = [];
                 this.shockwaveRings = [];
                 this.state = 'PLAYING';
-                const layerTitle = this.currentLayerNumber <= 3
+                const layerTitle = this.currentLayerNumber <= BIOMES.length
                     ? `${BIOMES[this.currentBiomeIndex].name} (${CONFIG.LAYER_ROWS}м)`
-                    : `Слой ${this.currentLayerNumber}: Глубокая Бездна (${CONFIG.LAYER_ROWS}м)`;
+                    : `Слой ${this.currentLayerNumber}: Бесконечная Бездна (${CONFIG.LAYER_ROWS}м)`;
                 this.spawnFloatingText(this.drill.visualX, this.drill.visualY, layerTitle, '#fbbf24', true);
                 this.updateHUD();
             }
@@ -4443,6 +4365,56 @@
                             'Используйте «Крио-Импульс Буран», чтобы превращать лаву в Обсидиан.',
                             'lava'
                         );
+                    }
+                    return;
+                }
+
+                // 5. Кислотный Карман (Слои 2 и 4)
+                if (proto.hazard === 'acid') {
+                    const gasFilterLvl = this.drill.getModuleLevel('GAS_FILTER');
+                    if (gasFilterLvl > 0 || byWeapon) {
+                        const gained = this.drill.addFuel(12);
+                        this.sound.playBlockBreak(true);
+                        this.spawnParticles(tx, ty, '#4ade80', 14, 95);
+                        this.spawnFloatingText(tx, ty, `КИСЛОТА НЕЙТРАЛИЗОВАНА: +${gained} ТОПЛ`, '#4ade80', true);
+                    } else {
+                        this.sound.playHazardExplosion();
+                        this.spawnParticles(tx, ty, '#22c55e', 24, 175);
+                        const fuelLost = proto.fuelDrain || 10;
+                        this.drill.consumeFuel(fuelLost, this);
+                        const dmg = this.drill.takeDamage(proto.damage, 'gas');
+                        if (dmg > 0) {
+                            this.spawnFloatingText(tx, ty, `КИСЛОТА! -${dmg} HP / -${fuelLost} ТОПЛ`, '#4ade80', true);
+                        }
+                        this.triggerDamageFeedback(
+                            tx, ty, dmg,
+                            'Разъедание Кислотным Карманом (-Топливо и -HP)!',
+                            'Взрывайте кислоту оружием издалека или используйте «Фильтр-Реактор Газа».',
+                            'gas'
+                        );
+                    }
+                    return;
+                }
+
+                // 6. Аномалия Пустоты (Слой 6 — Ядро)
+                if (proto.hazard === 'void') {
+                    this.sound.playHazardExplosion();
+                    this.spawnParticles(tx, ty, '#c084fc', 26, 185);
+                    if (!byWeapon) {
+                        this.drill.addHeat(proto.heatGen);
+                        const dmg = this.drill.takeDamage(proto.damage, 'tectonic');
+                        if (dmg > 0) {
+                            this.spawnFloatingText(tx, ty, `ПУСТОТА! -${dmg} HP`, '#c084fc', true);
+                        }
+                        this.triggerDamageFeedback(
+                            tx, ty, dmg,
+                            'Детонация Аномалии Пустоты!',
+                            'Расстреливайте фиолетовые блоки Пустоты ракетами, лазерами или пилами.',
+                            'eruption'
+                        );
+                    } else {
+                        const bonusOre = this.drill.addOre(25);
+                        this.spawnFloatingText(tx, ty, `АННИГИЛЯЦИЯ: +${bonusOre} РУДЫ`, '#c084fc', true);
                     }
                     return;
                 }
@@ -5180,8 +5152,8 @@
                 }
 
                 const biome = BIOMES[this.currentBiomeIndex];
-                // ПОСЕКУНДНЫЙ РАСХОД ТОПЛИВА НА УРОВНЕ (не зависит от нажатий и бурения блоков!)
-                const layerTimeFuelDrain = (CONFIG.FUEL_DRAIN_PER_SEC + this.currentBiomeIndex * 0.25) * this.drill.getFuelConsumptionMultiplier();
+                // ПОСЕКУНДНЫЙ РАСХОД ТОПЛИВА НА УРОВНЕ (растет с каждым слоем для высокого напряжения!)
+                const layerTimeFuelDrain = (CONFIG.FUEL_DRAIN_PER_SEC + (this.currentLayerNumber - 1) * 0.30) * this.drill.getFuelConsumptionMultiplier();
                 this.drill.consumeFuel(layerTimeFuelDrain * dt, this);
                 if (biome.ambientHeatRate > 0) {
                     this.drill.addHeat(biome.ambientHeatRate * dt);
@@ -5376,7 +5348,7 @@
                 document.getElementById('hull-text').textContent = `${Math.ceil(this.drill.hull)}/${this.drill.maxHull}`;
                 document.getElementById('hull-bar').style.width = `${hullPct}%`;
 
-                const currentDrainPerSec = (CONFIG.FUEL_DRAIN_PER_SEC + this.currentBiomeIndex * 0.25) * this.drill.getFuelConsumptionMultiplier();
+                const currentDrainPerSec = (CONFIG.FUEL_DRAIN_PER_SEC + (this.currentLayerNumber - 1) * 0.30) * this.drill.getFuelConsumptionMultiplier();
                 const fuelRateEl = document.getElementById('fuel-rate-text');
                 if (fuelRateEl) {
                     if (this.drill.chronoBuffTimer > 0) {
@@ -5448,11 +5420,11 @@
                         synBar.className = 'flex items-center gap-1 bg-amber-950/70 px-2 py-1 rounded border border-amber-400/70';
                         synBar.innerHTML = `<span class="text-[9px] font-extrabold text-amber-300 uppercase">Синергии (${activeSynergies.length}):</span>`;
                         activeSynergies.forEach((syn) => {
-                            const pill = document.createElement('span');
-                            pill.className = 'text-[9px] font-extrabold bg-amber-500/25 text-yellow-200 px-1.5 py-0.5 rounded border border-amber-300/50 cursor-help';
-                            pill.textContent = syn.name;
-                            pill.title = syn.desc;
-                            synBar.appendChild(pill);
+                            const tag = document.createElement('span');
+                            tag.className = 'text-[9px] font-extrabold text-yellow-200 bg-amber-900/80 px-1.5 py-0.5 rounded border border-amber-400/40';
+                            tag.title = syn.desc;
+                            tag.textContent = syn.name;
+                            synBar.appendChild(tag);
                         });
                     } else {
                         synBar.className = 'hidden';
@@ -5460,20 +5432,32 @@
                 }
             }
 
-            // Взвешенный выбор модулей с учетом системы редкости (чем глубже слой, тем немного выше шанс редких находок)
+            // Взвешенный выбор модулей с учетом системы редкости:
+            // ИСКЛЮЧАЕТ модули, которые уже прокачаны на максимум (Ур. 3), чтобы в магазине и сундуках не попадались бесполезные дубликаты!
             pickWeightedModules(candidateIds, count = 2) {
-                const pool = [...new Set(candidateIds)];
+                const uniqueCandidates = [...new Set(candidateIds)].filter((id) => {
+                    if (!MODULES_CATALOG[id]) return false;
+                    // Никогда не предлагаем модуль, если он уже установлен на буре и имеет максимальный 3-й уровень!
+                    if (this.drill && this.drill.getModuleLevel(id) >= 3) return false;
+                    return true;
+                });
+
+                const pool = [...uniqueCandidates];
                 const selected = [];
-                const depthBonus = (this.currentLayerNumber - 1) * 0.25;
+                const depthBonus = (this.currentLayerNumber - 1) * 0.22;
 
                 while (selected.length < count && pool.length > 0) {
                     const weights = pool.map((id) => {
                         const spec = MODULES_CATALOG[id];
                         const r = RARITY_TIERS[spec ? spec.rarity : 'COMMON'] || RARITY_TIERS.COMMON;
                         let w = r.dropWeight;
-                        // На глубоких слоях шанс встретить Эпический или Легендарный модуль слегка растет
+                        // На глубоких слоях шанс встретить Эпический или Легендарный модуль растет
                         if (r.id === 'EPIC' || r.id === 'LEGENDARY') {
                             w *= (1 + depthBonus);
+                        }
+                        // Если все слоты бура уже заняты, повышаем вес уже установленных модулей Ур.1–2, чтобы игрок мог их прокачать
+                        if (this.drill && this.drill.modules.length >= this.drill.moduleSlots && this.drill.hasModule(id)) {
+                            w *= 2.2;
                         }
                         return { id, weight: w };
                     });
@@ -5939,8 +5923,8 @@
                     shopEl.appendChild(row);
                 });
 
-                // 3. Сервис и Лимитированная Модернизация Шасси (Ур. 0..4) с подсветкой доступности
-                const serviceCost = 15 + this.stationServiceCount * 5;
+                // 3. Сервис и Лимитированная Модернизация Шасси (Ур. 0..6) с подсветкой доступности
+                const serviceCost = 18 + this.stationServiceCount * 7;
                 document.getElementById('cost-refuel').textContent = `${serviceCost} Руды`;
                 document.getElementById('cost-repair').textContent = `${serviceCost} Руды`;
                 document.getElementById('btn-station-refuel').disabled = (this.drill.ore < serviceCost || this.drill.fuel >= this.drill.maxFuel);
@@ -5981,22 +5965,22 @@
             }
 
             stationBuyRefuel() {
-                const cost = 15 + this.stationServiceCount * 5;
+                const cost = 18 + this.stationServiceCount * 7;
                 if (this.drill.ore < cost) return;
                 this.drill.ore -= cost;
                 this.stationServiceCount++;
-                this.drill.addFuel(45);
+                this.drill.addFuel(40);
                 this.sound.playBlockBreak(true);
                 this.renderStationUI();
                 this.updateHUD();
             }
 
             stationBuyRepair() {
-                const cost = 15 + this.stationServiceCount * 5;
+                const cost = 18 + this.stationServiceCount * 7;
                 if (this.drill.ore < cost) return;
                 this.drill.ore -= cost;
                 this.stationServiceCount++;
-                this.drill.hull = Math.min(this.drill.maxHull, this.drill.hull + 45);
+                this.drill.hull = Math.min(this.drill.maxHull, this.drill.hull + 40);
                 this.sound.playBlockBreak(true);
                 this.renderStationUI();
                 this.updateHUD();
@@ -6303,7 +6287,7 @@
                 // 3. Выбор стартового слоя с иконками породы и индикацией доступности
                 const biomesList = document.getElementById('hub-biomes-list');
                 biomesList.innerHTML = '';
-                const biomeTexKeys = ['DIRT', 'ORE_QUARTZ', 'MAGMA_BASALT'];
+                const biomeTexKeys = ['DIRT', 'SPORE_ROCK', 'ORE_QUARTZ', 'ABYSS_STONE', 'MAGMA_BASALT', 'NEUTRONIUM'];
 
                 BIOMES.forEach((b, idx) => {
                     const isUnlocked = this.meta.state.unlockedBiomes.includes(b.index);
