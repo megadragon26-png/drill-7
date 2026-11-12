@@ -163,89 +163,121 @@
         .btn-purple:hover:not(:disabled) {
             background: linear-gradient(180deg, #8b5cf6 0%, #6d28d9 100%);
         }
+
+        /* Мобильная адаптация для маленьких экранов телефонов */
+        @media (max-width: 640px) {
+            .compact-modal {
+                max-width: 100%;
+                padding: 0.5rem !important;
+                border-width: 1.5px;
+            }
+
+            .interactive-card:hover {
+                transform: none;
+            }
+
+            .mobile-tab-hidden {
+                display: none !important;
+            }
+        }
+
+        .touch-pad-btn {
+            background: rgba(15, 23, 42, 0.72);
+            border: 2px solid rgba(56, 189, 248, 0.55);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.65);
+            touch-action: manipulation;
+        }
+
+        .touch-pad-btn:active {
+            background: rgba(234, 88, 12, 0.85);
+            border-color: #fde047;
+            transform: scale(0.95);
+        }
     </style>
 </head>
 <body class="relative w-full h-full flex flex-col select-none">
 
-    <!-- КОМПАКТНАЯ ВЕРХНЯЯ ПАНЕЛЬ HUD -->
-    <header class="w-full z-20 px-2.5 py-1.5 bg-[#0a0e18] border-b border-[#263252] flex flex-wrap items-center justify-between gap-2">
+    <!-- КОМПАКТНАЯ ВЕРХНЯЯ ПАНЕЛЬ HUD (УЛЬТРА-СЖАТАЯ НА ТЕЛЕФОНАХ) -->
+    <header class="w-full z-20 px-1.5 py-1 sm:px-2.5 sm:py-1.5 bg-[#0a0e18] border-b border-[#263252] flex flex-wrap items-center justify-between gap-1 sm:gap-2">
         <!-- Показатели выживания: Жизни, Топливо, Нагрев, Глубина -->
-        <div class="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+        <div class="flex items-center gap-1 sm:gap-2 flex-wrap">
             <!-- ЖИЗНИ -->
-            <div id="hud-hull-box" class="flex items-center gap-2 bg-[#131a2c] px-2.5 py-1 rounded border border-[#2c3a5e]">
-                <canvas id="hud-icon-hull" width="20" height="20" class="w-5 h-5 shrink-0"></canvas>
-                <div class="w-24 sm:w-28">
-                    <div class="flex justify-between items-baseline text-[10px] font-extrabold uppercase mb-0.5">
-                        <span class="text-rose-400">ЖИЗНИ</span>
+            <div id="hud-hull-box" class="flex items-center gap-1 sm:gap-2 bg-[#131a2c] px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded border border-[#2c3a5e]">
+                <canvas id="hud-icon-hull" width="20" height="20" class="w-3.5 h-3.5 sm:w-5 sm:h-5 shrink-0"></canvas>
+                <div class="w-14 sm:w-28">
+                    <div class="flex justify-between items-baseline text-[8px] sm:text-[10px] font-extrabold uppercase mb-0.5">
+                        <span class="text-rose-400 hidden sm:inline">ЖИЗНИ</span>
+                        <span class="text-rose-400 sm:hidden">HP</span>
                         <span id="hull-text" class="text-white">100/100</span>
                     </div>
-                    <div class="w-full h-2 bg-[#07090f] rounded overflow-hidden border border-slate-700">
+                    <div class="w-full h-1.5 sm:h-2 bg-[#07090f] rounded overflow-hidden border border-slate-700">
                         <div id="hull-bar" class="h-full bg-gradient-to-r from-red-600 to-emerald-400 transition-all duration-100" style="width: 100%;"></div>
                     </div>
                 </div>
             </div>
 
             <!-- ТОПЛИВО -->
-            <div id="hud-fuel-box" class="flex items-center gap-2 bg-[#131a2c] px-2.5 py-1 rounded border border-[#2c3a5e]" title="Топливо расходуется каждую секунду на уровне. Ищите Нефть, Уголь и Энергоблоки!">
-                <canvas id="hud-icon-fuel" width="20" height="20" class="w-5 h-5 shrink-0"></canvas>
-                <div class="w-28 sm:w-32">
-                    <div class="flex justify-between items-baseline text-[10px] font-extrabold uppercase mb-0.5">
-                        <span class="text-amber-400">ТОПЛ <span id="fuel-rate-text" class="text-[9px] text-amber-200/90 font-bold">(-2.0/с)</span></span>
+            <div id="hud-fuel-box" class="flex items-center gap-1 sm:gap-2 bg-[#131a2c] px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded border border-[#2c3a5e]" title="Топливо расходуется каждую секунду на уровне. Ищите Нефть, Уголь и Энергоблоки!">
+                <canvas id="hud-icon-fuel" width="20" height="20" class="w-3.5 h-3.5 sm:w-5 sm:h-5 shrink-0"></canvas>
+                <div class="w-16 sm:w-32">
+                    <div class="flex justify-between items-baseline text-[8px] sm:text-[10px] font-extrabold uppercase mb-0.5">
+                        <span class="text-amber-400">ТОПЛ <span id="fuel-rate-text" class="hidden sm:inline text-[9px] text-amber-200/90 font-bold">(-2.0/с)</span></span>
                         <span id="fuel-text" class="text-white">100/100</span>
                     </div>
-                    <div class="w-full h-2 bg-[#07090f] rounded overflow-hidden border border-slate-700">
+                    <div class="w-full h-1.5 sm:h-2 bg-[#07090f] rounded overflow-hidden border border-slate-700">
                         <div id="fuel-bar" class="h-full bg-gradient-to-r from-amber-600 to-yellow-300 transition-all duration-75" style="width: 100%;"></div>
                     </div>
                 </div>
             </div>
 
             <!-- НАГРЕВ -->
-            <div id="hud-heat-box" class="flex items-center gap-1.5 bg-[#131a2c] px-2 py-1 rounded border border-[#2c3a5e]" title="Выше 75% бур замедляется. Крио-Импульс или пауза охлаждают бур.">
-                <canvas id="hud-icon-heat" width="18" height="18" class="w-4 h-4 shrink-0"></canvas>
-                <div class="w-16 sm:w-20">
-                    <div class="flex justify-between items-baseline text-[10px] font-bold uppercase mb-0.5">
-                        <span class="text-orange-300">ЖАР</span>
+            <div id="hud-heat-box" class="flex items-center gap-1 sm:gap-1.5 bg-[#131a2c] px-1.5 py-0.5 sm:px-2 sm:py-1 rounded border border-[#2c3a5e]" title="Выше 75% бур замедляется. Крио-Импульс или пауза охлаждают бур.">
+                <canvas id="hud-icon-heat" width="18" height="18" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"></canvas>
+                <div class="w-10 sm:w-20">
+                    <div class="flex justify-between items-baseline text-[8px] sm:text-[10px] font-bold uppercase mb-0.5">
+                        <span class="text-orange-300 hidden sm:inline">ЖАР</span>
                         <span id="heat-text" class="text-white">0%</span>
                     </div>
-                    <div class="w-full h-2 bg-[#07090f] rounded overflow-hidden border border-slate-700">
+                    <div class="w-full h-1.5 sm:h-2 bg-[#07090f] rounded overflow-hidden border border-slate-700">
                         <div id="heat-bar" class="h-full bg-gradient-to-r from-sky-400 via-amber-400 to-red-600 transition-all duration-75" style="width: 0%;"></div>
                     </div>
                 </div>
             </div>
 
             <!-- СЛОЙ И ДИСТАНЦИЯ ДО СТАНЦИИ -->
-            <div class="bg-[#131a2c] px-2.5 py-1 rounded border border-[#2c3a5e] leading-tight">
-                <div id="biome-text" class="text-[10px] font-bold text-cyan-300">Слой 1: Земная Кора</div>
-                <div id="station-distance-text" class="text-[11px] font-extrabold text-white">До Станции: 40 м</div>
+            <div class="bg-[#131a2c] px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded border border-[#2c3a5e] leading-tight">
+                <div id="biome-text" class="text-[8px] sm:text-[10px] font-bold text-cyan-300 truncate max-w-[95px] sm:max-w-none">Слой 1: Земная Кора</div>
+                <div id="station-distance-text" class="text-[9px] sm:text-[11px] font-extrabold text-white">До Станции: 40 м</div>
             </div>
         </div>
 
         <!-- ПРАВЫЙ БЛОК: РУДА В ТРЮМЕ + ИНТЕРАКТИВНАЯ ПАНЕЛЬ МОДУЛЕЙ С ПЕРЕЗАРЯДКОЙ -->
-        <div class="flex items-center gap-2 flex-wrap">
+        <div class="flex items-center gap-1 sm:gap-2 flex-wrap">
             <!-- РУДА В ТРЮМЕ -->
-            <div class="flex items-center gap-1.5 bg-[#131a2c] px-2.5 py-1 rounded border border-amber-500/50" title="Добытая руда в кармане бура. Тратьте на станции или отправляйте в Банк!">
-                <canvas id="hud-icon-ore" width="18" height="18" class="w-4 h-4"></canvas>
-                <span class="text-[10px] font-bold text-slate-300 uppercase">Руда:</span>
-                <span id="cargo-ore-text" class="text-xs sm:text-sm font-extrabold text-amber-300">0</span>
+            <div class="flex items-center gap-1 bg-[#131a2c] px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded border border-amber-500/50" title="Добытая руда в кармане бура. Тратьте на станции или отправляйте в Банк!">
+                <canvas id="hud-icon-ore" width="18" height="18" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></canvas>
+                <span class="text-[9px] sm:text-[10px] font-bold text-slate-300 uppercase hidden sm:inline">Руда:</span>
+                <span id="cargo-ore-text" class="text-[11px] sm:text-sm font-extrabold text-amber-300">0</span>
             </div>
 
-            <!-- ЖИВАЯ ПАНЕЛЬ СЛОТОВ МОДУЛЕЙ (Ур. 1-3 + полоски перезарядки) -->
-            <div id="hud-modules-bar" class="flex items-center gap-1 bg-[#131a2c] px-2 py-1 rounded border border-[#2c3a5e]"></div>
+            <!-- ЖИВАЯ ПАНЕЛЬ СЛОТОВ МОДУЛЕЙ (На телефонах — компактные значки) -->
+            <div id="hud-modules-bar" class="flex items-center gap-1 bg-[#131a2c] px-1.5 py-0.5 sm:px-2 sm:py-1 rounded border border-[#2c3a5e]"></div>
 
             <!-- ИНДИКАТОР АКТИВНЫХ СИНЕРГИЙ -->
-            <div id="hud-synergies-bar" class="hidden items-center gap-1 bg-amber-950/60 px-2 py-1 rounded border border-amber-400/60"></div>
+            <div id="hud-synergies-bar" class="hidden sm:flex items-center gap-1 bg-amber-950/60 px-2 py-1 rounded border border-amber-400/60"></div>
 
-            <button id="btn-open-guide" class="btn-game px-2 py-1 rounded text-[11px] font-extrabold text-emerald-300 border-emerald-500/50 flex items-center gap-1" title="Открыть Кодекс Бурильщика (Гид по игре) [Клавиша H]">
+            <button id="btn-open-guide" class="btn-game px-1.5 py-0.5 sm:px-2 sm:py-1 rounded text-[10px] sm:text-[11px] font-extrabold text-emerald-300 border-emerald-500/50 flex items-center gap-1" title="Открыть Кодекс Бурильщика (Гид по игре) [Клавиша H]">
                 <canvas id="hud-icon-guide" width="14" height="14" class="w-3.5 h-3.5"></canvas>
-                <span>ГИД [H]</span>
+                <span class="hidden sm:inline">ГИД [H]</span>
             </button>
 
-            <button id="btn-pause-toggle" class="btn-game px-2 py-1 rounded text-[11px] font-extrabold text-cyan-300 border-cyan-500/40 flex items-center gap-1" title="Пауза [P или ESC]">
+            <button id="btn-pause-toggle" class="btn-game px-1.5 py-0.5 sm:px-2 sm:py-1 rounded text-[10px] sm:text-[11px] font-extrabold text-cyan-300 border-cyan-500/40 flex items-center gap-1" title="Пауза [P или ESC]">
                 <canvas id="hud-icon-pause" width="14" height="14" class="w-3.5 h-3.5"></canvas>
-                <span>ПАУЗА</span>
+                <span class="hidden sm:inline">ПАУЗА</span>
             </button>
 
-            <button id="btn-audio-toggle" class="btn-game px-2 py-1 rounded text-[11px] font-bold text-slate-200 flex items-center gap-1">
+            <button id="btn-audio-toggle" class="btn-game px-1.5 py-0.5 sm:px-2 sm:py-1 rounded text-[10px] sm:text-[11px] font-bold text-slate-200 flex items-center gap-1">
                 <canvas id="hud-icon-audio" width="14" height="14" class="w-3.5 h-3.5"></canvas>
                 <span id="audio-status-label" class="hidden sm:inline">ЗВУК</span>
             </button>
@@ -254,41 +286,46 @@
 
     <!-- ИГРОВОЕ ПОЛЕ (min-h-0 предотвращает наезд на шапку и подвал) -->
     <main class="relative flex-1 min-h-0 w-full overflow-hidden flex items-center justify-center bg-[#0d1526]">
-        <canvas id="game-canvas" class="block w-full h-full"></canvas>
+        <canvas id="game-canvas" class="block w-full h-full touch-none"></canvas>
 
         <!-- КОМПАКТНЫЙ БАННЕР ПРИ ПОЛУЧЕНИИ УРОНА -->
-        <div id="damage-alert-banner" class="hidden pointer-events-none absolute top-2.5 left-1/2 -translate-x-1/2 z-30 w-[92%] max-w-md px-3 py-1.5 rounded-md bg-red-950/95 border border-red-400 shadow-xl text-center">
-            <div id="damage-alert-title" class="text-xs font-extrabold text-red-200 uppercase"></div>
-            <div id="damage-alert-subtitle" class="text-[11px] text-red-100"></div>
+        <div id="damage-alert-banner" class="hidden pointer-events-none absolute top-1.5 sm:top-2.5 left-1/2 -translate-x-1/2 z-30 w-[94%] max-w-md px-2.5 py-1 rounded-md bg-red-950/95 border border-red-400 shadow-xl text-center">
+            <div id="damage-alert-title" class="text-[10px] sm:text-xs font-extrabold text-red-200 uppercase"></div>
+            <div id="damage-alert-subtitle" class="text-[9px] sm:text-[11px] text-red-100"></div>
         </div>
 
         <!-- ТЕКТОНИЧЕСКАЯ ТРЕВОГА (ДИНАМИЧЕСКИЕ КАТАСТРОФЫ) -->
-        <div id="tectonic-warning-banner" class="hidden pointer-events-none absolute top-14 left-1/2 -translate-x-1/2 z-30 w-[92%] max-w-lg px-3.5 py-1.5 rounded-md bg-amber-950/95 border-2 border-amber-400 shadow-2xl text-center animate-pulse">
-            <div id="tectonic-warning-title" class="text-xs font-black text-amber-300 uppercase tracking-wider"></div>
-            <div id="tectonic-warning-desc" class="text-[11px] font-bold text-amber-100"></div>
+        <div id="tectonic-warning-banner" class="hidden pointer-events-none absolute top-10 sm:top-14 left-1/2 -translate-x-1/2 z-30 w-[94%] max-w-lg px-2.5 py-1 rounded-md bg-amber-950/95 border border-amber-400 shadow-2xl text-center animate-pulse">
+            <div id="tectonic-warning-title" class="text-[10px] sm:text-xs font-black text-amber-300 uppercase tracking-wider"></div>
+            <div id="tectonic-warning-desc" class="text-[9px] sm:text-[11px] font-bold text-amber-100"></div>
         </div>
 
         <!-- ПОЗИТИВНОЕ СОБЫТИЕ НЕДР (БЛАГОДАТНАЯ АНОМАЛИЯ) -->
-        <div id="positive-event-banner" class="hidden pointer-events-none absolute top-14 left-1/2 -translate-x-1/2 z-30 w-[92%] max-w-lg px-3.5 py-1.5 rounded-md bg-emerald-950/95 border-2 border-emerald-400 shadow-2xl text-center">
-            <div id="positive-event-title" class="text-xs font-black text-emerald-300 uppercase tracking-wider"></div>
-            <div id="positive-event-desc" class="text-[11px] font-bold text-emerald-100"></div>
+        <div id="positive-event-banner" class="hidden pointer-events-none absolute top-10 sm:top-14 left-1/2 -translate-x-1/2 z-30 w-[94%] max-w-lg px-2.5 py-1 rounded-md bg-emerald-950/95 border border-emerald-400 shadow-2xl text-center">
+            <div id="positive-event-title" class="text-[10px] sm:text-xs font-black text-emerald-300 uppercase tracking-wider"></div>
+            <div id="positive-event-desc" class="text-[9px] sm:text-[11px] font-bold text-emerald-100"></div>
         </div>
 
         <!-- БАННЕР ПЕРЕГРЕВА -->
-        <div id="overheat-banner" class="hidden pointer-events-none absolute top-28 left-1/2 -translate-x-1/2 z-20 px-3 py-1 rounded bg-orange-950/95 border border-orange-400 shadow text-center">
-            <div class="text-[11px] font-extrabold text-orange-200">ПЕРЕГРЕВ (>75%)! Отпустите кнопки на 1.5 сек для охлаждения</div>
+        <div id="overheat-banner" class="hidden pointer-events-none absolute top-20 sm:top-28 left-1/2 -translate-x-1/2 z-20 px-2.5 py-0.5 rounded bg-orange-950/95 border border-orange-400 shadow text-center">
+            <div class="text-[9px] sm:text-[11px] font-extrabold text-orange-200">ПЕРЕГРЕВ (>75%)! Пауза 1.5с охладит бур</div>
         </div>
 
         <!-- РАДАР СТАНЦИИ И ЗОНЫ ВЫСОКОГО ДАВЛЕНИЯ -->
-        <div id="station-proximity-banner" class="hidden pointer-events-none absolute bottom-12 left-1/2 -translate-x-1/2 z-20 px-4 py-1.5 rounded-lg bg-cyan-950/95 border-2 border-cyan-400 shadow-2xl text-center">
-            <div id="station-proximity-text" class="text-xs font-extrabold text-cyan-200 animate-pulse">ВНИЗУ ГЕРМОШЛЮЗ СТАНЦИИ — ЗАЕЗЖАЙТЕ В СВЕТЯЩИЕСЯ ВОРОТА!</div>
+        <div id="station-proximity-banner" class="hidden pointer-events-none absolute bottom-16 sm:bottom-12 left-1/2 -translate-x-1/2 z-20 w-[92%] max-w-md px-2.5 py-1 rounded-lg bg-cyan-950/95 border border-cyan-400 shadow-2xl text-center">
+            <div id="station-proximity-text" class="text-[10px] sm:text-xs font-extrabold text-cyan-200 animate-pulse">ВНИЗУ ШЛЮЗ СТАНЦИИ — ЗАЕЗЖАЙТЕ В ВОРОТА!</div>
         </div>
 
-        <!-- МОБИЛЬНОЕ СЕНСОРНОЕ УПРАВЛЕНИЕ -->
-        <div class="sm:hidden absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
-            <button id="touch-left" class="btn-game w-14 h-12 rounded-xl font-extrabold text-lg text-white">◄</button>
-            <button id="touch-down" class="btn-amber w-16 h-12 rounded-xl font-extrabold text-lg text-white">▼</button>
-            <button id="touch-right" class="btn-game w-14 h-12 rounded-xl font-extrabold text-lg text-white">►</button>
+        <!-- УДОБНОЕ МОБИЛЬНОЕ УПРАВЛЕНИЕ ПОД ДВЕ РУКИ + ТАП ПО ЭКРАНУ -->
+        <div class="sm:hidden pointer-events-none absolute bottom-2.5 inset-x-3 z-20 flex items-end justify-between">
+            <div class="flex items-center gap-2 pointer-events-auto">
+                <button id="touch-left" class="touch-pad-btn w-14 h-14 rounded-2xl font-black text-xl text-white flex items-center justify-center active:scale-95">◄</button>
+                <button id="touch-right" class="touch-pad-btn w-14 h-14 rounded-2xl font-black text-xl text-white flex items-center justify-center active:scale-95">►</button>
+            </div>
+            <button id="touch-down" class="touch-pad-btn pointer-events-auto w-20 h-14 rounded-2xl font-extrabold text-xs text-amber-300 border-amber-400/80 flex flex-col items-center justify-center leading-none active:scale-95">
+                <span class="text-lg">▼</span>
+                <span class="text-[9px] mt-0.5">БУРИТЬ</span>
+            </button>
         </div>
 
         <!-- ========================================================================= -->
@@ -359,31 +396,38 @@
         <!-- ========================================================================= -->
         <!-- МОДАЛКА 2: ПОДЗЕМНАЯ СТАНЦИЯ МЕЖДУ СЛОЯМИ                                 -->
         <!-- ========================================================================= -->
-        <div id="modal-station" class="hidden absolute inset-0 z-40 bg-black/90 backdrop-blur-md flex overflow-y-auto p-2 sm:p-3">
-            <div class="compact-modal rounded-xl p-3 sm:p-3.5 border-2 border-cyan-500">
+        <div id="modal-station" class="hidden absolute inset-0 z-40 bg-black/90 backdrop-blur-md flex overflow-y-auto p-1.5 sm:p-3">
+            <div class="compact-modal rounded-xl p-2.5 sm:p-3.5 border-2 border-cyan-500">
                 <!-- Шапка станции -->
-                <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-700">
-                    <div class="flex items-center gap-2">
-                        <canvas id="station-header-icon" width="28" height="28" class="w-7 h-7 rounded bg-[#080c14] p-0.5 border border-cyan-400/60"></canvas>
+                <div class="flex flex-wrap items-center justify-between gap-1.5 pb-1.5 sm:pb-2 border-b border-slate-700">
+                    <div class="flex items-center gap-1.5 sm:gap-2">
+                        <canvas id="station-header-icon" width="28" height="28" class="w-6 h-6 sm:w-7 sm:h-7 rounded bg-[#080c14] p-0.5 border border-cyan-400/60"></canvas>
                         <div>
-                            <div id="next-biome-preview" class="text-[9px] font-bold uppercase text-cyan-300">Следующий слой: Слой 2</div>
-                            <h2 id="station-title" class="text-sm sm:text-base font-extrabold text-white leading-tight">ПОДЗЕМНАЯ СТАНЦИЯ #1</h2>
+                            <div id="next-biome-preview" class="text-[8px] sm:text-[9px] font-bold uppercase text-cyan-300">Следующий слой: Слой 2</div>
+                            <h2 id="station-title" class="text-xs sm:text-base font-extrabold text-white leading-tight">ПОДЗЕМНАЯ СТАНЦИЯ #1</h2>
                         </div>
                     </div>
-                    <div class="flex items-center gap-2 text-xs">
-                        <div class="bg-[#090d16] px-2.5 py-1 rounded border border-amber-500/60">
-                            <span class="text-[9px] text-slate-400 uppercase font-bold">В трюме:</span>
-                            <span id="station-cargo-ore" class="font-extrabold text-amber-300 ml-1">0 Руды</span>
+                    <div class="flex items-center gap-1.5 text-[10px] sm:text-xs">
+                        <div class="bg-[#090d16] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded border border-amber-500/60">
+                            <span class="text-[8px] sm:text-[9px] text-slate-400 uppercase font-bold">Трюм:</span>
+                            <span id="station-cargo-ore" class="font-extrabold text-amber-300 ml-0.5">0</span>
                         </div>
-                        <div class="bg-[#090d16] px-2.5 py-1 rounded border border-emerald-500/60">
-                            <span class="text-[9px] text-slate-400 uppercase font-bold">В Банке:</span>
-                            <span id="station-bank-ore" class="font-extrabold text-emerald-300 ml-1">0 Руды</span>
+                        <div class="bg-[#090d16] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded border border-emerald-500/60">
+                            <span class="text-[8px] sm:text-[9px] text-slate-400 uppercase font-bold">Банк:</span>
+                            <span id="station-bank-ore" class="font-extrabold text-emerald-300 ml-0.5">0</span>
                         </div>
                     </div>
                 </div>
 
+                <!-- Мобильные вкладки станции (видны только на телефонах, чтобы не скроллить гигантское меню) -->
+                <div class="sm:hidden grid grid-cols-3 gap-1 my-1.5">
+                    <button id="st-mob-tab-mods" class="btn-cyan py-1 px-1.5 rounded text-[9px] font-extrabold uppercase">1. Модули</button>
+                    <button id="st-mob-tab-serv" class="btn-game py-1 px-1.5 rounded text-[9px] font-extrabold uppercase text-slate-300">2. Шасси/Бак</button>
+                    <button id="st-mob-tab-route" class="btn-game py-1 px-1.5 rounded text-[9px] font-extrabold uppercase text-slate-300">3. Маршрут</button>
+                </div>
+
                 <!-- Блок 1: Установленные модули бура (прокачка Ур.1->3 или продажа) -->
-                <div class="my-2 bg-[#090d16] p-2 rounded-lg border border-slate-800">
+                <div id="st-sec-installed" class="my-1.5 sm:my-2 bg-[#090d16] p-2 rounded-lg border border-slate-800">
                     <div class="flex items-center justify-between gap-2 mb-1.5">
                         <div class="flex items-center gap-2">
                             <span class="text-[10px] font-extrabold uppercase text-cyan-300">Установленные Модули Бура</span>
@@ -398,9 +442,9 @@
                 </div>
 
                 <!-- Блок 2: Две колонки — Магазин Модулей слева и Сервис/Шасси/Банк справа -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 my-2">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 my-1.5 sm:my-2">
                     <!-- Левая колонка: Витрина модулей станции -->
-                    <div class="bg-[#090d16] p-2 rounded-lg border border-slate-800 flex flex-col justify-between">
+                    <div id="st-sec-shop" class="bg-[#090d16] p-2 rounded-lg border border-slate-800 flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-1.5">
                                 <span class="text-[10px] font-extrabold uppercase text-amber-300">Магазин Модулей</span>
@@ -413,7 +457,7 @@
                     </div>
 
                     <!-- Правая колонка: Заправка, Ремонт, Модернизация Шасси и Отправка в Банк -->
-                    <div class="space-y-2">
+                    <div id="st-sec-service" class="space-y-1.5 sm:space-y-2 mobile-tab-hidden">
                         <!-- Быстрый сервис: Заправка и Ремонт -->
                         <div class="bg-[#090d16] p-2 rounded-lg border border-slate-800">
                             <div class="text-[10px] font-extrabold uppercase text-emerald-300 mb-1">Ремонт и Заправка (+40 ед.)</div>
@@ -489,17 +533,17 @@
                 </div>
 
                 <!-- Блок 3: ВЫБОР АЛЬТЕРНАТИВНОГО МАРШРУТА НА СЛЕДУЮЩИЙ СЛОЙ -->
-                <div class="my-2 bg-[#090d16] p-2 rounded-lg border border-amber-500/50">
+                <div id="st-sec-route" class="my-1.5 sm:my-2 bg-[#090d16] p-2 rounded-lg border border-amber-500/50 mobile-tab-hidden">
                     <div class="flex items-center justify-between mb-1">
-                        <span class="text-[10px] font-extrabold uppercase text-amber-300">Развилка Недр: Выберите маршрут на следующий слой</span>
-                        <span id="station-route-hint" class="text-[9px] font-bold text-cyan-300">У каждого маршрута свои опасности и ресурсы</span>
+                        <span class="text-[10px] font-extrabold uppercase text-amber-300">Развилка Недр: Маршрут дальше</span>
+                        <span id="station-route-hint" class="hidden sm:inline text-[9px] font-bold text-cyan-300">У каждого маршрута свои опасности и ресурсы</span>
                     </div>
-                    <div id="station-route-choices" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
+                    <div id="station-route-choices" class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2"></div>
                 </div>
 
                 <!-- Кнопка перехода на следующий слой -->
-                <div class="pt-2 border-t border-slate-700">
-                    <button id="btn-station-descend" class="btn-amber w-full py-2 px-4 rounded-lg text-xs font-extrabold uppercase tracking-wider">
+                <div class="pt-1.5 sm:pt-2 border-t border-slate-700">
+                    <button id="btn-station-descend" class="btn-amber w-full py-2 px-3 rounded-lg text-[11px] sm:text-xs font-extrabold uppercase tracking-wider">
                         ПРОДОЛЖИТЬ БУРЕНИЕ НА ВЫБРАННЫЙ СЛОЙ ▼
                     </button>
                 </div>
@@ -621,31 +665,37 @@
         <!-- ========================================================================= -->
         <!-- МОДАЛКА 4: КОМПАКТНЫЙ ГЛАВНЫЙ АНГАР (НЕ НАЕЗЖАЕТ НА ШАПКУ И ПОДВАЛ)        -->
         <!-- ========================================================================= -->
-        <div id="modal-hub" class="hidden absolute inset-0 z-40 bg-black/90 backdrop-blur-md flex overflow-y-auto p-2 sm:p-3">
-            <div class="compact-modal rounded-xl p-3 sm:p-3.5 border-2 border-amber-500">
+        <div id="modal-hub" class="hidden absolute inset-0 z-40 bg-black/90 backdrop-blur-md flex overflow-y-auto p-1.5 sm:p-3">
+            <div class="compact-modal rounded-xl p-2.5 sm:p-3.5 border-2 border-amber-500">
                 <!-- Шапка Ангара -->
-                <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-700">
-                    <div class="flex items-center gap-2">
-                        <canvas id="hub-header-icon" width="28" height="28" class="w-7 h-7 rounded bg-[#080c14] p-0.5 border border-amber-400/60"></canvas>
+                <div class="flex flex-wrap items-center justify-between gap-1.5 pb-1.5 sm:pb-2 border-b border-slate-700">
+                    <div class="flex items-center gap-1.5 sm:gap-2">
+                        <canvas id="hub-header-icon" width="28" height="28" class="w-6 h-6 sm:w-7 sm:h-7 rounded bg-[#080c14] p-0.5 border border-amber-400/60"></canvas>
                         <div>
-                            <div class="text-[9px] font-bold uppercase text-amber-400">Центр Метапрогрессии и Модернизации</div>
-                            <h1 class="text-sm sm:text-base font-extrabold text-white leading-tight">АНГАР «БУР-7»</h1>
+                            <div class="text-[8px] sm:text-[9px] font-bold uppercase text-amber-400">Метапрогрессия</div>
+                            <h1 class="text-xs sm:text-base font-extrabold text-white leading-tight">АНГАР «БУР-7»</h1>
                         </div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <div id="hub-affordable-counter" class="hidden text-[10px] font-extrabold bg-amber-500/20 text-amber-300 border border-amber-400 px-2 py-1 rounded badge-ready">
-                            Доступны улучшения!
+                    <div class="flex items-center gap-1.5">
+                        <div id="hub-affordable-counter" class="hidden text-[9px] sm:text-[10px] font-extrabold bg-amber-500/20 text-amber-300 border border-amber-400 px-1.5 py-0.5 rounded badge-ready">
+                            Доступно!
                         </div>
-                        <div class="bg-[#080b12] px-2.5 py-1 rounded-lg border border-emerald-500/70 flex items-center gap-1.5">
-                            <canvas id="hub-bank-icon" width="16" height="16" class="w-4 h-4"></canvas>
-                            <span class="text-[10px] uppercase text-emerald-300 font-bold">Банк:</span>
+                        <div class="bg-[#080b12] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg border border-emerald-500/70 flex items-center gap-1">
+                            <canvas id="hub-bank-icon" width="16" height="16" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></canvas>
+                            <span class="text-[9px] sm:text-[10px] uppercase text-emerald-300 font-bold">Банк:</span>
                             <span id="hub-bank-resources" class="text-xs sm:text-sm font-extrabold text-amber-300">0 Руды</span>
                         </div>
                     </div>
                 </div>
 
+                <!-- Мобильные вкладки Ангара (только на телефонах) -->
+                <div class="sm:hidden grid grid-cols-2 gap-1 my-1.5">
+                    <button id="hub-mob-tab-mods" class="btn-amber py-1 px-2 rounded text-[9px] font-extrabold uppercase">1. Слоты и Модули</button>
+                    <button id="hub-mob-tab-proj" class="btn-game py-1 px-2 rounded text-[9px] font-extrabold uppercase text-slate-300">2. Проекты Недр</button>
+                </div>
+
                 <!-- Верхний ряд: Слоты бура + Выбор Стартового Слоя + Правила -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 my-2">
+                <div id="hub-sec-top" class="grid grid-cols-1 sm:grid-cols-3 gap-1.5 sm:gap-2 my-1.5 sm:my-2">
                     <!-- 1. Стартовые слоты (интерактивная карточка с иконкой и статусом) -->
                     <div id="hub-slot-card" class="interactive-card bg-[#090d16] p-2 rounded-lg border border-cyan-600/50 flex flex-col justify-between">
                         <div>
@@ -664,7 +714,7 @@
                     </div>
 
                     <!-- 2. Информация о разветвленной кампании (старт всегда с 1-го слоя) -->
-                    <div class="bg-[#090d16] p-2 rounded-lg border border-amber-500/40 flex flex-col justify-between">
+                    <div class="hidden sm:flex bg-[#090d16] p-2 rounded-lg border border-amber-500/40 flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-between mb-0.5">
                                 <span class="text-[10px] font-extrabold text-amber-300 uppercase">Маршрут Экспедиции</span>
@@ -681,37 +731,39 @@
                     </div>
 
                     <!-- 3. Памятка по редкости и постройкам -->
-                    <div class="bg-[#090d16] p-2 rounded-lg border border-slate-700/80 text-[10px] text-slate-300 flex flex-col justify-between leading-snug">
+                    <div class="hidden sm:flex bg-[#090d16] p-2 rounded-lg border border-slate-700/80 text-[10px] text-slate-300 flex-col justify-between leading-snug">
                         <div class="font-extrabold text-emerald-300 uppercase mb-0.5">Сундуки и Постройки</div>
                         <div>Ищите в недрах <strong>Бункеры</strong>, <strong>Жеоды</strong> и <strong>Древние Руины</strong> с капсулами модулей (от Обычных до Легендарных)!</div>
                     </div>
                 </div>
 
                 <!-- Отчет о прошлом забеге -->
-                <div id="hub-run-report" class="hidden mb-2 px-2.5 py-1.5 rounded bg-amber-950/60 border border-amber-500/60 text-[11px] font-bold text-amber-200"></div>
+                <div id="hub-run-report" class="hidden mb-1.5 px-2 py-1 rounded bg-amber-950/60 border border-amber-500/60 text-[10px] font-bold text-amber-200"></div>
 
                 <!-- НОВЫЙ РАЗДЕЛ МЕТАПРОГРЕССИИ: ДОРОГИЕ ПРОЕКТЫ ЭКСПЕДИЦИИ (ПОСТРОЙКИ, ПОЗИТИВНЫЕ СОБЫТИЯ, РЕЛИКВИИ) -->
-                <div class="mb-2">
+                <div id="hub-sec-projects" class="mb-2 mobile-tab-hidden">
                     <div class="flex items-center justify-between mb-1">
-                        <span class="text-[10px] font-extrabold uppercase text-emerald-300">Глобальные Проекты Недр (новые постройки, позитивные события и артефакты):</span>
+                        <span class="text-[10px] font-extrabold uppercase text-emerald-300">Глобальные Проекты Недр:</span>
                         <span id="hub-projects-count" class="text-[10px] font-extrabold text-emerald-300">0/6 открыто</span>
                     </div>
-                    <div id="hub-projects-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-1.5 max-h-40 overflow-y-auto pr-1"></div>
+                    <div id="hub-projects-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-1.5 max-h-48 sm:max-h-40 overflow-y-auto pr-1"></div>
                 </div>
 
                 <!-- Сетка чертежей модулей -->
-                <div class="flex items-center justify-between mb-1">
-                    <span class="text-[10px] font-extrabold uppercase text-amber-300">Чертежи Модулей (открываются навсегда в пул сундуков и станций):</span>
-                    <span id="hub-unlocked-count" class="text-[10px] font-extrabold text-cyan-300">5/15 открыто</span>
+                <div id="hub-sec-unlocks">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-[10px] font-extrabold uppercase text-amber-300">Чертежи Модулей (в пул сундуков и станций):</span>
+                        <span id="hub-unlocked-count" class="text-[10px] font-extrabold text-cyan-300">5/15 открыто</span>
+                    </div>
+                    <div id="hub-unlocks-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-1.5 max-h-48 sm:max-h-44 overflow-y-auto pr-1"></div>
                 </div>
-                <div id="hub-unlocks-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-1.5 max-h-44 overflow-y-auto pr-1"></div>
 
                 <!-- Кнопка старта -->
-                <div class="mt-2.5 pt-2 border-t border-slate-700 flex flex-wrap items-center justify-between gap-2">
-                    <button id="btn-hub-guide" class="btn-game py-2 px-4 rounded-lg text-xs font-extrabold text-emerald-300 border-emerald-500/50">
-                        СПРАВОЧНИК: РУДЫ, МЕХАНИКИ И МОДУЛИ [H]
+                <div class="mt-2 pt-2 border-t border-slate-700 flex items-center justify-between gap-2">
+                    <button id="btn-hub-guide" class="btn-game py-2 px-3 rounded-lg text-[10px] sm:text-xs font-extrabold text-emerald-300 border-emerald-500/50 shrink-0">
+                        ГИД [H]
                     </button>
-                    <button id="btn-start-run" class="btn-amber w-full sm:w-auto py-2 px-6 rounded-lg text-xs font-extrabold uppercase tracking-wider">
+                    <button id="btn-start-run" class="btn-amber flex-1 sm:flex-none py-2 px-4 sm:px-6 rounded-lg text-xs font-extrabold uppercase tracking-wider">
                         НАЧАТЬ СПУСК В НЕДРА
                     </button>
                 </div>
@@ -3883,6 +3935,91 @@
                 bindTouch('touch-right', 'right');
                 bindTouch('touch-down', 'down');
 
+                // Удобное управление касанием прямо по игровому полю (удержание пальца слева/справа/снизу)
+                const handleCanvasTouch = (ev) => {
+                    if (this.state !== 'PLAYING') return;
+                    if (!ev.touches || ev.touches.length === 0) {
+                        this.keys.left = false;
+                        this.keys.right = false;
+                        this.keys.down = false;
+                        return;
+                    }
+                    ev.preventDefault();
+                    const rect = this.canvas.getBoundingClientRect();
+                    const touch = ev.touches[0];
+                    const relX = (touch.clientX - rect.left) / Math.max(1, rect.width);
+                    const relY = (touch.clientY - rect.top) / Math.max(1, rect.height);
+
+                    this.keys.left = false;
+                    this.keys.right = false;
+                    this.keys.down = false;
+
+                    if (relY > 0.62 && relX >= 0.30 && relX <= 0.70) {
+                        this.keys.down = true;
+                    } else if (relX < 0.36) {
+                        this.keys.left = true;
+                    } else if (relX > 0.64) {
+                        this.keys.right = true;
+                    } else {
+                        this.keys.down = true;
+                    }
+                };
+                this.canvas.addEventListener('touchstart', handleCanvasTouch, { passive: false });
+                this.canvas.addEventListener('touchmove', handleCanvasTouch, { passive: false });
+                this.canvas.addEventListener('touchend', () => {
+                    this.keys.left = false;
+                    this.keys.right = false;
+                    this.keys.down = false;
+                });
+                this.canvas.addEventListener('touchcancel', () => {
+                    this.keys.left = false;
+                    this.keys.right = false;
+                    this.keys.down = false;
+                });
+
+                // Мобильные вкладки Подземной Станции
+                const setStationMobTab = (tab) => {
+                    const secInst = document.getElementById('st-sec-installed');
+                    const secShop = document.getElementById('st-sec-shop');
+                    const secServ = document.getElementById('st-sec-service');
+                    const secRoute = document.getElementById('st-sec-route');
+                    const btnMods = document.getElementById('st-mob-tab-mods');
+                    const btnServ = document.getElementById('st-mob-tab-serv');
+                    const btnRoute = document.getElementById('st-mob-tab-route');
+                    if (!secInst || !btnMods) return;
+
+                    secInst.classList.toggle('mobile-tab-hidden', tab !== 'mods');
+                    secShop.classList.toggle('mobile-tab-hidden', tab !== 'mods');
+                    secServ.classList.toggle('mobile-tab-hidden', tab !== 'serv');
+                    secRoute.classList.toggle('mobile-tab-hidden', tab !== 'route');
+
+                    btnMods.className = tab === 'mods' ? 'btn-cyan py-1 px-1.5 rounded text-[9px] font-extrabold uppercase' : 'btn-game py-1 px-1.5 rounded text-[9px] font-extrabold uppercase text-slate-300';
+                    btnServ.className = tab === 'serv' ? 'btn-cyan py-1 px-1.5 rounded text-[9px] font-extrabold uppercase' : 'btn-game py-1 px-1.5 rounded text-[9px] font-extrabold uppercase text-slate-300';
+                    btnRoute.className = tab === 'route' ? 'btn-amber py-1 px-1.5 rounded text-[9px] font-extrabold uppercase' : 'btn-game py-1 px-1.5 rounded text-[9px] font-extrabold uppercase text-slate-300';
+                };
+                document.getElementById('st-mob-tab-mods').addEventListener('click', () => setStationMobTab('mods'));
+                document.getElementById('st-mob-tab-serv').addEventListener('click', () => setStationMobTab('serv'));
+                document.getElementById('st-mob-tab-route').addEventListener('click', () => setStationMobTab('route'));
+
+                // Мобильные вкладки Ангара
+                const setHubMobTab = (tab) => {
+                    const secTop = document.getElementById('hub-sec-top');
+                    const secUnlocks = document.getElementById('hub-sec-unlocks');
+                    const secProj = document.getElementById('hub-sec-projects');
+                    const btnMods = document.getElementById('hub-mob-tab-mods');
+                    const btnProj = document.getElementById('hub-mob-tab-proj');
+                    if (!secTop || !btnMods) return;
+
+                    secTop.classList.toggle('mobile-tab-hidden', tab !== 'mods');
+                    secUnlocks.classList.toggle('mobile-tab-hidden', tab !== 'mods');
+                    secProj.classList.toggle('mobile-tab-hidden', tab !== 'proj');
+
+                    btnMods.className = tab === 'mods' ? 'btn-amber py-1 px-2 rounded text-[9px] font-extrabold uppercase' : 'btn-game py-1 px-2 rounded text-[9px] font-extrabold uppercase text-slate-300';
+                    btnProj.className = tab === 'proj' ? 'btn-emerald py-1 px-2 rounded text-[9px] font-extrabold uppercase' : 'btn-game py-1 px-2 rounded text-[9px] font-extrabold uppercase text-slate-300';
+                };
+                document.getElementById('hub-mob-tab-mods').addEventListener('click', () => setHubMobTab('mods'));
+                document.getElementById('hub-mob-tab-proj').addEventListener('click', () => setHubMobTab('proj'));
+
                 // Кнопки открытия и переключения вкладок Внутриигрового Гида
                 document.getElementById('btn-open-guide').addEventListener('click', () => this.toggleGuide());
                 document.getElementById('btn-guide-close').addEventListener('click', () => this.closeGuide());
@@ -5592,9 +5729,11 @@
                     if (this.floatingTexts[i].life <= 0) this.floatingTexts.splice(i, 1);
                 }
 
-                // Плавное следование камеры за буром по вертикали
-                const targetCamY = this.drill.visualY * CONFIG.TILE_SIZE - this.canvas.height * 0.36;
-                const maxCamY = Math.max(0, CONFIG.LAYER_ROWS * CONFIG.TILE_SIZE - this.canvas.height);
+                // Плавное следование камеры за буром по вертикали (с учетом мобильного масштаба viewScale)
+                const viewScale = Math.min(1, this.canvas.width / (CONFIG.GRID_COLS * CONFIG.TILE_SIZE));
+                const virtualViewH = this.canvas.height / viewScale;
+                const targetCamY = this.drill.visualY * CONFIG.TILE_SIZE - virtualViewH * 0.36;
+                const maxCamY = Math.max(0, CONFIG.LAYER_ROWS * CONFIG.TILE_SIZE - virtualViewH);
                 const clampedCamY = Math.max(0, Math.min(maxCamY, targetCamY));
                 this.cameraY += (clampedCamY - this.cameraY) * Math.min(1, dt * 10);
 
@@ -5640,7 +5779,7 @@
                 document.getElementById('station-distance-text').textContent = `До Станции: ${distToStation} м`;
                 document.getElementById('cargo-ore-text').textContent = `${this.drill.ore}`;
 
-                // Живая панель слотов модулей с иконками, редкостью, уровнем и индикатором перезарядки
+                // Живая панель слотов модулей (на мобильных — компактные значки без длинных подписей)
                 const modBar = document.getElementById('hud-modules-bar');
                 modBar.innerHTML = '';
                 for (let i = 0; i < this.drill.moduleSlots; i++) {
@@ -5658,15 +5797,15 @@
                                 cdPct = Math.round(((maxCd - modObj.timer) / maxCd) * 100);
                             }
                         }
-                        item.className = 'w-24 bg-[#080b12] px-1.5 py-0.5 rounded border border-cyan-500/50 flex items-center gap-1';
+                        item.className = 'w-8 sm:w-24 bg-[#080b12] px-1 py-0.5 sm:px-1.5 rounded border border-cyan-500/50 flex items-center gap-1';
                         item.title = `[${rarityInfo.name}] ${spec.name} (Ур.${modObj.level}): ${spec.descByLvl[modObj.level - 1]}`;
-                        const iconEl = this.art.createIconCanvasElement(this.art.moduleIcons[modObj.id], 16, 'w-4 h-4 border-0');
+                        const iconEl = this.art.createIconCanvasElement(this.art.moduleIcons[modObj.id], 16, 'w-3.5 h-3.5 sm:w-4 sm:h-4 border-0');
                         const rightCol = document.createElement('div');
                         rightCol.className = 'flex-1 min-w-0';
                         rightCol.innerHTML = `
-                            <div class="flex justify-between items-center text-[8px] font-extrabold">
-                                <span class="${rarityInfo.textColor} truncate">${spec.shortName}</span>
-                                <span class="text-cyan-300">У${modObj.level}</span>
+                            <div class="flex justify-between items-center text-[7px] sm:text-[8px] font-extrabold">
+                                <span class="${rarityInfo.textColor} truncate hidden sm:inline">${spec.shortName}</span>
+                                <span class="text-cyan-300">${modObj.level}</span>
                             </div>
                             <div class="w-full h-1 bg-slate-800 rounded overflow-hidden mt-0.5">
                                 <div class="h-full bg-cyan-400" style="width:${Math.max(0, Math.min(100, cdPct))}%"></div>
@@ -5675,8 +5814,8 @@
                         item.appendChild(iconEl);
                         item.appendChild(rightCol);
                     } else {
-                        item.className = 'w-14 bg-[#080b12] px-1.5 py-1 rounded border border-slate-800 text-center text-[9px] font-bold text-slate-500';
-                        item.textContent = 'ПУСТО';
+                        item.className = 'w-5 sm:w-14 bg-[#080b12] px-1 py-0.5 sm:px-1.5 sm:py-1 rounded border border-slate-800 text-center text-[8px] sm:text-[9px] font-bold text-slate-500';
+                        item.innerHTML = '<span class="hidden sm:inline">ПУСТО</span><span class="sm:hidden">·</span>';
                     }
                     modBar.appendChild(item);
                 }
@@ -6879,14 +7018,20 @@
 
                 ctx.save();
                 const gridPixelWidth = CONFIG.GRID_COLS * ts;
-                const offsetX = Math.floor((w - gridPixelWidth) / 2);
+                // Автоматическое масштабирование всей 15-колоночной шахты под ширину мобильного экрана
+                const viewScale = Math.min(1, w / gridPixelWidth);
+                const scaledGridW = gridPixelWidth * viewScale;
+                const offsetX = Math.floor((w - scaledGridW) / 2);
                 const shakeX = this.screenShake > 0 ? (Math.random() - 0.5) * 12 : 0;
                 const shakeY = this.screenShake > 0 ? (Math.random() - 0.5) * 12 : 0;
 
-                ctx.translate(offsetX + shakeX, -Math.floor(this.cameraY) + shakeY);
+                ctx.translate(offsetX + shakeX, shakeY);
+                ctx.scale(viewScale, viewScale);
+                ctx.translate(0, -Math.floor(this.cameraY));
 
+                const virtualViewH = h / viewScale;
                 const startRow = Math.max(0, Math.floor(this.cameraY / ts) - 2);
-                const endRow = Math.min(CONFIG.LAYER_ROWS - 1, Math.ceil((this.cameraY + h) / ts) + 2);
+                const endRow = Math.min(CONFIG.LAYER_ROWS - 1, Math.ceil((this.cameraY + virtualViewH) / ts) + 2);
                 const extraVision = this.drill.hasModule('MAGNET_GRAB') ? 2.0 : 0;
                 const lightRadius = CONFIG.LIGHT_RADIUS + extraVision;
 
